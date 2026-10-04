@@ -187,7 +187,7 @@ function toggleBag(show) {
   }
 }
 
-function sendWhatsAppOrder(phone = '972594157070') {
+function sendWhatsAppOrder(phone = '972598386222') {
   if (cart.length === 0) return alert('السلة فارغة، اختر بعض الحلويات أولاً!');
   let msg = `*طلب حلى فاخر من منيو كيك بوس 🍰*%0A--------------------------------%0A`;
   let total = 0;

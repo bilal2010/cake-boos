@@ -53,7 +53,7 @@ function toggleCart(isOpen) {
   if (drawer) drawer.classList.toggle('open', isOpen);
 }
 
-function sendOrderWhatsApp(phone = '972594157070') {
+function sendOrderWhatsApp(phone = '972598386222') {
   if (cart.length === 0) return alert('السلة فارغة، تفضل باختيار طلباتك الملكية أولاً!');
   let msg = `*طلب فاخر جديد من منيو Cake Boss الملكي 👑*%0A------------------------------------%0A`;
   let sum = 0;
