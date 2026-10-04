@@ -52,6 +52,7 @@
       overflow-x: hidden;
     }
 
+    /* طبقات Glassmorphism الفاخرة */
     .ultra-glass {
       background: rgba(255, 255, 255, 0.88);
       backdrop-filter: blur(20px);
@@ -72,6 +73,7 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
+    /* حركة قطرات صوص الفستق */
     @keyframes dropDrizzle {
       0% { transform: translateY(-100%) scaleY(0.8); opacity: 0; }
       30% { opacity: 0.85; }
@@ -86,6 +88,7 @@
       animation: dropDrizzle 4.5s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
     }
 
+    /* طفو الطبق المكبر في الهيرو */
     @keyframes heroFloatBig {
       0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
       50% { transform: translateY(-16px) rotate(1.5deg) scale(1.02); }
@@ -110,19 +113,19 @@
 </head>
 <body class="selection:bg-pistachio-300 selection:text-noir pb-24">
 
-  <!-- شاشة التحميل -->
+  <!-- 1. شاشة التحميل الرشيقة -->
   <div id="preloader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-noir transition-opacity duration-700">
     <div class="relative flex flex-col items-center">
       <div class="w-24 h-24 rounded-full p-1 border border-gold/40 flex items-center justify-center relative">
         <div class="absolute inset-0 rounded-full border-t-2 border-gold animate-spin"></div>
-        <img src="./logo.png" alt="Cake Boss" class="w-16 h-16 rounded-full object-cover">
+        <img src="logo.png" alt="Cake Boss" class="w-16 h-16 rounded-full object-cover">
       </div>
       <h2 class="mt-4 font-serif italic text-2xl tracking-[0.25em] text-goldLight">CAKE BOSS</h2>
       <p class="text-[11px] text-pistachio-300 tracking-[0.3em] uppercase mt-1 font-light">GAZA HAUTE PÂTISSERIE</p>
     </div>
   </div>
 
-  <!-- خلفية القطرات والهالة المشتركة -->
+  <!-- خلفية القطرات والهالة المشتركة لجميع الصفحات -->
   <div class="fixed inset-0 pointer-events-none opacity-30 z-0 overflow-hidden">
     <div class="drizzle-drop" style="left: 10%; animation-delay: 0s;"></div>
     <div class="drizzle-drop" style="left: 28%; animation-delay: 2.2s; animation-duration: 5.5s;"></div>
@@ -131,13 +134,13 @@
     <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-gradient-to-tr from-pistachio-200/40 via-pistachio-300/20 to-gold/15 rounded-full blur-3xl aura-rotate"></div>
   </div>
 
-  <!-- النافبار العلوي المعلق -->
+  <!-- 2. النافبار العلوي المعلق -->
   <header class="sticky top-4 inset-x-0 z-40 max-w-6xl mx-auto px-4 mb-4">
     <nav class="ultra-glass rounded-3xl px-5 sm:px-8 py-3.5 flex items-center justify-between shadow-xl shadow-pistachio-950/5">
       
       <!-- اللوجو والهوية -->
       <a href="javascript:void(0)" onclick="switchView('home')" class="flex items-center gap-3">
-        <img src="./logo.png" alt="Cake Boss Logo" class="w-11 h-11 rounded-full object-cover border-2 border-pistachio-400 p-0.5 shadow-sm">
+        <img src="logo.png" alt="Cake Boss Logo" class="w-11 h-11 rounded-full object-cover border-2 border-pistachio-400 p-0.5 shadow-sm">
         <div>
           <span class="block text-lg font-black text-noir tracking-tight">Cake Boss</span>
           <span class="block text-[9px] text-gold font-bold tracking-widest -mt-0.5 font-serif uppercase">Gaza Exclusive</span>
@@ -152,7 +155,7 @@
         <button onclick="switchView('contact')" class="hover:text-pistachio-600 transition">تواصل معنا</button>
       </div>
 
-      <!-- سلة الطلبات وزر واتساب -->
+      <!-- سلة الطلبات وزر واتساب السريع -->
       <div class="flex items-center gap-2.5">
         <button onclick="toggleCartDrawer()" class="relative flex items-center gap-2 bg-noir hover:bg-pistachio-900 text-white px-4 sm:px-5 py-2.5 rounded-2xl text-xs font-bold transition shadow-lg shadow-noir/20 group">
           <i class="fa-solid fa-basket-shopping text-gold group-hover:scale-110 transition"></i>
@@ -164,8 +167,10 @@
     </nav>
   </header>
 
-  <!-- الصفحة الرئيسية (HOME) -->
+  <!-- ==================== الصفحة 1: الصفحة الرئيسية (HOME) ==================== -->
   <section id="view-home" class="page-view relative z-10 max-w-6xl mx-auto px-4 pt-4">
+    
+    <!-- البنر السينمائي (مع تكبير صورة الطبق بطلبك) -->
     <div class="relative min-h-[75vh] flex items-center justify-center overflow-hidden py-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center w-full">
         
@@ -197,7 +202,7 @@
           </div>
         </div>
 
-        <!-- الجانب البصري: الطبق المكبر -->
+        <!-- الجانب البصري: الطبق المكبر الطافي -->
         <div class="lg:col-span-6 flex justify-center relative">
           <div class="relative w-80 sm:w-[450px] aspect-square flex items-center justify-center">
             <div class="absolute inset-0 rounded-full border border-dashed border-pistachio-400/50 animate-[spin_50s_linear_infinite]"></div>
@@ -207,8 +212,9 @@
               <span class="text-xs font-bold text-noir">بستاشيو كيك دريم</span>
             </div>
 
-            <div class="hero-big-dish relative z-10 w-full h-full flex items-center justify-center cursor-pointer" onclick="openDishModal('بستاشيو كيك دريم', '28', 'طبقات من الإسفنج الرطب المشبع بكريمة البستاشيو الطبيعية المقرمشة والمحمصة مع لمسة وايت شوكليت فاخرة.', './item.png', 'معتدلة 65%', 'فستق حلبي، شوكولاتة بيضاء، كراميل')">
-              <img src="./item.png" alt="الطبق الملكي المكبر" class="w-full h-full object-contain filter drop-shadow-2xl">
+            <!-- صورة الطبق المكبرة -->
+            <div class="hero-big-dish relative z-10 w-full h-full flex items-center justify-center cursor-pointer" onclick="openDishModal('بستاشيو كيك دريم', '28', 'طبقات من الإسفنج الرطب المشبع بكريمة البستاشيو الطبيعية المقرمشة والمحمصة مع لمسة وايت شوكليت فاخرة.', 'item.png', 'معتدلة 65%', 'فستق حلبي، شوكولاتة بيضاء، كراميل')">
+              <img src="item.png" alt="الطبق الملكي المكبر" class="w-full h-full object-contain filter drop-shadow-2xl">
             </div>
 
             <div class="absolute -bottom-3 -left-2 z-20 dark-glass text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3">
@@ -227,7 +233,7 @@
       </div>
     </div>
 
-    <!-- تصفيفات سريعة للأقسام -->
+    <!-- شريط تصفيفات سريعة للأقسام الرئيسية -->
     <div class="py-8 border-y border-pistachio-100 my-8">
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-xl font-black text-noir">أقسام الحلويات المختارة</h2>
@@ -236,29 +242,29 @@
       
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <div onclick="openCategoryView('pistachio')" class="bg-white rounded-3xl p-4 border border-pistachio-100 hover:border-pistachio-300 shadow-sm hover:shadow-lg transition cursor-pointer text-center group">
-          <img src="./pp.png" class="w-14 h-14 rounded-2xl mx-auto object-cover mb-2 border border-pistachio-200 group-hover:scale-105 transition">
+          <img src="pp.png" class="w-14 h-14 rounded-2xl mx-auto object-cover mb-2 border border-pistachio-200 group-hover:scale-105 transition">
           <h3 class="font-bold text-xs text-noir">أطباق البستاشيو</h3>
           <span class="text-[10px] text-gray-400">8 أصناف فاخرة</span>
         </div>
         <div onclick="openCategoryView('cheesecake')" class="bg-white rounded-3xl p-4 border border-pistachio-100 hover:border-pistachio-300 shadow-sm hover:shadow-lg transition cursor-pointer text-center group">
-          <img src="./pp.png" class="w-14 h-14 rounded-2xl mx-auto object-cover mb-2 border border-pistachio-200 group-hover:scale-105 transition">
+          <img src="pp.png" class="w-14 h-14 rounded-2xl mx-auto object-cover mb-2 border border-pistachio-200 group-hover:scale-105 transition">
           <h3 class="font-bold text-xs text-noir">تشيز كيك وتارت</h3>
           <span class="text-[10px] text-gray-400">6 أصناف</span>
         </div>
         <div onclick="openCategoryView('cakes')" class="bg-white rounded-3xl p-4 border border-pistachio-100 hover:border-pistachio-300 shadow-sm hover:shadow-lg transition cursor-pointer text-center group">
-          <img src="./pp.png" class="w-14 h-14 rounded-2xl mx-auto object-cover mb-2 border border-pistachio-200 group-hover:scale-105 transition">
+          <img src="pp.png" class="w-14 h-14 rounded-2xl mx-auto object-cover mb-2 border border-pistachio-200 group-hover:scale-105 transition">
           <h3 class="font-bold text-xs text-noir">كيك وتورتات</h3>
           <span class="text-[10px] text-gray-400">5 أصناف</span>
         </div>
         <div onclick="openCategoryView('boxes')" class="bg-white rounded-3xl p-4 border border-pistachio-100 hover:border-pistachio-300 shadow-sm hover:shadow-lg transition cursor-pointer text-center group">
-          <img src="./pp.png" class="w-14 h-14 rounded-2xl mx-auto object-cover mb-2 border border-pistachio-200 group-hover:scale-105 transition">
+          <img src="pp.png" class="w-14 h-14 rounded-2xl mx-auto object-cover mb-2 border border-pistachio-200 group-hover:scale-105 transition">
           <h3 class="font-bold text-xs text-noir">بوكسات الجمعات</h3>
           <span class="text-[10px] text-gray-400">4 بوكسات</span>
         </div>
       </div>
     </div>
 
-    <!-- الأصناف المشهورة -->
+    <!-- الأصناف المشهورة (Best Sellers) -->
     <div class="py-6">
       <div class="text-center max-w-md mx-auto mb-8">
         <span class="text-[10px] font-serif uppercase tracking-widest text-gold font-bold">Hall of Fame</span>
@@ -270,9 +276,9 @@
         <!-- كرت 1 -->
         <div class="bg-white rounded-3xl p-4 border border-pistachio-100 hover:border-pistachio-300 shadow-lg shadow-pistachio-950/5 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
-            <div class="relative rounded-2xl overflow-hidden aspect-square bg-pistachio-50 p-4 flex items-center justify-center cursor-pointer" onclick="openDishModal('بستاشيو دريم كيك', '28', 'طبقات من الإسفنج الرطب المشبع بكريمة البستاشيو الطبيعية المقرمشة والمحمصة مع لمسة وايت شوكليت فاخرة.', './item.png', 'معتدلة 65%', 'فستق حلبي، شوكولاتة بيضاء، كراميل')">
+            <div class="relative rounded-2xl overflow-hidden aspect-square bg-pistachio-50 p-4 flex items-center justify-center cursor-pointer" onclick="openDishModal('بستاشيو دريم كيك', '28', 'طبقات من الإسفنج الرطب المشبع بكريمة البستاشيو الطبيعية المقرمشة والمحمصة مع لمسة وايت شوكليت فاخرة.', 'item.png', 'معتدلة 65%', 'فستق حلبي، شوكولاتة بيضاء، كراميل')">
               <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-noir text-gold text-[10px] font-bold font-serif">SIGNATURE</span>
-              <img src="./item.png" class="w-4/5 h-4/5 object-contain hover:scale-105 transition duration-500">
+              <img src="item.png" class="w-4/5 h-4/5 object-contain hover:scale-105 transition duration-500">
             </div>
             <div class="pt-4 space-y-1.5">
               <div class="flex items-center justify-between">
@@ -283,7 +289,7 @@
             </div>
           </div>
           <div class="pt-4 mt-3 border-t border-pistachio-50 flex items-center gap-2">
-            <button onclick="openDishModal('بستاشيو دريم كيك', '28', 'طبقات من الإسفنج الرطب المشبع بكريمة البستاشيو الطبيعية المقرمشة والمحمصة مع لمسة وايت شوكليت فاخرة.', './item.png', 'معتدلة 65%', 'فستق حلبي، شوكولاتة بيضاء، كراميل')" class="flex-1 py-2.5 rounded-xl ultra-glass hover:bg-pistachio-100 text-pistachio-900 text-xs font-bold transition">التفاصيل والحكاية</button>
+            <button onclick="openDishModal('بستاشيو دريم كيك', '28', 'طبقات من الإسفنج الرطب المشبع بكريمة البستاشيو الطبيعية المقرمشة والمحمصة مع لمسة وايت شوكليت فاخرة.', 'item.png', 'معتدلة 65%', 'فستق حلبي، شوكولاتة بيضاء، كراميل')" class="flex-1 py-2.5 rounded-xl ultra-glass hover:bg-pistachio-100 text-pistachio-900 text-xs font-bold transition">التفاصيل والحكاية</button>
             <button onclick="addToCart('بستاشيو دريم كيك', 28)" class="w-10 h-10 rounded-xl bg-noir hover:bg-pistachio-600 text-white flex items-center justify-center transition shadow"><i class="fa-solid fa-plus text-xs"></i></button>
           </div>
         </div>
@@ -291,9 +297,9 @@
         <!-- كرت 2 -->
         <div class="bg-white rounded-3xl p-4 border border-pistachio-100 hover:border-pistachio-300 shadow-lg shadow-pistachio-950/5 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
-            <div class="relative rounded-2xl overflow-hidden aspect-square bg-pistachio-50 p-4 flex items-center justify-center cursor-pointer" onclick="openDishModal('سان سباستيان بستاشيو لافا', '25', 'خبز إسباني كلاسيكي بحواف مكرملة وقلب كريمي ناعم يذوب مع كل سكب لصوص الفستق الدافئ.', './item.png', 'غنية 80%', 'جبنة فيلادلفيا، صوص بستاشيو، كراميل')">
+            <div class="relative rounded-2xl overflow-hidden aspect-square bg-pistachio-50 p-4 flex items-center justify-center cursor-pointer" onclick="openDishModal('سان سباستيان بستاشيو لافا', '25', 'خبز إسباني كلاسيكي بحواف مكرملة وقلب كريمي ناعم يذوب مع كل سكب لصوص الفستق الدافئ.', 'item.png', 'غنية 80%', 'جبنة فيلادلفيا، صوص بستاشيو، كراميل')">
               <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-pistachio-100 text-pistachio-800 text-[10px] font-bold font-serif">HOT</span>
-              <img src="./item.png" class="w-4/5 h-4/5 object-contain hover:scale-105 transition duration-500">
+              <img src="item.png" class="w-4/5 h-4/5 object-contain hover:scale-105 transition duration-500">
             </div>
             <div class="pt-4 space-y-1.5">
               <div class="flex items-center justify-between">
@@ -304,7 +310,7 @@
             </div>
           </div>
           <div class="pt-4 mt-3 border-t border-pistachio-50 flex items-center gap-2">
-            <button onclick="openDishModal('سان سباستيان بستاشيو لافا', '25', 'خبز إسباني كلاسيكي بحواف مكرملة وقلب كريمي ناعم يذوب مع كل سكب لصوص الفستق الدافئ.', './item.png', 'غنية 80%', 'جبنة فيلادلفيا، صوص بستاشيو، كراميل')" class="flex-1 py-2.5 rounded-xl ultra-glass hover:bg-pistachio-100 text-pistachio-900 text-xs font-bold transition">التفاصيل والحكاية</button>
+            <button onclick="openDishModal('سان سباستيان بستاشيو لافا', '25', 'خبز إسباني كلاسيكي بحواف مكرملة وقلب كريمي ناعم يذوب مع كل سكب لصوص الفستق الدافئ.', 'item.png', 'غنية 80%', 'جبنة فيلادلفيا، صوص بستاشيو، كراميل')" class="flex-1 py-2.5 rounded-xl ultra-glass hover:bg-pistachio-100 text-pistachio-900 text-xs font-bold transition">التفاصيل والحكاية</button>
             <button onclick="addToCart('سان سباستيان بستاشيو', 25)" class="w-10 h-10 rounded-xl bg-noir hover:bg-pistachio-600 text-white flex items-center justify-center transition shadow"><i class="fa-solid fa-plus text-xs"></i></button>
           </div>
         </div>
@@ -312,9 +318,9 @@
         <!-- كرت 3 -->
         <div class="bg-white rounded-3xl p-4 border border-pistachio-100 hover:border-pistachio-300 shadow-lg shadow-pistachio-950/5 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
-            <div class="relative rounded-2xl overflow-hidden aspect-square bg-pistachio-50 p-4 flex items-center justify-center cursor-pointer" onclick="openDishModal('تورتة جاردن رويال', '95', 'صُممت لتكون نجمة احتفالاتك الخاصة؛ حشوات من التوت الطبيعي والزهور المعطرة التي تخلد الذكريات.', './item.png', 'متوازنة 50%', 'توت عليق طازج، كريمة بوربون، زهور صالحة للأكل')">
+            <div class="relative rounded-2xl overflow-hidden aspect-square bg-pistachio-50 p-4 flex items-center justify-center cursor-pointer" onclick="openDishModal('تورتة جاردن رويال', '95', 'صُممت لتكون نجمة احتفالاتك الخاصة؛ حشوات من التوت الطبيعي والزهور المعطرة التي تخلد الذكريات.', 'item.png', 'متوازنة 50%', 'توت عليق طازج، كريمة بوربون، زهور صالحة للأكل')">
               <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-gold/20 text-gold text-[10px] font-bold font-serif">OCCASIONS</span>
-              <img src="./item.png" class="w-4/5 h-4/5 object-contain hover:scale-105 transition duration-500">
+              <img src="item.png" class="w-4/5 h-4/5 object-contain hover:scale-105 transition duration-500">
             </div>
             <div class="pt-4 space-y-1.5">
               <div class="flex items-center justify-between">
@@ -325,16 +331,17 @@
             </div>
           </div>
           <div class="pt-4 mt-3 border-t border-pistachio-50 flex items-center gap-2">
-            <button onclick="openDishModal('تورتة جاردن رويال', '95', 'صُممت لتكون نجمة احتفالاتك الخاصة؛ حشوات من التوت الطبيعي والزهور المعطرة التي تخلد الذكريات.', './item.png', 'متوازنة 50%', 'توت عليق طازج، كريمة بوربون، زهور صالحة للأكل')" class="flex-1 py-2.5 rounded-xl ultra-glass hover:bg-pistachio-100 text-pistachio-900 text-xs font-bold transition">التفاصيل والحكاية</button>
+            <button onclick="openDishModal('تورتة جاردن رويال', '95', 'صُممت لتكون نجمة احتفالاتك الخاصة؛ حشوات من التوت الطبيعي والزهور المعطرة التي تخلد الذكريات.', 'item.png', 'متوازنة 50%', 'توت عليق طازج، كريمة بوربون، زهور صالحة للأكل')" class="flex-1 py-2.5 rounded-xl ultra-glass hover:bg-pistachio-100 text-pistachio-900 text-xs font-bold transition">التفاصيل والحكاية</button>
             <button onclick="addToCart('تورتة جاردن رويال', 95)" class="w-10 h-10 rounded-xl bg-noir hover:bg-pistachio-600 text-white flex items-center justify-center transition shadow"><i class="fa-solid fa-plus text-xs"></i></button>
           </div>
         </div>
 
       </div>
     </div>
+
   </section>
 
-  <!-- خريطة الأقسام الكبرى (CATEGORIES) -->
+  <!-- ==================== الصفحة 2: خريطة الأقسام الكبرى (CATEGORIES) ==================== -->
   <section id="view-categories" class="page-view hidden relative z-10 max-w-5xl mx-auto px-4 pt-4">
     <div class="text-center max-w-lg mx-auto mb-8">
       <span class="text-[10px] font-serif uppercase tracking-widest text-gold font-bold">Categories Showcase</span>
@@ -342,12 +349,13 @@
       <p class="text-xs text-gray-500 mt-2">اختر القسم لاستعراض أطباقه المجهزة بحرفية عالية.</p>
     </div>
 
+    <!-- شبكة بطاقات الأقسام الكبيرة بأسلوب المجلة الفاخرة -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       
-      <!-- قسم 1 -->
+      <!-- قسم 1: أطباق البستاشيو الفاخرة -->
       <div onclick="openCategoryView('pistachio')" class="group relative bg-white rounded-[36px] overflow-hidden border border-pistachio-200/90 shadow-xl hover:shadow-2xl transition-all duration-700 cursor-pointer flex flex-col justify-between">
         <div class="relative w-full aspect-[16/11] overflow-hidden bg-gradient-to-b from-pistachio-100 to-white">
-          <img src="./pestashio.jpg" alt="أطباق البستاشيو" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700">
+          <img src="pestashio.jpg" alt="أطباق البستاشيو" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700">
           <div class="absolute inset-0 bg-gradient-to-t from-noir/85 via-noir/20 to-transparent"></div>
           <div class="absolute top-4 inset-x-4 flex items-center justify-between z-10">
             <span class="glass-badge text-gold text-[10px] font-bold px-3 py-1.5 rounded-full font-serif uppercase">SIGNATURE</span>
@@ -367,10 +375,10 @@
         </div>
       </div>
 
-      <!-- قسم 2 -->
+      <!-- قسم 2: تشيز كيك وتارت -->
       <div onclick="openCategoryView('cheesecake')" class="group relative bg-white rounded-[36px] overflow-hidden border border-pistachio-200/90 shadow-xl hover:shadow-2xl transition-all duration-700 cursor-pointer flex flex-col justify-between">
         <div class="relative w-full aspect-[16/11] overflow-hidden bg-gradient-to-b from-pistachio-100 to-white">
-          <img src="./san.jpg" alt="تشيز كيك وتارت" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700">
+          <img src="san.jpg" alt="تشيز كيك وتارت" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700">
           <div class="absolute inset-0 bg-gradient-to-t from-noir/85 via-noir/20 to-transparent"></div>
           <div class="absolute top-4 inset-x-4 flex items-center justify-between z-10">
             <span class="glass-badge text-goldLight text-[10px] font-bold px-3 py-1.5 rounded-full font-serif uppercase">HOT ITEM</span>
@@ -390,10 +398,10 @@
         </div>
       </div>
 
-      <!-- قسم 3 -->
+      <!-- قسم 3: كيك وتورتات المناسبات -->
       <div onclick="openCategoryView('cakes')" class="group relative bg-white rounded-[36px] overflow-hidden border border-pistachio-200/90 shadow-xl hover:shadow-2xl transition-all duration-700 cursor-pointer flex flex-col justify-between">
         <div class="relative w-full aspect-[16/11] overflow-hidden bg-gradient-to-b from-pistachio-100 to-white">
-          <img src="./20.webp" alt="كيك المناسبات" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700">
+          <img src="20.webp" alt="كيك المناسبات" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700">
           <div class="absolute inset-0 bg-gradient-to-t from-noir/85 via-noir/20 to-transparent"></div>
           <div class="absolute top-4 inset-x-4 flex items-center justify-between z-10">
             <span class="glass-badge text-gold text-[10px] font-bold px-3 py-1.5 rounded-full font-serif uppercase">CELEBRATION</span>
@@ -413,10 +421,10 @@
         </div>
       </div>
 
-      <!-- قسم 4 -->
+      <!-- قسم 4: بوكسات وسهرات الجمعات -->
       <div onclick="openCategoryView('boxes')" class="group relative bg-white rounded-[36px] overflow-hidden border border-pistachio-200/90 shadow-xl hover:shadow-2xl transition-all duration-700 cursor-pointer flex flex-col justify-between">
         <div class="relative w-full aspect-[16/11] overflow-hidden bg-gradient-to-b from-pistachio-100 to-white">
-          <img src="./pp.png" alt="بوكسات الجمعات" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700">
+          <img src="pp.png" alt="بوكسات الجمعات" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700">
           <div class="absolute inset-0 bg-gradient-to-t from-noir/85 via-noir/20 to-transparent"></div>
           <div class="absolute top-4 inset-x-4 flex items-center justify-between z-10">
             <span class="glass-badge text-gold text-[10px] font-bold px-3 py-1.5 rounded-full font-serif uppercase">SHARING</span>
@@ -439,26 +447,36 @@
     </div>
   </section>
 
-  <!-- صفحة عرض أطباق القسم المختار (CATEGORY SINGLE) -->
+  <!-- ==================== الصفحة 3: صفحة عرض أطباق القسم المختار (CATEGORY SINGLE) ==================== -->
   <section id="view-category-single" class="page-view hidden relative z-10 max-w-6xl mx-auto px-4 pt-4">
+    
+    <!-- مسار التنقل وزر الرجوع للأقسام -->
     <div class="flex items-center justify-between pb-6 mb-6 border-b border-pistachio-100">
       <button onclick="switchView('categories')" class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white border border-pistachio-200 text-xs font-bold text-noir hover:bg-pistachio-50 transition shadow-sm">
         <i class="fa-solid fa-arrow-right text-pistachio-600"></i>
         <span>الرجوع لكل الأقسام</span>
       </button>
-      <span id="currentCatBadge" class="text-xs font-bold text-pistachio-800 bg-pistachio-100 px-3.5 py-1.5 rounded-full">أطباق القسم</span>
+
+      <span id="currentCatBadge" class="text-xs font-bold text-pistachio-800 bg-pistachio-100 px-3.5 py-1.5 rounded-full">
+        أطباق القسم
+      </span>
     </div>
 
+    <!-- ترويسة القسم المختار -->
     <div class="text-center max-w-lg mx-auto mb-10">
       <h2 id="currentCatTitle" class="text-3xl font-black text-noir">أطباق البستاشيو الفاخرة</h2>
       <p id="currentCatDesc" class="text-xs sm:text-sm text-gray-500 mt-2">تشكيلة مختارة بعناية لتمنحكم تجربة غنية بكل تفاصيلها.</p>
     </div>
 
-    <div id="categoryDishesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <!-- شبكة أطباق هذا القسم -->
+    <div id="categoryDishesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- يتم حقن الأطباق ديناميكياً بواسطة جافاسكربت -->
+    </div>
   </section>
 
-  <!-- من نحن (ABOUT US) -->
+  <!-- ==================== الصفحة 4: من نحن (ABOUT US) ==================== -->
   <section id="view-about" class="page-view hidden relative z-10 max-w-5xl mx-auto px-4 pt-4">
+    
     <div class="text-center max-w-xl mx-auto mb-10">
       <span class="text-[10px] font-serif uppercase tracking-widest text-gold font-bold">The Heritage & Craft</span>
       <h2 class="text-3xl sm:text-4xl font-black text-noir mt-1">حكاية دار Cake Boss</h2>
@@ -466,6 +484,7 @@
     </div>
 
     <div class="bg-white rounded-[36px] p-6 sm:p-10 border border-pistachio-200/90 shadow-xl space-y-8">
+      
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div class="space-y-4">
           <span class="px-3.5 py-1 rounded-full bg-pistachio-100 text-pistachio-800 text-xs font-bold">شغف وإتقان</span>
@@ -475,32 +494,43 @@
           </p>
         </div>
         <div class="rounded-3xl overflow-hidden aspect-video bg-pistachio-100 border border-pistachio-200 p-2 flex items-center justify-center">
-          <img src="./logo.png" class="w-32 h-32 rounded-full object-cover shadow-lg border-2 border-gold/40">
+          <img src="logo.png" class="w-32 h-32 rounded-full object-cover shadow-lg border-2 border-gold/40">
         </div>
       </div>
 
+      <!-- الركائز الثلاث لجودتنا -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-pistachio-100">
         <div class="p-5 rounded-2xl bg-pistachio-50/60 border border-pistachio-100 text-center space-y-2">
-          <div class="w-12 h-12 rounded-2xl bg-white text-pistachio-700 mx-auto flex items-center justify-center shadow-sm text-lg"><i class="fa-solid fa-leaf"></i></div>
+          <div class="w-12 h-12 rounded-2xl bg-white text-pistachio-700 mx-auto flex items-center justify-center shadow-sm text-lg">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
           <h4 class="font-black text-sm text-noir">مكونات نقية 100%</h4>
           <p class="text-[11px] text-gray-500 leading-relaxed">بدون ملونات أو نكهات صناعية رديئة، فقط طعم الطبيعة البكر.</p>
         </div>
+
         <div class="p-5 rounded-2xl bg-pistachio-50/60 border border-pistachio-100 text-center space-y-2">
-          <div class="w-12 h-12 rounded-2xl bg-white text-pistachio-700 mx-auto flex items-center justify-center shadow-sm text-lg"><i class="fa-solid fa-clock"></i></div>
+          <div class="w-12 h-12 rounded-2xl bg-white text-pistachio-700 mx-auto flex items-center justify-center shadow-sm text-lg">
+            <i class="fa-solid fa-clock"></i>
+          </div>
           <h4 class="font-black text-sm text-noir">خَبز طازج يومياً</h4>
           <p class="text-[11px] text-gray-500 leading-relaxed">أفراننا تبدأ العمل فجراً لضمان وصول كل صنف بأعلى درجات الطراوة.</p>
         </div>
+
         <div class="p-5 rounded-2xl bg-pistachio-50/60 border border-pistachio-100 text-center space-y-2">
-          <div class="w-12 h-12 rounded-2xl bg-white text-pistachio-700 mx-auto flex items-center justify-center shadow-sm text-lg"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <div class="w-12 h-12 rounded-2xl bg-white text-pistachio-700 mx-auto flex items-center justify-center shadow-sm text-lg">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </div>
           <h4 class="font-black text-sm text-noir">ابتكار لا ينتهي</h4>
           <p class="text-[11px] text-gray-500 leading-relaxed">نطور وصفاتنا باستمرار لتقديم أطباق تفاجئ حواسك وتتحدث عن نفسها.</p>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- تواصل معنا (CONTACT US) -->
+  <!-- ==================== الصفحة 5: تواصل معنا (CONTACT US) ==================== -->
   <section id="view-contact" class="page-view hidden relative z-10 max-w-5xl mx-auto px-4 pt-4">
+    
     <div class="text-center max-w-lg mx-auto mb-10">
       <span class="text-[10px] font-serif uppercase tracking-widest text-gold font-bold">Get In Touch</span>
       <h2 class="text-3xl sm:text-4xl font-black text-noir mt-1">نسعد بتواصلكم واستقبالكم</h2>
@@ -508,6 +538,8 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+      
+      <!-- كرت معلومات التواصل -->
       <div class="md:col-span-5 bg-white rounded-[32px] p-6 sm:p-8 border border-pistachio-200/90 shadow-xl space-y-6">
         <div>
           <span class="text-[10px] font-serif text-gold font-bold tracking-widest uppercase block">Location & Hours</span>
@@ -516,21 +548,29 @@
 
         <div class="space-y-4 text-xs">
           <div class="flex items-start gap-3">
-            <div class="w-9 h-9 rounded-xl bg-pistachio-100 text-pistachio-800 flex items-center justify-center shrink-0"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="w-9 h-9 rounded-xl bg-pistachio-100 text-pistachio-800 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
             <div>
               <strong class="block text-noir mb-0.5">العنوان:</strong>
               <span class="text-gray-500 leading-relaxed">غزة - شارع الوحدة - بجوار مطعم الجرجاوي</span>
             </div>
           </div>
+
           <div class="flex items-start gap-3">
-            <div class="w-9 h-9 rounded-xl bg-pistachio-100 text-pistachio-800 flex items-center justify-center shrink-0"><i class="fa-solid fa-clock"></i></div>
+            <div class="w-9 h-9 rounded-xl bg-pistachio-100 text-pistachio-800 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-clock"></i>
+            </div>
             <div>
               <strong class="block text-noir mb-0.5">ساعات العمل:</strong>
               <span class="text-gray-500">يومياً من الساعة 10:00 صباحاً حتى 12:00 منتصف الليل</span>
             </div>
           </div>
+
           <div class="flex items-start gap-3">
-            <div class="w-9 h-9 rounded-xl bg-pistachio-100 text-pistachio-800 flex items-center justify-center shrink-0"><i class="fa-solid fa-phone"></i></div>
+            <div class="w-9 h-9 rounded-xl bg-pistachio-100 text-pistachio-800 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-phone"></i>
+            </div>
             <div>
               <strong class="block text-noir mb-0.5">الاتصال المباشر:</strong>
               <a href="tel:+972592133357" class="text-pistachio-700 font-bold hover:underline">0592133357</a>
@@ -538,14 +578,17 @@
           </div>
         </div>
 
+        <!-- زر واتساب فوري -->
         <a href="https://wa.me/972592133357?text=مرحباً%20Cake%20Boss،%20أود%20الاستفسار%20عن%20أصنافكم" target="_blank" class="w-full py-3.5 rounded-2xl bg-[#25D366] hover:bg-[#1fb355] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition">
           <i class="fa-brands fa-whatsapp text-base"></i>
           <span>محادثة فورية عبر واتساب</span>
         </a>
       </div>
 
+      <!-- نموذج إرسال استفسار -->
       <div class="md:col-span-7 bg-white rounded-[32px] p-6 sm:p-8 border border-pistachio-200/90 shadow-xl space-y-4">
         <h3 class="text-lg font-black text-noir">أرسل استفسارك مباشرة</h3>
+        
         <div class="space-y-3">
           <div>
             <label class="block text-[11px] font-bold text-gray-700 mb-1">الاسم الكريم</label>
@@ -564,24 +607,27 @@
             <label class="block text-[11px] font-bold text-gray-700 mb-1">رسالتك أو تفاصيل مناسبتك</label>
             <textarea id="contactMsg" rows="3" placeholder="اكتب تفاصيل طلبك وتاريخ المناسبة..." class="w-full px-4 py-3 bg-pistachio-50/50 border border-pistachio-200 rounded-2xl text-xs focus:outline-none focus:border-pistachio-500"></textarea>
           </div>
+
           <button onclick="sendContactFormWhatsApp()" class="w-full py-3.5 rounded-2xl bg-noir hover:bg-pistachio-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition">
             <i class="fa-solid fa-paper-plane text-xs text-gold"></i>
             <span>إرسال الطلب لفريق المبيعات عبر واتساب</span>
           </button>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- مودال تفاصيل الصنف -->
+  <!-- ==================== مودال تفاصيل الصنف وحكايته (DISH DETAIL MODAL) ==================== -->
   <div id="dishModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-noir/70 backdrop-blur-md">
     <div class="relative w-full max-w-lg bg-white rounded-[36px] overflow-hidden shadow-2xl border border-pistachio-200">
+      
       <button onclick="closeDishModal()" class="absolute top-5 left-5 z-20 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-noir flex items-center justify-center shadow-md transition">
         <i class="fa-solid fa-xmark"></i>
       </button>
 
       <div class="relative h-64 bg-gradient-to-b from-pistachio-100/70 to-white flex items-center justify-center p-6">
-        <img id="dm-img" src="./item.png" class="h-full object-contain filter drop-shadow-xl" alt="Dish">
+        <img id="dm-img" src="item.png" class="h-full object-contain filter drop-shadow-xl" alt="Dish">
       </div>
 
       <div class="p-7 pt-2 space-y-4">
@@ -595,6 +641,7 @@
 
         <p id="dm-desc" class="text-xs text-gray-600 leading-relaxed"></p>
 
+        <!-- مقياس المذاق والنوتات -->
         <div class="p-4 rounded-2xl bg-pistachio-50/70 border border-pistachio-100 space-y-2">
           <div class="flex justify-between text-xs font-bold text-noir">
             <span>مستوى الحلاوة المعتمد:</span>
@@ -606,25 +653,29 @@
           </div>
         </div>
 
+        <!-- أزرار الإضافة أو الطلب الفوري -->
         <div class="flex items-center gap-3 pt-2">
           <div class="flex items-center border border-pistachio-200 rounded-2xl bg-pistachio-50/50 p-1">
             <button onclick="updateModalQty(-1)" class="w-8 h-8 rounded-xl bg-white text-pistachio-800 flex items-center justify-center shadow-sm font-bold">-</button>
             <span id="dm-qty" class="w-9 text-center font-bold text-noir text-xs">1</span>
             <button onclick="updateModalQty(1)" class="w-8 h-8 rounded-xl bg-white text-pistachio-800 flex items-center justify-center shadow-sm font-bold">+</button>
           </div>
+
           <button onclick="addModalItemToCart()" class="flex-1 py-3.5 rounded-2xl bg-pistachio-600 hover:bg-pistachio-700 text-white font-bold text-xs shadow-xl shadow-pistachio-600/30 transition flex items-center justify-center gap-2">
             <i class="fa-solid fa-basket-shopping text-xs"></i>
             <span>إضافة إلى السلة</span>
           </button>
         </div>
       </div>
+
     </div>
   </div>
 
-  <!-- سلة الطلبات الملكية -->
+  <!-- ==================== سلة الطلبات الملكية (LUXURY CART DRAWER) ==================== -->
   <div id="cartDrawer" class="fixed inset-0 z-50 hidden bg-noir/60 backdrop-blur-sm transition-opacity">
     <div class="fixed inset-y-0 left-0 max-w-full flex">
       <div class="w-screen max-w-md bg-white p-7 shadow-2xl flex flex-col justify-between">
+        
         <div>
           <div class="flex items-center justify-between pb-5 border-b border-pistachio-100">
             <div>
@@ -646,23 +697,28 @@
             <span class="text-xs text-gray-500 font-bold">المجموع الكلي:</span>
             <span id="cartTotal" class="text-2xl font-serif font-black text-pistachio-900">₪ 0</span>
           </div>
+
           <button onclick="sendOrderToWhatsApp()" class="w-full py-4 rounded-2xl bg-[#25D366] hover:bg-[#1ebf57] text-white font-bold text-xs sm:text-sm shadow-xl flex items-center justify-center gap-2 transition active:scale-95">
             <i class="fa-brands fa-whatsapp text-lg"></i>
             <span>إرسال وتأكيد الطلب عبر واتساب</span>
           </button>
         </div>
+
       </div>
     </div>
   </div>
 
-  <!-- شريط التنقل السفلي الذكي -->
+  <!-- ==================== شريط التنقل السفلي الذكي (FLOATING BOTTOM NAV) ==================== -->
   <nav class="fixed bottom-4 inset-x-0 z-40 max-w-md mx-auto px-4">
     <div class="ultra-glass rounded-full px-6 py-2.5 shadow-2xl shadow-pistachio-950/20 border border-pistachio-300/40 flex items-center justify-between">
+      
+      <!-- 1. الرئيسية -->
       <button onclick="switchView('home')" id="nav-btn-home" class="nav-tab flex flex-col items-center text-pistachio-700 font-bold transition">
         <i class="fa-solid fa-house text-sm"></i>
         <span class="text-[10px] mt-0.5">الرئيسية</span>
       </button>
 
+      <!-- 2. الأقسام (زر بارز) -->
       <button onclick="switchView('categories')" id="nav-btn-categories" class="nav-tab flex flex-col items-center text-gray-500 hover:text-pistachio-700 transition">
         <div class="w-8 h-8 rounded-full bg-pistachio-600 text-white flex items-center justify-center shadow-md shadow-pistachio-600/30">
           <i class="fa-solid fa-shapes text-xs"></i>
@@ -670,61 +726,67 @@
         <span class="text-[10px] mt-0.5">الأقسام</span>
       </button>
 
+      <!-- 3. من نحن -->
       <button onclick="switchView('about')" id="nav-btn-about" class="nav-tab flex flex-col items-center text-gray-500 hover:text-pistachio-700 transition">
         <i class="fa-solid fa-crown text-sm"></i>
         <span class="text-[10px] mt-0.5">من نحن</span>
       </button>
 
+      <!-- 4. تواصل معنا -->
       <button onclick="switchView('contact')" id="nav-btn-contact" class="nav-tab flex flex-col items-center text-gray-500 hover:text-pistachio-700 transition">
         <i class="fa-solid fa-comment-dots text-sm"></i>
         <span class="text-[10px] mt-0.5">تواصل</span>
       </button>
 
+      <!-- 5. السلة -->
       <button onclick="toggleCartDrawer()" class="flex flex-col items-center text-gray-500 hover:text-pistachio-700 transition relative">
         <i class="fa-solid fa-basket-shopping text-sm"></i>
         <span class="text-[10px] mt-0.5">السلة</span>
       </button>
+
     </div>
   </nav>
 
-  <!-- الجافاسكربت -->
+  <!-- ==================== بيانات الأصناف والجافاسكربت ==================== -->
   <script>
+    // قاعدة بيانات الأطباق للأقسام
     const categoriesData = {
       pistachio: {
         title: "أطباق البستاشيو الفاخرة",
         desc: "سلسلة الروائع المحضرة من أنقى حبوب الفستق الصقلي الإيطالي المحمصة مع الصوصات الذائبة.",
         items: [
-          { name: "بستاشيو دريم كيك", price: 28, sweetness: "معتدلة 65%", notes: "فستق حلبي، وايت شوكليت، كراميل", story: "طبقات من الإسفنج الرطب المشبع بكريمة البستاشيو الطبيعية والمحمصة مع لمسة وايت شوكليت فاخرة.", img: "./item.png" },
-          { name: "إكلير الفستق الملكي", price: 18, sweetness: "متوازنة 55%", notes: "عجينة شو فرنسية، موس بستاشيو خفيف", story: "عجينة فرنسية هشة محشوة بموس الفستق البارد الخفيف ومطلية بطبقة من الجليز الأخضر اللامع.", img: "./item.png" },
-          { name: "موس البستاشيو المخملي", price: 24, sweetness: "ناعمة 60%", notes: "موس إيطالي، فستق مقرمش", story: "قوام هوائي خفيف يذوب في الفم محضر بطريقة الباتيسري الراقية.", img: "./item.png" }
+          { name: "بستاشيو دريم كيك", price: 28, sweetness: "معتدلة 65%", notes: "فستق حلبي، وايت شوكليت، كراميل", story: "طبقات من الإسفنج الرطب المشبع بكريمة البستاشيو الطبيعية والمحمصة مع لمسة وايت شوكليت فاخرة.", img: "item.png" },
+          { name: "إكلير الفستق الملكي", price: 18, sweetness: "متوازنة 55%", notes: "عجينة شو فرنسية، موس بستاشيو خفيف", story: "عجينة فرنسية هشة محشوة بموس الفستق البارد الخفيف ومطلية بطبقة من الجليز الأخضر اللامع.", img: "item.png" },
+          { name: "موس البستاشيو المخملي", price: 24, sweetness: "ناعمة 60%", notes: "موس إيطالي، فستق مقرمش", story: "قوام هوائي خفيف يذوب في الفم محضر بطريقة الباتيسري الراقية.", img: "item.png" }
         ]
       },
       cheesecake: {
         title: "تشيز كيك وسان سباستيان",
         desc: "خبز إسباني كلاسيكي وقواعد تارت السابليه الفرنسية الهشة مع أروع النكهات.",
         items: [
-          { name: "سان سباستيان بستاشيو لافا", price: 25, sweetness: "غنية 80%", notes: "جبنة فيلادلفيا، صوص بستاشيو دافئ", story: "كيكة سان سباستيان الإسبانية المحروقة الأصلية بقوام كريمي يذوب في الفم مع صوص الفستق الساخن.", img: "./item.png" },
-          { name: "تارت التوت والبستاشيو", price: 22, sweetness: "منعشة 60%", notes: "عجينة سابليه مقرمشة، كريمة الفستق، توت", story: "قاعدة بسكويت سابليه بالزبدة الطبيعية تعلوها طبقة غنية من حشوة الفستق وحبات التوت الطازج.", img: "./item.png" }
+          { name: "سان سباستيان بستاشيو لافا", price: 25, sweetness: "غنية 80%", notes: "جبنة فيلادلفيا، صوص بستاشيو دافئ", story: "كيكة سان سباستيان الإسبانية المحروقة الأصلية بقوام كريمي يذوب في الفم مع صوص الفستق الساخن.", img: "item.png" },
+          { name: "تارت التوت والبستاشيو", price: 22, sweetness: "منعشة 60%", notes: "عجينة سابليه مقرمشة، كريمة الفستق، توت", story: "قاعدة بسكويت سابليه بالزبدة الطبيعية تعلوها طبقة غنية من حشوة الفستق وحبات التوت الطازج.", img: "item.png" }
         ]
       },
       cakes: {
         title: "كيك وتورتات المناسبات",
         desc: "تورتات ملكية مصممة خصيصاً لأعياد الميلاد والاحتفالات الخاصة مع خيارات الحشو المخصصة.",
         items: [
-          { name: "تورتة جاردن رويال", price: 95, sweetness: "متوازنة 50%", notes: "توت عليق طازج، كريمة بوربون، زهور", story: "صُممت لتكون نجمة احتفالاتك بزهور طبيعية صالحة للأكل وحشوات غنية لا تُنسى.", img: "./item.png" },
-          { name: "كيك بلاك فوريست راقي", price: 85, sweetness: "شوكولاتة 70%", notes: "شوكولاتة بلجيكية، كرز طبيعي، كريمة خفيفة", story: "كيك شوكولاتة داكنة غنية بحبات الكرز مع كريمة مخفوقة ناعمة.", img: "./item.png" }
+          { name: "تورتة جاردن رويال", price: 95, sweetness: "متوازنة 50%", notes: "توت عليق طازج، كريمة بوربون، زهور", story: "صُممت لتكون نجمة احتفالاتك بزهور طبيعية صالحة للأكل وحشوات غنية لا تُنسى.", img: "item.png" },
+          { name: "كيك بلاك فوريست راقي", price: 85, sweetness: "شوكولاتة 70%", notes: "شوكولاتة بلجيكية، كرز طبيعي، كريمة خفيفة", story: "كيك شوكولاتة داكنة غنية بحبات الكرز مع كريمة مخفوقة ناعمة.", img: "item.png" }
         ]
       },
       boxes: {
         title: "بوكسات وسهرات الجمعات",
         desc: "تشكيلات ميني منوعة وقطع ضيافة أنيقة مغلفة بعلب تقديم فاخرة تليق بأوقاتكم السعيدة.",
         items: [
-          { name: "بوكس سهرات البستاشيو (12 قطعة)", price: 75, sweetness: "تشكيلة منوعة", notes: "ميني دريم كيك، ميني تارت، إكلير", story: "البوكس الأمثل لجمعات العائلة والأصدقاء؛ يجمع تشكيلة مصغرة من أروع أصنافنا لترضي جميع الأذواق.", img: "./item.png" },
-          { name: "بوكس ضيافة الميني تارت", price: 65, sweetness: "متوازنة", notes: "تارت بستاشيو، تارت لوتس، تارت شوكليت", story: "قطع صغيرة أنيقة جداً مخصصة لموائد الضيافة الفخمة.", img: "./item.png" }
+          { name: "بوكس سهرات البستاشيو (12 قطعة)", price: 75, sweetness: "تشكيلة منوعة", notes: "ميني دريم كيك، ميني تارت، إكلير", story: "البوكس الأمثل لجمعات العائلة والأصدقاء؛ يجمع تشكيلة مصغرة من أروع أصنافنا لترضي جميع الأذواق.", img: "item.png" },
+          { name: "بوكس ضيافة الميني تارت", price: 65, sweetness: "متوازنة", notes: "تارت بستاشيو، تارت لوتس، تارت شوكليت", story: "قطع صغيرة أنيقة جداً مخصصة لموائد الضيافة الفخمة.", img: "item.png" }
         ]
       }
     };
 
+    // إخفاء الـ Preloader عند اكتمال التحميل
     window.addEventListener('load', () => {
       const loader = document.getElementById('preloader');
       setTimeout(() => {
@@ -733,6 +795,7 @@
       }, 500);
     });
 
+    // التنقل بين الصفحات بنظام Single Page App
     function switchView(viewName) {
       document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
       const activeEl = document.getElementById(`view-${viewName}`);
@@ -741,6 +804,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
+      // تحديث حالة الأزرار في الشريط السفلي
       document.querySelectorAll('.nav-tab').forEach(b => {
         b.className = 'nav-tab flex flex-col items-center text-gray-500 hover:text-pistachio-700 transition';
       });
@@ -750,6 +814,7 @@
       }
     }
 
+    // فتح صفحة القسم المختار وعرض أطباقه
     function openCategoryView(catKey) {
       const data = categoriesData[catKey];
       if (!data) return;
@@ -783,6 +848,7 @@
       switchView('category-single');
     }
 
+    // مودال الصنف
     let currentModalItem = { name: '', price: 0, qty: 1 };
 
     function openDishModal(name, price, desc, img, sweetness, notes) {
@@ -818,6 +884,7 @@
       closeDishModal();
     }
 
+    // إدارة السلة
     let cart = [];
 
     function addToCart(name, price, qty = 1) {
@@ -871,6 +938,7 @@
       document.getElementById('cartDrawer').classList.toggle('hidden');
     }
 
+    // إرسال السلة عبر واتساب
     function sendOrderToWhatsApp() {
       if (cart.length === 0) return alert('سلتك فارغة!');
       let msg = "✨ *طلب جديد من متجر دار الحلويات (Cake Boss Gaza)* ✨\n\n";
@@ -883,6 +951,7 @@
       window.open(`https://wa.me/972592133357?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
+    // إرسال نموذج التواصل عبر واتساب
     function sendContactFormWhatsApp() {
       const name = document.getElementById('contactName').value.trim();
       const type = document.getElementById('contactType').value;

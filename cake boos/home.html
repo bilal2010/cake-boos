@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cake Boss | كتالوج روائع الحلويات الفاخرة</title>
+
+  <!-- الخطوط والأيقونات -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600;1,800;1,900&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            noir: '#111712',
+            pistachio: {
+              50: '#F5F8F3',
+              100: '#E7EFE4',
+              200: '#D2E1CC',
+              300: '#B2CCA8',
+              400: '#90B484',
+              500: '#6E9760', // البستاشيو الفاخر المعتمد
+              600: '#557948',
+              700: '#3F5B35',
+              800: '#2A3C23',
+              900: '#172213',
+            },
+            ivory: '#FCFDFB',
+            gold: '#C9A86A',
+            goldLight: '#E8D5AB',
+          },
+          fontFamily: {
+            tajawal: ['Tajawal', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: #F9FBF8;
+      color: #172213;
+      overflow-x: hidden;
+    }
+
+    /* طبقات Glassmorphism متباينة */
+    .ultra-glass {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(110, 151, 96, 0.16);
+    }
+
+    .dark-glass {
+      background: rgba(17, 23, 18, 0.90);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(201, 168, 106, 0.28);
+    }
+
+    /* حركة قطرات وصوص الفستق */
+    @keyframes dropDrizzle {
+      0% { transform: translateY(-100%) scaleY(0.8); opacity: 0; }
+      30% { opacity: 0.9; }
+      100% { transform: translateY(120vh) scaleY(1.3); opacity: 0; }
+    }
+
+    .drizzle-drop {
+      position: absolute;
+      width: 3.5px;
+      height: 65px;
+      background: linear-gradient(180deg, transparent, #90B484, #557948);
+      border-radius: 9999px;
+      animation: dropDrizzle 4.8s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    }
+
+    /* طفو الصنف الرئيسي في الهيرو */
+    @keyframes floatingLuxury {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-14px) rotate(1.5deg); }
+    }
+    .hero-floating-art {
+      animation: floatingLuxury 5.5s ease-in-out infinite;
+      filter: drop-shadow(0 26px 38px rgba(23, 34, 19, 0.22));
+    }
+
+    /* هالة النور الدائرية */
+    @keyframes spinHalo {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.08); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+    .aura-rotate {
+      animation: spinHalo 30s linear infinite;
+    }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="selection:bg-pistachio-300 selection:text-noir">
+
+  <!-- 1. شاشة التحميل الملكية (Boutique Preloader) -->
+  <div id="preloader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-noir transition-opacity duration-1000">
+    <div class="relative flex flex-col items-center">
+      <div class="w-24 h-24 rounded-full p-1 border border-gold/40 flex items-center justify-center relative">
+        <div class="absolute inset-0 rounded-full border-t-2 border-gold animate-spin"></div>
+        <img src="logo.png" alt="Cake Boss" class="w-16 h-16 rounded-full object-cover">
+      </div>
+      <h2 class="mt-5 font-serif italic text-2xl tracking-[0.25em] text-goldLight">CAKE BOSS</h2>
+      <p class="text-xs text-pistachio-300 tracking-[0.3em] uppercase mt-1.5 font-light">GAZA HAUTE PÂTISSERIE</p>
+      <div class="mt-6 flex items-center gap-2 text-xs text-gray-400 font-mono">
+        <span class="w-2 h-2 rounded-full bg-gold animate-ping"></span>
+        <span>جاري ترتيب قائمة الحلويات الفاخرة...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. النافبار المعلق بأناقة (Floating Glass Nav) -->
+  <header class="fixed top-4 inset-x-0 z-40 max-w-6xl mx-auto px-4">
+    <nav class="ultra-glass rounded-3xl px-6 py-3.5 flex items-center justify-between shadow-2xl shadow-pistachio-950/10">
+      
+      <!-- اللوجو والهوية -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="relative">
+          <img src="logo.png" alt="Cake Boss Logo" class="w-11 h-11 rounded-full object-cover border-2 border-pistachio-400 p-0.5 group-hover:rotate-6 transition duration-300">
+          <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></span>
+        </div>
+        <div>
+          <span class="block text-base font-black text-noir tracking-tight">Cake Boss</span>
+          <span class="block text-[10px] text-gold font-bold tracking-widest -mt-1 font-serif uppercase">Gaza Exclusive</span>
+        </div>
+      </a>
+
+      <!-- معلومات وتفاعل السلة السريعة -->
+      <div class="flex items-center gap-3">
+        <a href="tel:+972592133357" class="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pistachio-100/80 hover:bg-pistachio-200 text-pistachio-800 text-xs font-bold transition">
+          <i class="fa-solid fa-phone-volume text-pistachio-600"></i>
+          <span>0592133357</span>
+        </a>
+
+        <button onclick="toggleCartDrawer()" class="relative flex items-center gap-2.5 bg-noir hover:bg-pistachio-900 text-white px-5 py-2.5 rounded-2xl text-xs font-bold transition shadow-xl shadow-noir/20 group">
+          <i class="fa-solid fa-basket-shopping text-gold group-hover:scale-110 transition"></i>
+          <span>طلباتي</span>
+          <span id="cart-counter" class="bg-gold text-noir text-[11px] px-2 py-0.5 rounded-full font-black">0</span>
+        </button>
+      </div>
+
+    </nav>
+  </header>
+
+  <!-- 3. بنر سينمائي ترحيبي مع قطرات صوص البستاشيو المتحركة -->
+  <section class="relative min-h-[82vh] pt-32 pb-16 flex items-center justify-center overflow-hidden">
+    
+    <!-- القطرات السائلة المتساقطة في الخلفية -->
+    <div class="absolute inset-0 pointer-events-none opacity-35">
+      <div class="drizzle-drop" style="left: 10%; animation-delay: 0s;"></div>
+      <div class="drizzle-drop" style="left: 24%; animation-delay: 2.1s; animation-duration: 5.6s;"></div>
+      <div class="drizzle-drop" style="left: 76%; animation-delay: 1.2s; animation-duration: 4.1s;"></div>
+      <div class="drizzle-drop" style="left: 89%; animation-delay: 3.3s; animation-duration: 6.2s;"></div>
+    </div>
+
+    <!-- هالة التوهج الدائرية الهادئة -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] bg-gradient-to-tr from-pistachio-200/50 via-pistachio-300/30 to-gold/20 rounded-full blur-3xl aura-rotate pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+      
+      <!-- نص البنر والوصف الشاعري -->
+      <div class="lg:col-span-6 text-center lg:text-right space-y-5">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-pistachio-200 shadow-sm text-xs font-bold text-pistachio-800">
+          <i class="fa-solid fa-crown text-gold"></i>
+          <span>منيو الحلويات الفاخرة لعام 2026</span>
+        </span>
+
+        <h1 class="text-3xl sm:text-5xl font-black text-noir leading-[1.2] tracking-tight">
+          كل قطعة تحكي قصة، <br>
+          وكل ملعقة <span class="font-serif italic text-pistachio-600 font-normal">شغف خالص</span>.
+        </h1>
+
+        <p class="text-sm sm:text-base text-gray-600 leading-relaxed max-w-lg mx-auto lg:mx-0">
+          تذوق الأصالة والابتكار في آنٍ واحد؛ وصفات طازجة يومياً تجمع بين زبدة الفستق الحلبي المقرمشة والشوكولاتة العالمية الفاخرة.
+        </p>
+
+        <!-- مقاييس الثقة السريعة -->
+        <div class="flex items-center justify-center lg:justify-start gap-4 pt-2">
+          <div class="bg-white/80 border border-pistachio-200 rounded-2xl px-4 py-2.5 text-center">
+            <span class="block font-serif text-lg font-bold text-pistachio-700">100%</span>
+            <span class="text-[10px] text-gray-500 font-semibold">بستاشيو طبيعي</span>
+          </div>
+          <div class="bg-white/80 border border-pistachio-200 rounded-2xl px-4 py-2.5 text-center">
+            <span class="block font-serif text-lg font-bold text-pistachio-700">Daily</span>
+            <span class="text-[10px] text-gray-500 font-semibold">خَبز طازج</span>
+          </div>
+          <div class="bg-white/80 border border-pistachio-200 rounded-2xl px-4 py-2.5 text-center">
+            <span class="block font-serif text-lg font-bold text-gold">Fast</span>
+            <span class="text-[10px] text-gray-500 font-semibold">توصيل سريع</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- الصورة العائمة مع نوتات النكهة -->
+      <div class="lg:col-span-6 flex justify-center relative">
+        <div class="relative w-72 sm:w-88 aspect-square flex items-center justify-center">
+          <div class="absolute inset-0 rounded-full border border-dashed border-pistachio-400/50 animate-[spin_50s_linear_infinite]"></div>
+
+          <div class="absolute -top-3 -right-2 z-20 ultra-glass px-4 py-2 rounded-2xl shadow-md border border-white text-right">
+            <span class="text-[9px] font-bold text-gold uppercase tracking-wider block">Signature Item</span>
+            <span class="text-xs font-bold text-noir">بستاشيو كيك دريم</span>
+          </div>
+
+          <div class="hero-floating-art relative z-10 w-full h-full flex items-center justify-center">
+            <img src="item.png" alt="الطبق الملكي" class="w-4/5 h-4/5 object-contain">
+          </div>
+
+          <div class="absolute -bottom-3 -left-2 z-20 dark-glass text-white px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-3">
+            <div>
+              <div class="flex text-gold text-[10px] gap-0.5">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-[11px] font-bold">تقييم الطهاة</p>
+            </div>
+            <span class="text-base font-serif font-black text-goldLight">₪ 28</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. شريط البحث والتصفية المتطورة (Search & Smart Filter Bar) -->
+  <section class="max-w-6xl mx-auto px-4 -mt-4 mb-10 relative z-20">
+    <div class="ultra-glass rounded-3xl p-4 sm:p-5 shadow-xl shadow-pistachio-950/5">
+      
+      <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+        
+        <!-- حقل البحث الحي المباشر -->
+        <div class="relative w-full md:w-80">
+          <input type="text" id="catalogSearch" oninput="applyAllFilters()" placeholder="ابحث باسم الحلى أو النكهة..." 
+                 class="w-full pl-10 pr-11 py-3 bg-white border border-pistachio-200 rounded-2xl text-xs sm:text-sm focus:outline-none focus:border-pistachio-500 focus:ring-2 focus:ring-pistachio-100 transition shadow-inner">
+          <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-pistachio-500"></i>
+        </div>
+
+        <!-- أزرار التصنيفات مع صور pp.png -->
+        <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar w-full md:w-auto py-1">
+          
+          <button onclick="setCategoryFilter('all', this)" class="filter-tab active bg-pistachio-600 text-white px-5 py-2.5 rounded-2xl text-xs font-bold shrink-0 transition-all duration-300 shadow-md">
+            <i class="fa-solid fa-border-all ml-1"></i> الكل
+          </button>
+
+          <button onclick="setCategoryFilter('pistachio', this)" class="filter-tab bg-white border border-pistachio-200 hover:border-pistachio-400 text-noir px-4 py-2 rounded-2xl text-xs font-bold shrink-0 transition-all duration-300 flex items-center gap-2 shadow-sm">
+            <img src="pp.png" class="w-6 h-6 rounded-full object-cover border border-pistachio-300">
+            <span>سلسلة البستاشيو</span>
+          </button>
+
+          <button onclick="setCategoryFilter('cheesecake', this)" class="filter-tab bg-white border border-pistachio-200 hover:border-pistachio-400 text-noir px-4 py-2 rounded-2xl text-xs font-bold shrink-0 transition-all duration-300 flex items-center gap-2 shadow-sm">
+            <img src="pp.png" class="w-6 h-6 rounded-full object-cover border border-pistachio-300">
+            <span>تشيز كيك وتارت</span>
+          </button>
+
+          <button onclick="setCategoryFilter('cakes', this)" class="filter-tab bg-white border border-pistachio-200 hover:border-pistachio-400 text-noir px-4 py-2 rounded-2xl text-xs font-bold shrink-0 transition-all duration-300 flex items-center gap-2 shadow-sm">
+            <img src="pp.png" class="w-6 h-6 rounded-full object-cover border border-pistachio-300">
+            <span>كيك وتورتات</span>
+          </button>
+
+          <button onclick="setCategoryFilter('boxes', this)" class="filter-tab bg-white border border-pistachio-200 hover:border-pistachio-400 text-noir px-4 py-2 rounded-2xl text-xs font-bold shrink-0 transition-all duration-300 flex items-center gap-2 shadow-sm">
+            <img src="pp.png" class="w-6 h-6 rounded-full object-cover border border-pistachio-300">
+            <span>بوكسات الجمعات</span>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. شبكة عرض الأصناف الكاملة (The Ultimate Catalog Grid) -->
+  <main class="max-w-6xl mx-auto px-4 pb-28">
+    
+    <!-- مؤشر عدد الأصناف المتوفرة -->
+    <div class="flex items-center justify-between mb-6 px-2">
+      <p class="text-xs text-gray-500 font-semibold">
+        عرض <span id="visibleItemsCount" class="font-bold text-pistachio-700">6</span> من روائع الحلويات المصنوعة بإتقان
+      </p>
+      <span class="text-[11px] text-gold font-bold font-serif uppercase tracking-widest">Handcrafted in Gaza</span>
+    </div>
+
+    <!-- حاوية شبكة الأصناف -->
+    <div id="catalogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+
+      <!-- الصنف 1 -->
+      <article class="dish-card group bg-white rounded-3xl p-4 sm:p-5 border border-pistachio-100 hover:border-pistachio-400 shadow-lg shadow-pistachio-950/5 hover:shadow-2xl hover:shadow-pistachio-900/10 transition-all duration-500 flex flex-col justify-between"
+               data-cat="pistachio"
+               data-name="بستاشيو دريم كيك الملكية"
+               data-price="28"
+               data-sweetness="معتدلة وموزونة 65%"
+               data-notes="فستق حلبي محمص، كراميل مملح، شوكولاتة بلجيكية بيضاء"
+               data-story="طبقات ناعمة من كيك الفستق الإسفنجي المسقى بصوص الحليب المركز ومغطى بجناش فستق طبيعي ومقرمشات اللوز المكرمل.">
+        
+        <div>
+          <!-- الصورة والحالات -->
+          <div class="relative overflow-hidden rounded-2xl bg-gradient-to-b from-pistachio-50 to-white p-4 aspect-square flex items-center justify-center">
+            <span class="absolute top-3 right-3 z-10 px-3 py-1 rounded-full bg-noir text-gold text-[10px] font-bold tracking-wider font-serif">SIGNATURE</span>
+            <img src="item.png" alt="بستاشيو دريم كيك" class="w-4/5 h-4/5 object-contain group-hover:scale-110 transition-transform duration-700">
+          </div>
+
+          <!-- تفاصيل الصنف -->
+          <div class="pt-4 space-y-2">
+            <div class="flex items-baseline justify-between">
+              <h3 class="font-black text-lg text-noir group-hover:text-pistachio-700 transition">بستاشيو دريم كيك</h3>
+              <span class="font-serif font-black text-xl text-pistachio-800">₪ 28</span>
+            </div>
+
+            <div class="flex items-center gap-1.5 text-[11px] text-gray-500">
+              <i class="fa-solid fa-wand-magic-sparkles text-gold text-xs"></i>
+              <span class="truncate">فستق حلبي، كراميل مملح، وايت شوكليت</span>
+            </div>
+
+            <p class="text-xs text-gray-600 leading-relaxed line-clamp-2">
+              طبقات ناعمة من كيك الفستق الإسفنجي المسقى بصوص الحليب المركز ومغطى بجناش فستق طبيعي ومقرمشات اللوز المكرمل.
+            </p>
+          </div>
+        </div>
+
+        <!-- أزرار تفاعل الصنف -->
+        <div class="pt-4 mt-4 border-t border-pistachio-50 flex items-center gap-2.5">
+          <button onclick="openTasteModal(this)" class="flex-1 py-3 rounded-xl ultra-glass hover:bg-pistachio-100 text-pistachio-900 text-xs font-bold transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-book-open text-gold"></i>
+            <span>تذوّق الحكاية</span>
+          </button>
+          
+          <button onclick="addToCart('بستاشيو دريم كيك', 28)" class="w-11 h-11 rounded-xl bg-noir hover:bg-pistachio-700 text-white flex items-center justify-center transition shadow-lg active:scale-95">
+            <i class="fa-solid fa-plus text-xs"></i>
+          </button>
+        </div>
+
+      </article>
+
+      <!-- الصنف 2 -->
+      <article class="dish-card group bg-white rounded-3xl p-4 sm:p-5 border border-pistachio-100 hover:border-pistachio-400 shadow-lg shadow-pistachio-950/5 hover:shadow-2xl hover:shadow-pistachio-900/10 transition-all duration-500 flex flex-col justify-between"
+               data-cat="cheesecake"
+               data-name="سان سباستيان بستاشيو لافا"
+               data-price="25"
+               data-sweetness="غنية ومخملية 80%"
+               data-notes="جبنة فيلادلفيا، صوص بستاشيو دافئ، لمسة فانيليا مدغشقر"
+               data-story="خبز إسباني كلاسيكي بحواف ذهبية مكرملة وقلب كريمي ناعم يذوب مع كل سكب لصوص الفستق الدافئ المحضر طازجاً.">
+        
+        <div>
+          <div class="relative overflow-hidden rounded-2xl bg-gradient-to-b from-pistachio-50 to-white p-4 aspect-square flex items-center justify-center">
+            <span class="absolute top-3 right-3 z-10 px-3 py-1 rounded-full bg-pistachio-100 text-pistachio-800 text-[10px] font-bold tracking-wider font-serif">BEST SELLER</span>
+            <img src="item.png" alt="سان سباستيان" class="w-4/5 h-4/5 object-contain group-hover:scale-110 transition-transform duration-700">
+          </div>
+
+          <div class="pt-4 space-y-2">
+            <div class="flex items-baseline justify-between">
+              <h3 class="font-black text-lg text-noir group-hover:text-pistachio-700 transition">سان سباستيان لافا</h3>
+              <span class="font-serif font-black text-xl text-pistachio-800">₪ 25</span>
+            </div>
+
+            <div class="flex items-center gap-1.5 text-[11px] text-gray-500">
+              <i class="fa-solid fa-wand-magic-sparkles text-gold text-xs"></i>
+              <span class="truncate">جبنة كريمية نقية، صوص بستاشيو دافئ</span>
+            </div>
+
+            <p class="text-xs text-gray-600 leading-relaxed line-clamp-2">
+              خبز إسباني كلاسيكي بحواف ذهبية مكرملة وقلب كريمي ناعم يذوب مع كل سكب لصوص الفستق الدافئ.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-pistachio-50 flex items-center gap-2.5">
+          <button onclick="openTasteModal(this)" class="flex-1 py-3 rounded-xl ultra-glass hover:bg-pistachio-100 text-pistachio-900 text-xs font-bold transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-book-open text-gold"></i>
+            <span>تذوّق الحكاية</span>
+          </button>
+          
+          <button onclick="addToCart('سان سباستيان لافا', 25)" class="w-11 h-11 rounded-xl bg-noir hover:bg-pistachio-700 text-white flex items-center justify-center transition shadow-lg active:scale-95">
+            <i class="fa-solid fa-plus text-xs"></i>
+          </button>
+        </div>
+
+      </article>
+
+      <!-- الصنف 3 -->
+      <article class="dish-card group bg-white rounded-3xl p-4 sm:p-5 border border-pistachio-100 hover:border-pistachio-400 shadow-lg shadow-pistachio-950/5 hover:shadow-2xl hover:shadow-pistachio-900/10 transition-all duration-500 flex flex-col justify-between"
+               data-cat="cakes"
+               data-name="تورتة جاردن رويال الخاصة"
+               data-price="95"
+               data-sweetness="خفيفة وأنيقة 50%"
+               data-notes="توت بري طازج، كريمة الفانيليا الفرنسية، زهور صالحة للأكل"
+               data-story="صُممت لتكون نجمة احتفالاتكم ومناسباتكم الكبرى؛ حشوات من التوت الطبيعي والزهور المعطرة التي تخلد الذكريات السعيدة.">
+        
+        <div>
+          <div class="relative overflow-hidden rounded-2xl bg-gradient-to-b from-pistachio-50 to-white p-4 aspect-square flex items-center justify-center">
+            <span class="absolute top-3 right-3 z-10 px-3 py-1 rounded-full bg-gold/20 text-gold text-[10px] font-bold tracking-wider font-serif">OCCASIONS</span>
+            <img src="item.png" alt="تورتة جاردن رويال" class="w-4/5 h-4/5 object-contain group-hover:scale-110 transition-transform duration-700">
+          </div>
+
+          <div class="pt-4 space-y-2">
+            <div class="flex items-baseline justify-between">
+              <h3 class="font-black text-lg text-noir group-hover:text-pistachio-700 transition">تورتة جاردن رويال</h3>
+              <span class="font-serif font-black text-xl text-pistachio-800">₪ 95</span>
+            </div>
+
+            <div class="flex items-center gap-1.5 text-[11px] text-gray-500">
+              <i class="fa-solid fa-wand-magic-sparkles text-gold text-xs"></i>
+              <span class="truncate">توت عليق طازج، كريمة فانيليا فرنسية</span>
+            </div>
+
+            <p class="text-xs text-gray-600 leading-relaxed line-clamp-2">
+              صُممت لتكون نجمة احتفالاتكم ومناسباتكم الكبرى؛ حشوات من التوت الطبيعي والزهور المعطرة.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-pistachio-50 flex items-center gap-2.5">
+          <button onclick="openTasteModal(this)" class="flex-1 py-3 rounded-xl ultra-glass hover:bg-pistachio-100 text-pistachio-900 text-xs font-bold transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-book-open text-gold"></i>
+            <span>تذوّق الحكاية</span>
+          </button>
+          
+          <button onclick="addToCart('تورتة جاردن رويال', 95)" class="w-11 h-11 rounded-xl bg-noir hover:bg-pistachio-700 text-white flex items-center justify-center transition shadow-lg active:scale-95">
+            <i class="fa-solid fa-plus text-xs"></i>
+          </button>
+        </div>
+
+      </article>
+
+      <!-- الصنف 4 -->
+      <article class="dish-card group bg-white rounded-3xl p-4 sm:p-5 border border-pistachio-100 hover:border-pistachio-400 shadow-lg shadow-pistachio-950/5 hover:shadow-2xl hover:shadow-pistachio-900/10 transition-all duration-500 flex flex-col justify-between"
+               data-cat="cheesecake"
+               data-name="تارت التوت والبستاشيو المخملي"
+               data-price="22"
+               data-sweetness="حموضة منعشة وحلاوة 60%"
+               data-notes="عجينة سابليه فرنسية مقرمشة، كريمة الفستق، توت طازج"
+               data-story="قاعدة بسكويت سابليه بالزبدة الطبيعية تعلوها طبقة غنية من حشوة الفستق الحلبي وتتوج بحبات التوت الطازج اللامع.">
+        
+        <div>
+          <div class="relative overflow-hidden rounded-2xl bg-gradient-to-b from-pistachio-50 to-white p-4 aspect-square flex items-center justify-center">
+            <img src="item.png" alt="تارت التوت" class="w-4/5 h-4/5 object-contain group-hover:scale-110 transition-transform duration-700">
+          </div>
+
+          <div class="pt-4 space-y-2">
+            <div class="flex items-baseline justify-between">
+              <h3 class="font-black text-lg text-noir group-hover:text-pistachio-700 transition">تارت التوت والبستاشيو</h3>
+              <span class="font-serif font-black text-xl text-pistachio-800">₪ 22</span>
+            </div>
+
+            <div class="flex items-center gap-1.5 text-[11px] text-gray-500">
+              <i class="fa-solid fa-wand-magic-sparkles text-gold text-xs"></i>
+              <span class="truncate">عجينة سابليه مقرمشة، كريمة الفستق</span>
+            </div>
+
+            <p class="text-xs text-gray-600 leading-relaxed line-clamp-2">
+              قاعدة بسكويت سابليه بالزبدة الطبيعية تعلوها طبقة غنية من حشوة الفستق وتتوج بحبات التوت الطازج.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-pistachio-50 flex items-center gap-2.5">
+          <button onclick="openTasteModal(this)" class="flex-1 py-3 rounded-xl ultra-glass hover:bg-pistachio-100 text-pistachio-900 text-xs font-bold transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-book-open text-gold"></i>
+            <span>تذوّق الحكاية</span>
+          </button>
+          
+          <button onclick="addToCart('تارت التوت والبستاشيو', 22)" class="w-11 h-11 rounded-xl bg-noir hover:bg-pistachio-700 text-white flex items-center justify-center transition shadow-lg active:scale-95">
+            <i class="fa-solid fa-plus text-xs"></i>
+          </button>
+        </div>
+
+      </article>
+
+      <!-- الصنف 5 -->
+      <article class="dish-card group bg-white rounded-3xl p-4 sm:p-5 border border-pistachio-100 hover:border-pistachio-400 shadow-lg shadow-pistachio-950/5 hover:shadow-2xl hover:shadow-pistachio-900/10 transition-all duration-500 flex flex-col justify-between"
+               data-cat="boxes"
+               data-name="بوكس سهرات البستاشيو (12 قطعة)"
+               data-price="75"
+               data-sweetness="تشكيلة متنوعة"
+               data-notes="ميني كيك، تارت مقرمش، ميني سان سباستيان"
+               data-story="البوكس الأمثل لجمعات العائلة والأصدقاء؛ يجمع تشكيلة مصغرة من أروع أصناف البستاشيو لترضي جميع الأذواق في علبة فاخرة.">
+        
+        <div>
+          <div class="relative overflow-hidden rounded-2xl bg-gradient-to-b from-pistachio-50 to-white p-4 aspect-square flex items-center justify-center">
+            <span class="absolute top-3 right-3 z-10 px-3 py-1 rounded-full bg-emerald-600 text-white text-[10px] font-bold tracking-wider font-serif">SHARING BOX</span>
+            <img src="item.png" alt="بوكس سهرات" class="w-4/5 h-4/5 object-contain group-hover:scale-110 transition-transform duration-700">
+          </div>
+
+          <div class="pt-4 space-y-2">
+            <div class="flex items-baseline justify-between">
+              <h3 class="font-black text-lg text-noir group-hover:text-pistachio-700 transition">بوكس سهرات البستاشيو</h3>
+              <span class="font-serif font-black text-xl text-pistachio-800">₪ 75</span>
+            </div>
+
+            <div class="flex items-center gap-1.5 text-[11px] text-gray-500">
+              <i class="fa-solid fa-wand-magic-sparkles text-gold text-xs"></i>
+              <span class="truncate">12 قطعة مشكلة من أشهى أطباقنا</span>
+            </div>
+
+            <p class="text-xs text-gray-600 leading-relaxed line-clamp-2">
+              البوكس الأمثل لجمعات العائلة والأصدقاء؛ يجمع تشكيلة مصغرة من أروع أصناف البستاشيو.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-pistachio-50 flex items-center gap-2.5">
+          <button onclick="openTasteModal(this)" class="flex-1 py-3 rounded-xl ultra-glass hover:bg-pistachio-100 text-pistachio-900 text-xs font-bold transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-book-open text-gold"></i>
+            <span>تذوّق الحكاية</span>
+          </button>
+          
+          <button onclick="addToCart('بوكس سهرات البستاشيو', 75)" class="w-11 h-11 rounded-xl bg-noir hover:bg-pistachio-700 text-white flex items-center justify-center transition shadow-lg active:scale-95">
+            <i class="fa-solid fa-plus text-xs"></i>
+          </button>
+        </div>
+
+      </article>
+
+      <!-- الصنف 6 -->
+      <article class="dish-card group bg-white rounded-3xl p-4 sm:p-5 border border-pistachio-100 hover:border-pistachio-400 shadow-lg shadow-pistachio-950/5 hover:shadow-2xl hover:shadow-pistachio-900/10 transition-all duration-500 flex flex-col justify-between"
+               data-cat="pistachio"
+               data-name="إكلير الفستق الملكي المقرمش"
+               data-price="18"
+               data-sweetness="متوازنة ولطيفة 55%"
+               data-notes="عجينة شو فرنسية، موس البستاشيو الخفيف، فستق مطحون"
+               data-story="عجينة فرنسية هشة ومقرمشة محشوة بموس الفستق البارد الخفيف ومطلية بطبقة من الجليز الأخضر الفاتح مع رشة ذهبية.">
+        
+        <div>
+          <div class="relative overflow-hidden rounded-2xl bg-gradient-to-b from-pistachio-50 to-white p-4 aspect-square flex items-center justify-center">
+            <img src="item.png" alt="إكلير الفستق" class="w-4/5 h-4/5 object-contain group-hover:scale-110 transition-transform duration-700">
+          </div>
+
+          <div class="pt-4 space-y-2">
+            <div class="flex items-baseline justify-between">
+              <h3 class="font-black text-lg text-noir group-hover:text-pistachio-700 transition">إكلير الفستق الملكي</h3>
+              <span class="font-serif font-black text-xl text-pistachio-800">₪ 18</span>
+            </div>
+
+            <div class="flex items-center gap-1.5 text-[11px] text-gray-500">
+              <i class="fa-solid fa-wand-magic-sparkles text-gold text-xs"></i>
+              <span class="truncate">عجينة شو فرنسية، موس البستاشيو الخفيف</span>
+            </div>
+
+            <p class="text-xs text-gray-600 leading-relaxed line-clamp-2">
+              عجينة فرنسية هشة ومقرمشة محشوة بموس الفستق البارد الخفيف ومطلية بطبقة من الجليز الأخضر الفاتح.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-pistachio-50 flex items-center gap-2.5">
+          <button onclick="openTasteModal(this)" class="flex-1 py-3 rounded-xl ultra-glass hover:bg-pistachio-100 text-pistachio-900 text-xs font-bold transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-book-open text-gold"></i>
+            <span>تذوّق الحكاية</span>
+          </button>
+          
+          <button onclick="addToCart('إكلير الفستق الملكي', 18)" class="w-11 h-11 rounded-xl bg-noir hover:bg-pistachio-700 text-white flex items-center justify-center transition shadow-lg active:scale-95">
+            <i class="fa-solid fa-plus text-xs"></i>
+          </button>
+        </div>
+
+      </article>
+
+    </div>
+
+    <!-- رسالة عند عدم العثور على نتائج في البحث -->
+    <div id="noResults" class="hidden text-center py-16">
+      <div class="w-16 h-16 rounded-full bg-pistachio-100 text-pistachio-700 flex items-center justify-center mx-auto mb-3 text-xl">
+        <i class="fa-solid fa-cookie-bite"></i>
+      </div>
+      <h3 class="font-bold text-lg text-noir mb-1">لم نجد أصنافاً مطابقة لبحثك</h3>
+      <p class="text-xs text-gray-500">جرّب البحث بكلمات أخرى مثل: كيك، سان سباستيان، أو تارت.</p>
+    </div>
+
+  </main>
+
+  <!-- 6. مودال تذوق الحكاية والمكونات (Sensory Masterpiece Modal) -->
+  <div id="tasteModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-noir/70 backdrop-blur-md">
+    <div class="relative w-full max-w-lg bg-white rounded-[32px] overflow-hidden shadow-2xl border border-pistachio-200 animate-in fade-in zoom-in duration-300">
+      
+      <!-- زر الإغلاق -->
+      <button onclick="closeTasteModal()" class="absolute top-5 left-5 z-20 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-noir flex items-center justify-center shadow-md transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- صورة المودال -->
+      <div class="relative h-60 bg-gradient-to-b from-pistachio-100/70 to-white flex items-center justify-center p-6">
+        <img id="m-img" src="item.png" class="h-full object-contain filter drop-shadow-xl" alt="صورة الصنف">
+      </div>
+
+      <!-- نصوص الحكاية ومقاييس المذاق -->
+      <div class="p-8 pt-2 space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-[10px] font-bold text-gold uppercase tracking-widest font-serif">Haute Creation</span>
+            <h3 id="m-name" class="text-2xl font-black text-noir"></h3>
+          </div>
+          <span id="m-price" class="text-2xl font-serif font-black text-pistachio-800"></span>
+        </div>
+
+        <p id="m-story" class="text-xs sm:text-sm text-gray-600 leading-relaxed"></p>
+
+        <!-- لوحة النكهة والحلاوة -->
+        <div class="p-4 rounded-2xl bg-pistachio-50/70 border border-pistachio-100 space-y-2">
+          <div class="flex justify-between text-xs font-bold text-noir">
+            <span>مستوى الحلاوة المعتمد:</span>
+            <span id="m-sweetness" class="text-pistachio-700"></span>
+          </div>
+          <div class="flex justify-between text-xs text-gray-500">
+            <span>النغمات والمكونات:</span>
+            <span id="m-notes" class="font-medium text-noir"></span>
+          </div>
+        </div>
+
+        <!-- زر إضافة الصنف من داخل المودال -->
+        <div class="pt-2">
+          <button id="m-add-btn" class="w-full py-4 rounded-2xl bg-pistachio-600 hover:bg-pistachio-700 text-white font-bold text-xs sm:text-sm shadow-xl shadow-pistachio-600/30 transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-plus"></i>
+            <span>إضافة إلى طلباتي</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 7. درج السلة الجانبي وتأكيد الطلب عبر واتساب (Luxury Cart Drawer) -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 hidden bg-noir/60 backdrop-blur-sm transition-opacity">
+    <div class="fixed inset-y-0 left-0 max-w-full flex">
+      <div class="w-screen max-w-md bg-white p-7 sm:p-8 shadow-2xl flex flex-col justify-between">
+        
+        <div>
+          <div class="flex items-center justify-between pb-5 border-b border-pistachio-100">
+            <div>
+              <span class="text-[10px] text-gold font-bold uppercase tracking-widest font-serif">Selected Desserts</span>
+              <h3 class="text-xl font-black text-noir">قائمة اختياراتك</h3>
+            </div>
+            <button onclick="toggleCartDrawer()" class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <!-- قائمة عناصر السلة -->
+          <div id="cartList" class="divide-y divide-pistachio-50 py-4 max-h-[58vh] overflow-y-auto no-scrollbar">
+            <p class="text-sm text-center text-gray-400 py-12">لم تختر أي تحفة حلويات بعد 🍰</p>
+          </div>
+        </div>
+
+        <!-- الإجمالي وزر إرسال واتساب -->
+        <div class="pt-5 border-t border-pistachio-100 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-500 font-bold">المجموع المقدر:</span>
+            <span id="cartTotal" class="text-2xl font-serif font-black text-pistachio-900">₪ 0</span>
+          </div>
+
+          <button onclick="sendOrderToWhatsApp()" class="w-full py-4 rounded-2xl bg-[#25D366] hover:bg-[#1ebf57] text-white font-bold text-sm shadow-xl flex items-center justify-center gap-2.5 transition transform active:scale-95">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>إرسال وتأكيد الطلب عبر واتساب</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. الفوتر الفاخر الكامل -->
+  <footer class="bg-noir text-white py-14 border-t border-gold/20 relative">
+    <div class="max-w-6xl mx-auto px-6 text-center space-y-6">
+      <img src="logo.png" alt="Cake Boss" class="w-16 h-16 rounded-full mx-auto object-cover border border-gold/40 p-1">
+      <div>
+        <h4 class="text-2xl font-black text-ivory tracking-tight">Cake Boss Gaza</h4>
+        <p class="text-xs text-gold font-serif italic tracking-widest mt-1">THE SWEET BOUTIQUE</p>
+      </div>
+
+      <p class="text-xs text-gray-400 max-w-sm mx-auto leading-relaxed">
+        غزة - شارع الوحدة - بجوار مطعم الجرجاوي <br>
+        ساعات العمل: يومياً من 10:00 صباحاً حتى منتصف الليل
+      </p>
+
+      <div class="flex items-center justify-center gap-4 pt-2">
+        <a href="https://wa.me/972592133357" target="_blank" class="w-10 h-10 rounded-full border border-white/10 hover:border-gold text-gray-300 hover:text-gold flex items-center justify-center transition">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="#" class="w-10 h-10 rounded-full border border-white/10 hover:border-gold text-gray-300 hover:text-gold flex items-center justify-center transition">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="#" class="w-10 h-10 rounded-full border border-white/10 hover:border-gold text-gray-300 hover:text-gold flex items-center justify-center transition">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+      </div>
+
+      <div class="pt-6 border-t border-white/10 text-[11px] text-gray-500 font-light">
+        © 2026 Cake Boss Gaza. صُنعت التجربة بشغف وعناية فائقة.
+      </div>
+    </div>
+  </footer>
+
+  <!-- السكربت البرمجي الكامل لإدارة العمليات -->
+  <script>
+    // إخفاء الـ Preloader عند التحميل
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('preloader');
+      setTimeout(() => {
+        loader.classList.add('opacity-0');
+        setTimeout(() => loader.style.display = 'none', 900);
+      }, 600);
+    });
+
+    // إدارة السلة
+    let cart = [];
+
+    function addToCart(name, price) {
+      const existing = cart.find(i => i.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      renderCartUI();
+    }
+
+    function renderCartUI() {
+      const counter = document.getElementById('cart-counter');
+      const list = document.getElementById('cartList');
+      const totalEl = document.getElementById('cartTotal');
+
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+      counter.innerText = totalItems;
+      totalEl.innerText = `₪ ${totalPrice}`;
+
+      if (cart.length === 0) {
+        list.innerHTML = `<p class="text-sm text-center text-gray-400 py-12">لم تختر أي تحفة حلويات بعد 🍰</p>`;
+        return;
+      }
+
+      list.innerHTML = cart.map((item, idx) => `
+        <div class="py-3.5 flex items-center justify-between">
+          <div>
+            <h4 class="font-bold text-sm text-noir">${item.name}</h4>
+            <span class="text-xs text-gray-500">${item.qty} × ₪${item.price}</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="font-bold text-sm text-pistachio-800">₪${item.qty * item.price}</span>
+            <button onclick="removeCartItem(${idx})" class="text-gray-300 hover:text-red-500 text-xs p-1">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function removeCartItem(idx) {
+      cart.splice(idx, 1);
+      renderCartUI();
+    }
+
+    function toggleCartDrawer() {
+      document.getElementById('cartDrawer').classList.toggle('hidden');
+    }
+
+    // إرسال الطلب عبر واتساب برسالة منسقة
+    function sendOrderToWhatsApp() {
+      if (cart.length === 0) return alert('سلتك فارغة، اختر بعض الحلويات أولاً!');
+      
+      let msg = "✨ *طلب جديد من دار الحلويات (Cake Boss)* ✨\n\n";
+      cart.forEach(item => {
+        msg += `▫️ ${item.name} (عدد: ${item.qty}) = ₪${item.qty * item.price}\n`;
+      });
+      const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      msg += `\n💰 *المجموع:* ₪${total}\n📍 *العنوان المطلوب للتسليم:* `;
+
+      window.open(`https://wa.me/972592133357?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    // متغيرات الفلترة
+    let currentCategory = 'all';
+
+    function setCategoryFilter(cat, btn) {
+      document.querySelectorAll('.filter-tab').forEach(b => {
+        b.className = 'filter-tab bg-white border border-pistachio-200 hover:border-pistachio-400 text-noir px-4 py-2 rounded-2xl text-xs font-bold shrink-0 transition-all duration-300 flex items-center gap-2 shadow-sm';
+      });
+      btn.className = 'filter-tab active bg-pistachio-600 text-white px-5 py-2.5 rounded-2xl text-xs font-bold shrink-0 transition-all duration-300 shadow-md flex items-center gap-2';
+      
+      currentCategory = cat;
+      applyAllFilters();
+    }
+
+    function applyAllFilters() {
+      const searchVal = document.getElementById('catalogSearch').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.dish-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-cat');
+        const name = card.getAttribute('data-name').toLowerCase();
+        const story = card.getAttribute('data-story').toLowerCase();
+        const notes = card.getAttribute('data-notes').toLowerCase();
+
+        const matchesCat = (currentCategory === 'all' || cat === currentCategory);
+        const matchesSearch = (!searchVal || name.includes(searchVal) || story.includes(searchVal) || notes.includes(searchVal));
+
+        if (matchesCat && matchesSearch) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('visibleItemsCount').innerText = visibleCount;
+      const noResults = document.getElementById('noResults');
+      if (visibleCount === 0) {
+        noResults.classList.remove('hidden');
+      } else {
+        noResults.classList.add('hidden');
+      }
+    }
+
+    // فتح وإغلاق مودال الحكاية (Taste Story Modal)
+    function openTasteModal(btn) {
+      const card = btn.closest('.dish-card');
+      const name = card.getAttribute('data-name');
+      const price = card.getAttribute('data-price');
+      const sweetness = card.getAttribute('data-sweetness');
+      const notes = card.getAttribute('data-notes');
+      const story = card.getAttribute('data-story');
+
+      document.getElementById('m-name').innerText = name;
+      document.getElementById('m-price').innerText = `₪ ${price}`;
+      document.getElementById('m-story').innerText = story;
+      document.getElementById('m-sweetness').innerText = sweetness;
+      document.getElementById('m-notes').innerText = notes;
+
+      const addBtn = document.getElementById('m-add-btn');
+      addBtn.onclick = () => {
+        addToCart(name, parseInt(price));
+        closeTasteModal();
+      };
+
+      document.getElementById('tasteModal').classList.remove('hidden');
+      document.getElementById('tasteModal').classList.add('flex');
+    }
+
+    function closeTasteModal() {
+      document.getElementById('tasteModal').classList.add('hidden');
+      document.getElementById('tasteModal').classList.remove('flex');
+    }
+  </script>
+</body>
+</html>

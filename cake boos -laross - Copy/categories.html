@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المجموعات الملكية | Cake Boss</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="ambient-glow ambient-top"></div>
+  <div class="ambient-glow ambient-bottom"></div>
+
+  <nav class="royale-nav">
+    <a href="index.html" class="brand-logo">
+      <img src="logo.png" alt="Cake Boss">
+      <span>Cake Boss</span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="categories.html" class="active">الأقسام الملكية</a></li>
+      <li><a href="about.html">سر الفخامة</a></li>
+      <li><a href="contact.html">الفروع والطلبات</a></li>
+    </ul>
+    <button class="btn-royale-cart" onclick="toggleCart(true)">
+      🛒 السلة (<span id="cart-badge">0</span>)
+    </button>
+  </nav>
+
+  <main class="section-container">
+    <div class="section-head">
+      <div class="gold-badge">قائمة الماستربيس</div>
+      <h2>اختر مجموعتك المفضلة</h2>
+      <p>اضغط على أي قسم لاستعراض قائمة الأطباق الفاخرة المتاحة للطلب</p>
+    </div>
+
+    <div class="category-royale-grid">
+      <a href="category-items.html" class="cat-royale-card">
+        <div class="cat-circle-img"><img src="cat.png" alt="Pistachio"></div>
+        <h3>تشكيلة البستاشيو الفاخرة</h3>
+        <span class="cat-chip">خام بلجيكي + فستق نقي</span>
+      </a>
+      <a href="category-items.html" class="cat-royale-card">
+        <div class="cat-circle-img"><img src="cat.png" alt="Cheesecake"></div>
+        <h3>التشيز كيك والميني كيك</h3>
+        <span class="cat-chip">طازج يومياً</span>
+      </a>
+      <a href="category-items.html" class="cat-royale-card">
+        <div class="cat-circle-img"><img src="cat.png" alt="Choco"></div>
+        <h3>السوفليه والشوكولاتة الذائبة</h3>
+        <span class="cat-chip">قوام غني دافئ</span>
+      </a>
+      <a href="category-items.html" class="cat-royale-card">
+        <div class="cat-circle-img"><img src="cat.png" alt="Kids"></div>
+        <h3>ركن مسليات الأطفال</h3>
+        <span class="cat-chip">بهجة ومرح</span>
+      </a>
+      <a href="category-items.html" class="cat-royale-card">
+        <div class="cat-circle-img"><img src="cat.png" alt="Hot Drinks"></div>
+        <h3>القهوة المختصة والساخنة</h3>
+        <span class="cat-chip">محاصيل بن نقية</span>
+      </a>
+      <a href="category-items.html" class="cat-royale-card">
+        <div class="cat-circle-img"><img src="cat.png" alt="Cold"></div>
+        <h3>المشروبات والموهيتو المنعش</h3>
+        <span class="cat-chip">نكهات مثلجة فريدة</span>
+      </a>
+    </div>
+  </main>
+
+  <!-- السلة المنزلقة -->
+  <div id="cart-drawer" class="royale-drawer">
+    <div class="drawer-header">
+      <h3>سلة مشترياتك 🛍️</h3>
+      <button onclick="toggleCart(false)" style="background:none; border:none; color:var(--text-muted); font-size:1.8rem; cursor:pointer;">✕</button>
+    </div>
+    <div id="cart-items-list" class="cart-items-container"></div>
+    <div style="border-top:1px solid rgba(255,255,255,0.1); padding:1.2rem 0; display:flex; justify-content:space-between; align-items:center;">
+      <span style="color:var(--text-muted); font-size:1.1rem;">المجموع النهائي:</span>
+      <span id="cart-total-price" style="font-family:'El Messiri', serif; font-size:1.6rem; color:var(--border-gold-bright); font-weight:700;">0 ₪</span>
+    </div>
+    <button class="btn-whatsapp-checkout" onclick="sendOrderWhatsApp()">تأكيد وإرسال الطلب عبر واتساب</button>
+  </div>
+
+  <footer class="royale-footer">
+    <p style="color:var(--text-muted);">© 2026 جميع الحقوق محفوظة لـ Cake Boss.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

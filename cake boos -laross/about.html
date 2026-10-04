@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سر الفخامة | Cake Boss</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="ambient-glow ambient-top"></div>
+  <div class="ambient-glow ambient-bottom"></div>
+
+  <nav class="royale-nav">
+    <a href="index.html" class="brand-logo">
+      <img src="logo.png" alt="Cake Boss">
+      <span>Cake Boss</span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="categories.html">الأقسام الملكية</a></li>
+      <li><a href="about.html" class="active">سر الفخامة</a></li>
+      <li><a href="contact.html">الفروع والطلبات</a></li>
+    </ul>
+    <button class="btn-royale-cart" onclick="toggleCart(true)">
+      🛒 السلة (<span id="cart-badge">0</span>)
+    </button>
+  </nav>
+
+  <main class="section-container" style="max-width:920px;">
+    <div class="section-head">
+      <div class="gold-badge">حرفية لا تعرف المساومة</div>
+      <h2>فلسفة كيك بوس Cake Boss</h2>
+      <p>حينما تلتقي المكونات العالمية بأعلى معايير الإتقان والشغف</p>
+    </div>
+
+    <div style="background:var(--bg-card); border:1px solid var(--border-gold); padding:3rem; border-radius:32px; box-shadow:var(--glass-shadow); line-height:2;">
+      <h3 style="font-family:'El Messiri', serif; font-size:1.8rem; color:var(--border-gold-bright); margin-bottom:1.2rem;">
+        صناعة الحلويات كفن وتجربة حواس
+      </h3>
+      <p style="color:var(--text-muted); font-size:1.1rem; margin-bottom:2rem;">
+        في <strong>Cake Boss</strong>، تأسست رؤيتنا على ابتكار منتج يتجاوز توقعات الذواقة. ننتقي حبوب الفستق الحلبي الفاخرة، ونمزجها مع أرقى أنواع الشوكولاتة والزبدة النقية لتقديم توازن مثالي بين القرمشة والنعومة.
+      </p>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1.8rem; margin:2.5rem 0;">
+        <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); padding:1.8rem; border-radius:24px;">
+          <h4 style="color:var(--pistachio-light); font-size:1.25rem; font-family:'El Messiri', serif; margin-bottom:0.5rem;">👑 معايير النخبة</h4>
+          <p style="color:var(--text-muted); font-size:0.95rem;">نرفض استخدام المنكهات المصنعة أو بدائل الزيوت، لنضمن لك تجربة نظيفة تترك أثراً فاخراً في فمك.</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); padding:1.8rem; border-radius:24px;">
+          <h4 style="color:var(--border-gold-bright); font-size:1.25rem; font-family:'El Messiri', serif; margin-bottom:0.5rem;">🎂 طزاجة لا تنتهي</h4>
+          <p style="color:var(--text-muted); font-size:0.95rem;">تُخبز وتُجهّز كيكاتنا يومياً في معاملنا لتصلك بكامل رونقها ورطوبتها المميزة.</p>
+        </div>
+      </div>
+
+      <p style="text-align:center; color:var(--border-gold-bright); font-family:'El Messiri', serif; font-size:1.3rem;">
+        نسعد باستقبالكم دائماً لنشارككم أجمل أوقاتكم ومناسباتكم السعيدة.
+      </p>
+    </div>
+  </main>
+
+  <footer class="royale-footer">
+    <p style="color:var(--text-muted);">© 2026 Cake Boss Royale. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

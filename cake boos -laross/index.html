@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cake Boss | منيو الحلويات البوتيك التفاعلي</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- مؤشر الماوس التفاعلي -->
+  <div class="custom-cursor" id="customCursor"></div>
+
+  <!-- الناف بار النقي والأنيق -->
+  <nav class="luxe-nav">
+    <a href="#" class="brand-sign" onclick="showScreen('screen-home')">
+      <img src="logo.png" alt="Cake Boss Logo">
+      <span>Cake Boss</span>
+    </a>
+    <div class="nav-links-center">
+      <button class="active" data-screen="screen-home" onclick="showScreen('screen-home')">الرئيسية</button>
+      <button data-screen="screen-menu" onclick="showScreen('screen-menu')">منيو الحلويات الكامل</button>
+      <button data-screen="screen-about" onclick="showScreen('screen-about')">قصة المذاق</button>
+      <button data-screen="screen-contact" onclick="showScreen('screen-contact')">الفروع والتوصيل</button>
+    </div>
+    <button class="btn-sweet-bag" onclick="toggleBag(true)">
+      <span>🛒 سلة الحلو</span>
+      <span id="bag-count-badge">0</span>
+    </button>
+  </nav>
+
+  <!-- ================= 1. شاشة الرئيسية ================= -->
+  <main id="screen-home" class="app-screen screen-active">
+    <div class="sweet-hero-banner">
+      <div>
+        <span class="hero-tagline">✨ تجربة المنيو الورقي الرقمي التفاعلي</span>
+        <h1>مملكة الحلى، <br>نكهة <span>تذوب بالسعادة</span></h1>
+        <p>تصفح منيو حلويات كيك بوس بأسلوب المنيو الورقي الفاخر؛ اسحب بالماوس أو اللمس للتنقل بين الأقسام، واطلب مباشرة عبر واتساب.</p>
+        <button class="btn-whatsapp-sweet" style="display:inline-flex; width:auto; padding:15px 36px;" onclick="showScreen('screen-menu')">
+          تصفح أقسام المنيو التفاعلية 📖 ←
+        </button>
+      </div>
+      <div class="hero-cake-display">
+        <img src="item.png" alt="Cake Boss Special">
+      </div>
+    </div>
+  </main>
+
+  <!-- ================= 2. شاشة المنيو بالسحب والأسهم الكبيرة ================= -->
+  <section id="screen-menu" class="app-screen">
+    <div class="menu-booklet-wrapper">
+      
+      <!-- ترويسة بسيطة -->
+      <div style="margin-bottom: 1.2rem;">
+        <h2 style="font-family:'Marhey', cursive; font-size:2.2rem; color:var(--pistachio-deep);">قائمة الحلويات التفاعلية</h2>
+        <p style="color:var(--text-soft);">اختر القسم مباشرة أو اسحب يميناً ويساراً للتنقل</p>
+      </div>
+
+      <!-- شريط الأقسام السريع العلوي (Quick Selector Bar) -->
+      <div class="quick-categories-bar">
+        <button class="quick-cat-btn active" data-cat="pistachio" onclick="scrollToCategory('pistachio')">
+          <img src="cat.png" alt="Pistachio">
+          <span>ركن البستاشيو</span>
+        </button>
+        <button class="quick-cat-btn" data-cat="nutella" onclick="scrollToCategory('nutella')">
+          <img src="cat.png" alt="Nutella">
+          <span>النوتيلا واللوتس</span>
+        </button>
+        <button class="quick-cat-btn" data-cat="cakes" onclick="scrollToCategory('cakes')">
+          <img src="cat.png" alt="Cakes">
+          <span>التورتات والكيك</span>
+        </button>
+        <button class="quick-cat-btn" data-cat="drinks" onclick="scrollToCategory('drinks')">
+          <img src="cat.png" alt="Drinks">
+          <span>المشروبات والقهوة</span>
+        </button>
+      </div>
+
+      <!-- حاوية السلايدر مع الأسهم الكبيرة في المنتصف -->
+      <div class="slider-main-viewport">
+        <!-- السهم الكبير اليمين -->
+        <button class="slider-side-arrow arrow-prev" onclick="scrollSlide(-1)" title="القسم السابق">‹</button>
+
+        <!-- مسار التمرير الأفقي (Swipe & Drag Track) -->
+        <div class="peeking-slider-track" id="peekingSliderTrack">
+
+          <!-- القسم 1: البستاشيو -->
+          <div class="booklet-page-card" data-cat-id="pistachio">
+            <div class="booklet-header">
+              <div class="booklet-cat-avatar"><img src="cat.png" alt="Pistachio"></div>
+              <div class="booklet-cat-title">
+                <h2>ركن البستاشيو الملكي</h2>
+                <p>فستق حلبي طبيعي 100% مع صوصات غنية ومقرمشة</p>
+              </div>
+            </div>
+            <div class="booklet-items-grid">
+              <div class="booklet-item-row" onclick="openDessertModal('تشيز كيك بستاشيو رويال', 'طبقات من البسكويت الزبداني مع موس الجبن الإيطالي وصوص الفستق الحلبي الخالص.', 25, 'item.png')">
+                <div class="item-thumb-mini"><img src="item.png" alt="Pistachio Cake"></div>
+                <div class="item-text-part">
+                  <div class="item-name-top">
+                    <h4>تشيز كيك بستاشيو</h4>
+                    <div class="item-dots-leader"></div>
+                    <span class="item-price-tag">25 ₪</span>
+                  </div>
+                  <p class="item-short-desc">موس جبن، صوص فستق طبيعي، فستق محمص.</p>
+                </div>
+                <button class="btn-quick-add" onclick="addToCart('تشيز كيك بستاشيو', 25, event)">+</button>
+              </div>
+
+              <div class="booklet-item-row" onclick="openDessertModal('بستاشيو كرانشي سوبريم', 'كيك إسفنجي بنكهة الفستق مع حشوة الكرانشي المقرمشة والشوكولاتة البيضاء.', 30, 'item.png')">
+                <div class="item-thumb-mini"><img src="item.png" alt="Crunchy Pistachio"></div>
+                <div class="item-text-part">
+                  <div class="item-name-top">
+                    <h4>بستاشيو كرانشي</h4>
+                    <div class="item-dots-leader"></div>
+                    <span class="item-price-tag">30 ₪</span>
+                  </div>
+                  <p class="item-short-desc">إسفنجية فستق، كرانشي مقرمش، شوكولاتة بيضاء.</p>
+                </div>
+                <button class="btn-quick-add" onclick="addToCart('بستاشيو كرانشي', 30, event)">+</button>
+              </div>
+
+              <div class="booklet-item-row" onclick="openDessertModal('تارت بستاشيو بالقطر', 'عجينة تارت مقرمشة محشوة بجناش البستاشيو ورشة قطر خفيفة بماء الورد.', 22, 'item.png')">
+                <div class="item-thumb-mini"><img src="item.png" alt="Tart"></div>
+                <div class="item-text-part">
+                  <div class="item-name-top">
+                    <h4>تارت بستاشيو بالقطر</h4>
+                    <div class="item-dots-leader"></div>
+                    <span class="item-price-tag">22 ₪</span>
+                  </div>
+                  <p class="item-short-desc">عجينة تارت، جناش بستاشيو، قطر ماء ورد.</p>
+                </div>
+                <button class="btn-quick-add" onclick="addToCart('تارت بستاشيو بالقطر', 22, event)">+</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- القسم 2: النوتيلا والشوكولاتة -->
+          <div class="booklet-page-card" data-cat-id="nutella">
+            <div class="booklet-header">
+              <div class="booklet-cat-avatar"><img src="cat.png" alt="Nutella"></div>
+              <div class="booklet-cat-title">
+                <h2>عشاق النوتيلا واللوتس</h2>
+                <p>شوكولاتة بلجيكية ساخنة مع زبدة لوتس مكرملة</p>
+              </div>
+            </div>
+            <div class="booklet-items-grid">
+              <div class="booklet-item-row" onclick="openDessertModal('سوفليه نوتيلا بركان', 'يخبز فور الطلب، ينفجر بشوكولاتة النوتيلا الساخنة مع سكر بودرة.', 20, 'item.png')">
+                <div class="item-thumb-mini"><img src="item.png" alt="Souffle"></div>
+                <div class="item-text-part">
+                  <div class="item-name-top">
+                    <h4>سوفليه نوتيلا بركان</h4>
+                    <div class="item-dots-leader"></div>
+                    <span class="item-price-tag">20 ₪</span>
+                  </div>
+                  <p class="item-short-desc">نوتيلا سائلة ساخنة، كاكاو هولندي.</p>
+                </div>
+                <button class="btn-quick-add" onclick="addToCart('سوفليه نوتيلا بركان', 20, event)">+</button>
+              </div>
+
+              <div class="booklet-item-row" onclick="openDessertModal('تشيز كيك لوتس كرانشي', 'قاعدة بسكويت لوتس هشة مع زبدة لوتس سائلة وبسكويت مطحون.', 24, 'item.png')">
+                <div class="item-thumb-mini"><img src="item.png" alt="Lotus"></div>
+                <div class="item-text-part">
+                  <div class="item-name-top">
+                    <h4>تشيز كيك لوتس كرانشي</h4>
+                    <div class="item-dots-leader"></div>
+                    <span class="item-price-tag">24 ₪</span>
+                  </div>
+                  <p class="item-short-desc">كريمة جبن، زبدة لوتس أصلية، قرمشة كراميل.</p>
+                </div>
+                <button class="btn-quick-add" onclick="addToCart('تشيز كيك لوتس كرانشي', 24, event)">+</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- القسم 3: التورتات وقوالب الكيك -->
+          <div class="booklet-page-card" data-cat-id="cakes">
+            <div class="booklet-header">
+              <div class="booklet-cat-avatar"><img src="cat.png" alt="Cakes"></div>
+              <div class="booklet-cat-title">
+                <h2>التورتات وقوالب الكيك</h2>
+                <p>كيكات حفلات ومناسبات بتصاميم ملكية وطازجة يومياً</p>
+              </div>
+            </div>
+            <div class="booklet-items-grid">
+              <div class="booklet-item-row" onclick="openDessertModal('تورتة الشوكولاتة البلجيكية', 'تكفي 8 إلى 10 أشخاص محشوة بجناش الشوكولاتة البلجيكية الفاخرة.', 85, 'item.png')">
+                <div class="item-thumb-mini"><img src="item.png" alt="Full Cake"></div>
+                <div class="item-text-part">
+                  <div class="item-name-top">
+                    <h4>تورتة شوكولاتة بلجيكية</h4>
+                    <div class="item-dots-leader"></div>
+                    <span class="item-price-tag">85 ₪</span>
+                  </div>
+                  <p class="item-short-desc">حجم عائلي، جناش شوكولاتة مكثف، تزيين فستق.</p>
+                </div>
+                <button class="btn-quick-add" onclick="addToCart('تورتة شوكولاتة بلجيكية', 85, event)">+</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- القسم 4: المشروبات -->
+          <div class="booklet-page-card" data-cat-id="drinks">
+            <div class="booklet-header">
+              <div class="booklet-cat-avatar"><img src="cat.png" alt="Drinks"></div>
+              <div class="booklet-cat-title">
+                <h2>المشروبات والقهوة المختصة</h2>
+                <p>مشروبات مثلجة منعشة وقهوة محضرة بأجود أنواع البن</p>
+              </div>
+            </div>
+            <div class="booklet-items-grid">
+              <div class="booklet-item-row" onclick="openDessertModal('آيس بستاشيو لاتيه', 'إسبريسو دبل شوت مع حليب مبرد وسيروب الفستق الحلبي ومكعبات الثلج.', 18, 'item.png')">
+                <div class="item-thumb-mini"><img src="item.png" alt="Latte"></div>
+                <div class="item-text-part">
+                  <div class="item-name-top">
+                    <h4>آيس بستاشيو لاتيه</h4>
+                    <div class="item-dots-leader"></div>
+                    <span class="item-price-tag">18 ₪</span>
+                  </div>
+                  <p class="item-short-desc">إسبريسو، سيروب فستق، حليب مبرد.</p>
+                </div>
+                <button class="btn-quick-add" onclick="addToCart('آيس بستاشيو لاتيه', 18, event)">+</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- السهم الكبير الشمال -->
+        <button class="slider-side-arrow arrow-next" onclick="scrollSlide(1)" title="القسم التالي">›</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 3. شاشة قصة المذاق ================= -->
+  <section id="screen-about" class="app-screen">
+    <div class="info-section-card">
+      <h2 style="font-family:'Marhey', cursive; font-size:2.4rem; color:var(--pistachio-deep); margin-bottom:1rem;">حكاية كيك بوس Cake Boss</h2>
+      <p style="font-size:1.15rem; color:var(--text-soft); line-height:2; margin-bottom:2rem;">
+        في <strong>Cake Boss</strong>، نعتبر كل قطعة حلوى لوحة فنية قائمة بذاتها. انطلقت فكرتنا من شغف المزج بين صوصات البستاشيو النقية والمكونات الطبيعية، لنصنع أصنافاً تسعد كل من يتذوقها وتظل في الذاكرة دائماً.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 4. شاشة الفروع والتوصيل ================= -->
+  <section id="screen-contact" class="app-screen">
+    <div class="info-section-card">
+      <h2 style="font-family:'Marhey', cursive; font-size:2.4rem; color:var(--pistachio-deep); margin-bottom:1.5rem; text-align:center;">فروعنا وخدمة التوصيل</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:2rem;">
+        <div style="background:var(--pistachio-cream); padding:2rem; border-radius:24px; border:1px solid var(--border-drip);">
+          <h3 style="font-family:'Marhey', cursive; color:var(--pistachio-deep); font-size:1.6rem; margin-bottom:0.6rem;">📍 فرع شارع الوحدة</h3>
+          <p style="color:var(--text-soft); margin-bottom:1.2rem;">شارع الوحدة - غرب مفترق الشعبية</p>
+          <button class="btn-whatsapp-sweet" style="width:100%;" onclick="sendWhatsAppOrder('972594157070')">
+            اطلب من فرع الوحدة (0594157070)
+          </button>
+        </div>
+        <div style="background:var(--pistachio-cream); padding:2rem; border-radius:24px; border:1px solid var(--border-drip);">
+          <h3 style="font-family:'Marhey', cursive; color:var(--pistachio-deep); font-size:1.6rem; margin-bottom:0.6rem;">📍 فرع السرايا</h3>
+          <p style="color:var(--text-soft); margin-bottom:1.2rem;">لاكاسا مول - الطابق الثالث</p>
+          <button class="btn-whatsapp-sweet" style="width:100%;" onclick="sendWhatsAppOrder('972567100122')">
+            اطلب من فرع السرايا (0567100122)
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= نافذة تفاصيل الصنف (Modal) ================= -->
+  <div class="dessert-modal-overlay" id="dessertModal" onclick="closeDessertModal()">
+    <div class="dessert-modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close-ico" onclick="closeDessertModal()">✕</button>
+      <div style="width:180px; height:180px; margin:0 auto 1.5rem; border-radius:50%; overflow:hidden; border:3px solid var(--pistachio-sauce); box-shadow:0 15px 35px rgba(0,0,0,0.12);">
+        <img id="modalImg" src="item.png" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <h3 id="modalTitle" style="font-family:'Marhey', cursive; font-size:1.8rem; color:var(--pistachio-deep); margin-bottom:0.6rem;"></h3>
+      <p id="modalDesc" style="color:var(--text-soft); font-size:1rem; line-height:1.7; margin-bottom:1.8rem;"></p>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span id="modalPrice" style="font-size:1.8rem; font-weight:900; color:var(--pistachio-sauce);"></span>
+        <button id="modalAddBtn" class="btn-whatsapp-sweet" style="padding:12px 28px;">أضف للحقيبة الآن 🛍️</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= حقيبة الطلبات (Bag Drawer) ================= -->
+  <div class="bag-drawer-overlay" id="bag-overlay" onclick="toggleBag(false)"></div>
+  <aside class="bag-drawer" id="bag-drawer">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px dashed var(--border-drip); padding-bottom:1.2rem;">
+      <h3 style="font-family:'Marhey', cursive; font-size:1.6rem; color:var(--pistachio-deep);">حقيبة الحلو 🧁</h3>
+      <button onclick="toggleBag(false)" style="background:none; border:none; font-size:1.6rem; cursor:pointer;">✕</button>
+    </div>
+    <div class="bag-items-list" id="bag-items-box"></div>
+    <div style="border-top:2px dashed var(--border-drip); padding:1.2rem 0; display:flex; justify-content:space-between; font-weight:900; font-size:1.3rem;">
+      <span>المجموع الكلي:</span>
+      <span id="bag-total-sum" style="color:var(--pistachio-sauce);">0 ₪</span>
+    </div>
+    <button class="btn-whatsapp-sweet" onclick="sendWhatsAppOrder()">
+      إرسال الطلب فوراً عبر واتساب
+    </button>
+  </aside>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cake Boss | Modern Pâtisserie & Sweets Menu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- شريط الإعلان العلوي -->
+  <div class="top-notice-bar">
+    طازج يومياً في معاملنا • فستق حلبي طبيعي 100% • متاح الطلب الفوري والتوصيل عبر واتساب
+  </div>
+
+  <!-- الهيدر الرئيسي -->
+  <header class="loro-header">
+    <a href="#" class="brand-wrapper">
+      <img src="logo.png" alt="Cake Boss">
+      <div class="brand-text">
+        <h1>CAKE BOSS</h1>
+        <span>HAUTE PÂTISSERIE • GAZA</span>
+      </div>
+    </a>
+    <div class="header-meta-actions">
+      <a href="#locations" class="btn-location-switch">الفروع ومواعيد العمل</a>
+      <button class="btn-header-cart" onclick="toggleCart(true)">
+        <span>الحقيبة</span>
+        <span id="cart-counter">(0)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- شريط الفئات المثبت أثناء السكرول بنمط LORO -->
+  <nav class="category-sticky-bar">
+    <a href="#cat-pistachio" class="cat-pill-link active">ركن البستاشيو السيجنتشر</a>
+    <a href="#cat-cakes" class="cat-pill-link">الكيك والتورتات الفاخرة</a>
+    <a href="#cat-cheesecake" class="cat-pill-link">التشيز كيك والميني</a>
+    <a href="#cat-hot-desserts" class="cat-pill-link">حلويات الشوكولاتة الساخنة</a>
+    <a href="#cat-drinks" class="cat-pill-link">المشروبات والقهوة المختصة</a>
+  </nav>
+
+  <!-- جسم المنيو الرئيسي -->
+  <main class="menu-master-container">
+    
+    <div class="menu-intro-banner">
+      <div>
+        <h2>قائمة الحلويات اليومية</h2>
+        <p>مخبوزات طازجة يومياً بمكونات نقية من أجود أنواع الفستق الحلبي والشوكولاتة البلجيكية، منتقاة بعناية لترضي أصحاب الذوق الرفيع.</p>
+      </div>
+      <div>
+        <span style="font-weight: 800; color: var(--loro-pistachio-deep); font-size: 0.95rem;">ساعات العمل اليوم: 10:00 ص – 12:00 منتصف الليل</span>
+      </div>
+    </div>
+
+    <!-- 1. قسم البستاشيو -->
+    <section class="menu-category-section" id="cat-pistachio">
+      <div class="section-title-strip">
+        <h3>ركن البستاشيو السيجنتشر (Pistachio Lab)</h3>
+        <span class="item-count">3 أصناف متوفرة</span>
+      </div>
+
+      <div class="items-grid-loro">
+        <!-- Item 1 -->
+        <div class="menu-item-row" onclick="openItemDetail('تشيز كيك بستاشيو رويال', 'طبقات من البسكويت الزبداني المقرمش، مغطاة بكريمة الجبن الإيطالية وصوص الفستق الحلبي الصافي 100%.', 25, 'item.png')">
+          <div class="item-info-col">
+            <div>
+              <div class="item-head-line">
+                <h4 class="item-title-name">تشيز كيك بستاشيو رويال</h4>
+                <span class="item-cost">25 ₪</span>
+              </div>
+              <p class="item-ingredients-desc">بسكويت مقرمش، كريمة جبن إيطالية، صوص فستق حلبي صافي، حبات فستق محمصة.</p>
+            </div>
+            <button class="btn-add-mini" onclick="addToCart('تشيز كيك بستاشيو رويال', 25, event)">+ أضف للطلب</button>
+          </div>
+          <div class="item-square-img">
+            <img src="item.png" alt="Royal Pistachio">
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="menu-item-row" onclick="openItemDetail('كيكة بستاشيو كرانشي', 'كيك إسفنجي غارق في صوص الفستق الحلبي، محشو بحبيبات الكرانشي المقرمشة والشوكولاتة البيضاء.', 30, 'item.png')">
+          <div class="item-info-col">
+            <div>
+              <div class="item-head-line">
+                <h4 class="item-title-name">كيكة بستاشيو كرانشي</h4>
+                <span class="item-cost">30 ₪</span>
+              </div>
+              <p class="item-ingredients-desc">كيك إسفنجي بنكهة الفستق، كرانشي مقرمش، شوكولاتة بيضاء بلجيكية.</p>
+            </div>
+            <button class="btn-add-mini" onclick="addToCart('كيكة بستاشيو كرانشي', 30, event)">+ أضف للطلب</button>
+          </div>
+          <div class="item-square-img">
+            <img src="item.png" alt="Crunchy Cake">
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="menu-item-row" onclick="openItemDetail('تارت فستق وسولتد كراميل', 'عجينة تارت فرنسية مقرمشة محشوة بجناش البستاشيو مع لمسة كراميل مملح خفيفة.', 22, 'item.png')">
+          <div class="item-info-col">
+            <div>
+              <div class="item-head-line">
+                <h4 class="item-title-name">تارت فستق وسولتد كراميل</h4>
+                <span class="item-cost">22 ₪</span>
+              </div>
+              <p class="item-ingredients-desc">عجينة تارت مقرمشة، جناش بستاشيو حريري، كراميل مملح، فستق مطحون.</p>
+            </div>
+            <button class="btn-add-mini" onclick="addToCart('تارت فستق وسولتد كراميل', 22, event)">+ أضف للطلب</button>
+          </div>
+          <div class="item-square-img">
+            <img src="item.png" alt="Pistachio Tart">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. قسم الكيك الفاخر -->
+    <section class="menu-category-section" id="cat-cakes">
+      <div class="section-title-strip">
+        <h3>الكيك والتورتات الفاخرة (Cakes & Tortes)</h3>
+        <span class="item-count">صنفان متوفران</span>
+      </div>
+
+      <div class="items-grid-loro">
+        <!-- Item 4 -->
+        <div class="menu-item-row" onclick="openItemDetail('فادج شوكولاتة كلاسيك', 'كيك شوكولاتة داكنة مكثف وغني بنكهة الكاكاو البلجيكي، يقدم مع كريمة الحليب الطازجة.', 28, 'item.png')">
+          <div class="item-info-col">
+            <div>
+              <div class="item-head-line">
+                <h4 class="item-title-name">فادج شوكولاتة كلاسيك</h4>
+                <span class="item-cost">28 ₪</span>
+              </div>
+              <p class="item-ingredients-desc">شوكولاتة داكنة 70%، زبدة طبيعية، جناش كاكاو مكثف.</p>
+            </div>
+            <button class="btn-add-mini" onclick="addToCart('فادج شوكولاتة كلاسيك', 28, event)">+ أضف للطلب</button>
+          </div>
+          <div class="item-square-img">
+            <img src="item.png" alt="Fudge Cake">
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="menu-item-row" onclick="openItemDetail('كيك ريد فيلفت الأصلي', 'كيك مخملي أحمر رطب بطبقات من كريمة التشييز التقليدية المخفوقة بعناية.', 26, 'item.png')">
+          <div class="item-info-col">
+            <div>
+              <div class="item-head-line">
+                <h4 class="item-title-name">كيك ريد فيلفت الأصلي</h4>
+                <span class="item-cost">26 ₪</span>
+              </div>
+              <p class="item-ingredients-desc">إسفنجية الريد فيلفت الناعمة، كريمة تشيز فانيلا مدغشقر.</p>
+            </div>
+            <button class="btn-add-mini" onclick="addToCart('كيك ريد فيلفت الأصلي', 26, event)">+ أضف للطلب</button>
+          </div>
+          <div class="item-square-img">
+            <img src="item.png" alt="Red Velvet">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. قسم الشوكولاتة الساخنة والسوفليه -->
+    <section class="menu-category-section" id="cat-hot-desserts">
+      <div class="section-title-strip">
+        <h3>حلويات الشوكولاتة الساخنة (Warm & Melty)</h3>
+        <span class="item-count">صنف متوفر</span>
+      </div>
+
+      <div class="items-grid-loro">
+        <!-- Item 6 -->
+        <div class="menu-item-row" onclick="openItemDetail('مولتن لافا كيك فستق ساخن', 'يخبز فور الطلب، ينفجر بقلب سائل دافئ من زبدة الفستق الحلبي الخالصة والشوكولاتة.', 24, 'item.png')">
+          <div class="item-info-col">
+            <div>
+              <div class="item-head-line">
+                <h4 class="item-title-name">مولتن لافا كيك فستق ساخن</h4>
+                <span class="item-cost">24 ₪</span>
+              </div>
+              <p class="item-ingredients-desc">يخبز طازجاً عند الطلب (10 دقائق تحضير)، زبدة فستق سائلة، سكر بودرة ناعم.</p>
+            </div>
+            <button class="btn-add-mini" onclick="addToCart('مولتن لافا كيك فستق ساخن', 24, event)">+ أضف للطلب</button>
+          </div>
+          <div class="item-square-img">
+            <img src="item.png" alt="Lava Cake">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. قسم المشروبات والقهوة -->
+    <section class="menu-category-section" id="cat-drinks">
+      <div class="section-title-strip">
+        <h3>المشروبات والقهوة المختصة (Craft Beverages)</h3>
+        <span class="item-count">صنفان متوفران</span>
+      </div>
+
+      <div class="items-grid-loro">
+        <!-- Item 7 -->
+        <div class="menu-item-row" onclick="openItemDetail('آيس بستاشيو لاتيه', 'إسبريسو دبل شوت مع حليب طازج وصوص فستق حلبي محضر يدوياً ومكعبات ثلج.', 18, 'item.png')">
+          <div class="item-info-col">
+            <div>
+              <div class="item-head-line">
+                <h4 class="item-title-name">آيس بستاشيو لاتيه</h4>
+                <span class="item-cost">18 ₪</span>
+              </div>
+              <p class="item-ingredients-desc">بن برازيلي مختص، حليب مبخر مبرد، سيروب فستق محمص طبيعي.</p>
+            </div>
+            <button class="btn-add-mini" onclick="addToCart('آيس بستاشيو لاتيه', 18, event)">+ أضف للطلب</button>
+          </div>
+          <div class="item-square-img">
+            <img src="item.png" alt="Iced Latte">
+          </div>
+        </div>
+
+        <!-- Item 8 -->
+        <div class="menu-item-row" onclick="openItemDetail('موهيتو رمان وتوت منعش', 'مزيج الليمون والنعناع المنعش مع خلاصة التوت البري والرمان الفوار.', 14, 'item.png')">
+          <div class="item-info-col">
+            <div>
+              <div class="item-head-line">
+                <h4 class="item-title-name">موهيتو رمان وتوت منعش</h4>
+                <span class="item-cost">14 ₪</span>
+              </div>
+              <p class="item-ingredients-desc">نعناع طازج، ليمون أخضر، توت بري، صودا مثلجة.</p>
+            </div>
+            <button class="btn-add-mini" onclick="addToCart('موهيتو رمان وتوت منعش', 14, event)">+ أضف للطلب</button>
+          </div>
+          <div class="item-square-img">
+            <img src="item.png" alt="Mojito">
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- حقيبة الطلبات المنزلقة بنمط LORO -->
+  <div class="cart-sidebar-backdrop" id="cart-backdrop" onclick="toggleCart(false)"></div>
+  <aside class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-side-header">
+      <h3>حقيبة الطلبات</h3>
+      <button onclick="toggleCart(false)" style="background:none; border:none; font-size:1.6rem; cursor:pointer;">✕</button>
+    </div>
+    <div class="cart-side-items" id="cart-items-box"></div>
+    <div style="border-top:2px solid var(--loro-border); padding:1.2rem 0; display:flex; justify-content:space-between; font-weight:900; font-size:1.3rem;">
+      <span>المجموع الكلي:</span>
+      <span id="cart-total-sum" style="color:var(--loro-pistachio-deep);">0 ₪</span>
+    </div>
+    <button class="btn-wa-checkout" onclick="sendWhatsAppOrder()">
+      إرسال الطلب الآن عبر واتساب
+    </button>
+  </aside>
+
+  <!-- نافذة تفاصيل الطبق (Modal) -->
+  <div class="item-modal-overlay" id="item-modal" onclick="closeItemDetail()">
+    <div class="item-modal-body" onclick="event.stopPropagation()">
+      <button onclick="closeItemDetail()" style="position:absolute; top:20px; left:20px; background:none; border:none; font-size:1.4rem; cursor:pointer;">✕</button>
+      <div style="height:240px; border-radius:var(--radius-sm); overflow:hidden; margin-bottom:1.2rem;">
+        <img id="modal-img" src="item.png" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.6rem;">
+        <h3 id="modal-title" style="font-size:1.4rem; font-weight:900; color:var(--loro-pistachio-deep);"></h3>
+        <span id="modal-price" style="font-size:1.4rem; font-weight:900;"></span>
+      </div>
+      <p id="modal-desc" style="color:var(--loro-text-muted); font-size:0.95rem; line-height:1.7; margin-bottom:1.5rem;"></p>
+      <button id="modal-add-btn" class="btn-location-switch" style="width:100%; background:var(--loro-pistachio-deep); color:#FFF; padding:12px; font-size:1rem;">
+        إضافة للحقيبة
+      </button>
+    </div>
+  </div>
+
+  <!-- الفوتر والفروع بنمط LORO -->
+  <footer class="loro-footer" id="locations">
+    <div class="footer-content-grid">
+      <div>
+        <h3 style="font-size:1.4rem; font-weight:900; color:var(--loro-pistachio-deep); margin-bottom:0.8rem;">CAKE BOSS PÂTISSERIE</h3>
+        <p style="color:var(--loro-text-muted); font-size:0.95rem; line-height:1.8; max-width:380px;">
+          نجمع بين حرفية صناعة الكيك العالمية ونقاء نكهة الفستق الحلبي لنقدم لكم أطباقاً لا تُنسى في كل زيارة.
+        </p>
+      </div>
+
+      <div class="footer-branch-box">
+        <h4>فرع شارع الوحدة</h4>
+        <p>شارع الوحدة - غرب مفترق الشعبية<br>هاتف وواتساب: 0594157070<br>العمل: 10:00 صباحاً – 12:00 ليلاً</p>
+      </div>
+
+      <div class="footer-branch-box">
+        <h4>فرع السرايا</h4>
+        <p>لاكاسا مول - الطابق الثالث<br>هاتف وواتساب: 0567100122<br>العمل: 10:00 صباحاً – 12:00 ليلاً</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom-line">
+      © 2026 Cake Boss Gaza. All rights reserved. Designed with modern culinary standards.
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

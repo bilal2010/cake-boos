@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cake Boss | تجربة الحلويات الملكية</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- هالات الإضاءة المحيطية -->
+  <div class="ambient-glow ambient-top"></div>
+  <div class="ambient-glow ambient-bottom"></div>
+
+  <!-- الناف بار الملكي -->
+  <nav class="royale-nav">
+    <a href="index.html" class="brand-logo">
+      <img src="logo.png" alt="Cake Boss">
+      <span>Cake Boss</span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="active">الرئيسية</a></li>
+      <li><a href="categories.html">الأقسام الملكية</a></li>
+      <li><a href="about.html">سر الفخامة</a></li>
+      <li><a href="contact.html">الفروع والطلبات</a></li>
+    </ul>
+    <button class="btn-royale-cart" onclick="toggleCart(true)">
+      🛒 السلة (<span id="cart-badge">0</span>)
+    </button>
+  </nav>
+
+  <!-- الهيرو الملكي -->
+  <header class="hero-royale">
+    <div>
+      <div class="gold-badge">
+        <span>✨ إصدارات خاصة وحصرية</span>
+        <span>•</span>
+        <span>فستق حلبي طبيعي 100%</span>
+      </div>
+      <h1>مملكة الحلويات <br><span class="gold-text">بمذاق الفخامة</span> و<span class="pistachio-text">البستاشيو</span></h1>
+      <p>نبتكر لكم أرقى أصناف الكيك والشوكولاتة والحلويات المعدة يدوياً على أيدي طهاة محترفين لنجعل من كل مناسبة لحظة استثنائية.</p>
+      <div class="hero-buttons">
+        <a href="categories.html" class="btn-gold">استكشف المجموعات الملكية 👑</a>
+        <a href="contact.html" class="btn-outline-gold">فروعنا وأرقام الطلب</a>
+      </div>
+    </div>
+    <div class="hero-display">
+      <div class="hero-display-circle"></div>
+      <img src="item.png" alt="Cake Boss Signature">
+    </div>
+  </header>
+
+  <!-- المعرض السريع للأقسام -->
+  <section class="section-container">
+    <div class="section-head">
+      <h2>أبرز مجموعات الماستربيس</h2>
+      <p>تشكيلة مختارة من أرقى الابتكارات التي نالت إعجاب ضيوفنا</p>
+    </div>
+    <div class="category-royale-grid">
+      <a href="category-items.html" class="cat-royale-card">
+        <div class="cat-circle-img"><img src="cat.png" alt="Pistachio Luxe"></div>
+        <h3>سيجنتشر بستاشيو</h3>
+        <span class="cat-chip">الأكثر فخامة ⭐</span>
+      </a>
+      <a href="category-items.html" class="cat-royale-card">
+        <div class="cat-circle-img"><img src="cat.png" alt="Royal Cakes"></div>
+        <h3>تورتات الحفلات الملكية</h3>
+        <span class="cat-chip">تصاميم خاصة</span>
+      </a>
+      <a href="category-items.html" class="cat-royale-card">
+        <div class="cat-circle-img"><img src="cat.png" alt="Beverages"></div>
+        <h3>مشروبات الكافيه المختص</h3>
+        <span class="cat-chip">انتعاش ونقاء</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- السلة المنزلقة -->
+  <div id="cart-drawer" class="royale-drawer">
+    <div class="drawer-header">
+      <h3>سلة مشترياتك 🛍️</h3>
+      <button onclick="toggleCart(false)" style="background:none; border:none; color:var(--text-muted); font-size:1.8rem; cursor:pointer;">✕</button>
+    </div>
+    <div id="cart-items-list" class="cart-items-container"></div>
+    <div style="border-top:1px solid rgba(255,255,255,0.1); padding:1.2rem 0; display:flex; justify-content:space-between; align-items:center;">
+      <span style="color:var(--text-muted); font-size:1.1rem;">المجموع النهائي:</span>
+      <span id="cart-total-price" style="font-family:'El Messiri', serif; font-size:1.6rem; color:var(--border-gold-bright); font-weight:700;">0 ₪</span>
+    </div>
+    <button class="btn-whatsapp-checkout" onclick="sendOrderWhatsApp()">
+      تأكيد وإرسال الطلب عبر واتساب
+    </button>
+  </div>
+
+  <footer class="royale-footer">
+    <h3 style="font-family:'El Messiri', serif; color:var(--border-gold-bright); font-size:1.6rem; margin-bottom:0.6rem;">CAKE BOSS ROYALE</h3>
+    <p style="color:var(--text-muted); font-size:0.95rem;">© 2026 جميع الحقوق محفوظة لعلامة كيك بوس الفاخرة.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

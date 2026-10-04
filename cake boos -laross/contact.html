@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الفروع والطلب المباشر | Cake Boss</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="ambient-glow ambient-top"></div>
+  <div class="ambient-glow ambient-bottom"></div>
+
+  <nav class="royale-nav">
+    <a href="index.html" class="brand-logo">
+      <img src="logo.png" alt="Cake Boss">
+      <span>Cake Boss</span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="categories.html">الأقسام الملكية</a></li>
+      <li><a href="about.html">سر الفخامة</a></li>
+      <li><a href="contact.html" class="active">الفروع والطلبات</a></li>
+    </ul>
+    <button class="btn-royale-cart" onclick="toggleCart(true)">
+      🛒 السلة (<span id="cart-badge">0</span>)
+    </button>
+  </nav>
+
+  <main class="section-container">
+    <div class="section-head">
+      <div class="gold-badge">في خدمتكم بكل فخامة</div>
+      <h2>فروعنا وأرقام التوصيل المباشر</h2>
+      <p>تفضل بزيارة صالات العرض الخاصة بنا أو اطلب التوصيل السريع عبر واتساب</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:2.5rem;">
+      <!-- Branch 1 -->
+      <div class="cat-royale-card" style="text-align:right;">
+        <h3 style="color:var(--border-gold-bright); font-size:1.8rem; margin-bottom:0.6rem;">📍 فرع الوحدة</h3>
+        <p style="color:var(--text-muted); font-size:1.05rem; margin-bottom:1.5rem;">شارع الوحدة - غرب مفترق الشعبية</p>
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); padding:1.2rem; border-radius:20px; margin-bottom:1.8rem;">
+          <p style="margin-bottom:0.4rem;"><strong>🕒 طوال أيام الأسبوع:</strong> 10:00 صباحاً – 12:00 منتصف الليل</p>
+          <p><strong>🕒 الجمعة:</strong> بعد صلاة الجمعة حتى 12:00 ليلاً</p>
+        </div>
+        <button class="btn-whatsapp-checkout" style="width:100%;" onclick="sendOrderWhatsApp('972594157070')">
+          طلب واتساب فرع الوحدة (0594157070)
+        </button>
+      </div>
+
+      <!-- Branch 2 -->
+      <div class="cat-royale-card" style="text-align:right;">
+        <h3 style="color:var(--border-gold-bright); font-size:1.8rem; margin-bottom:0.6rem;">📍 فرع السرايا</h3>
+        <p style="color:var(--text-muted); font-size:1.05rem; margin-bottom:1.5rem;">لاكاسا مول - الطابق الثالث</p>
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); padding:1.2rem; border-radius:20px; margin-bottom:1.8rem;">
+          <p style="margin-bottom:0.4rem;"><strong>🕒 طوال أيام الأسبوع:</strong> 10:00 صباحاً – 12:00 منتصف الليل</p>
+          <p><strong>🕒 الجمعة:</strong> بعد صلاة الجمعة حتى 12:00 ليلاً</p>
+        </div>
+        <button class="btn-whatsapp-checkout" style="width:100%;" onclick="sendOrderWhatsApp('972567100122')">
+          طلب واتساب فرع السرايا (0567100122)
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="royale-footer">
+    <p style="color:var(--text-muted);">© 2026 Cake Boss Royale. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

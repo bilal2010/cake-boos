@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أصناف البستاشيو الفاخرة | Cake Boss</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="ambient-glow ambient-top"></div>
+  <div class="ambient-glow ambient-bottom"></div>
+
+  <nav class="royale-nav">
+    <a href="index.html" class="brand-logo">
+      <img src="logo.png" alt="Cake Boss">
+      <span>Cake Boss</span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="categories.html" class="active">الأقسام الملكية</a></li>
+      <li><a href="about.html">سر الفخامة</a></li>
+      <li><a href="contact.html">الفروع والطلبات</a></li>
+    </ul>
+    <button class="btn-royale-cart" onclick="toggleCart(true)">
+      🛒 السلة (<span id="cart-badge">0</span>)
+    </button>
+  </nav>
+
+  <main class="section-container">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2.5rem; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <a href="categories.html" style="text-decoration:none; color:var(--border-gold-bright); font-weight:700;">← عودة لجميع الأقسام</a>
+        <h2 style="font-family:'El Messiri', serif; font-size:2.5rem; color:#FFF; margin-top:0.4rem;">تشكيلة البستاشيو الملكية</h2>
+      </div>
+      <div class="gold-badge">متاح للطلب اللحظي والتحضير الفوري</div>
+    </div>
+
+    <div class="items-showcase-grid">
+      <!-- Item 1 -->
+      <div class="item-royale-card">
+        <div class="item-cover-wrap" onclick="openShowcase('تشيز كيك بستاشيو رويال', 'طبقات غنية من البسكويت المقرمش مع كريمة الفستق الحلبي الإيطالية وصوص البستاشيو الخالص.', 25, 'item.png')">
+          <img src="item.png" alt="Royale Pistachio">
+          <span class="item-price-gold">25 ₪</span>
+        </div>
+        <div class="item-content">
+          <h3>تشيز كيك بستاشيو رويال</h3>
+          <p>طبقات غنية من البسكويت المقرمش مع كريمة الفستق الحلبي الإيطالية وصوص البستاشيو الخالص.</p>
+          <button class="btn-add-royale" onclick="addToCart('تشيز كيك بستاشيو رويال', 25)">+ أضف إلى السلة الملكية</button>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="item-royale-card">
+        <div class="item-cover-wrap" onclick="openShowcase('كرانشي كيك بستاشيو جولد', 'إسفنجية خفيفة غارقة في صوص الفستق المحمص مع حبيبات الكرانشي المقرمشة والشوكولاتة البيضاء.', 30, 'item.png')">
+          <img src="item.png" alt="Gold Crunchy Cake">
+          <span class="item-price-gold">30 ₪</span>
+        </div>
+        <div class="item-content">
+          <h3>كرانشي كيك بستاشيو جولد</h3>
+          <p>إسفنجية خفيفة غارقة في صوص الفستق المحمص مع حبيبات الكرانشي المقرمشة والشوكولاتة البيضاء.</p>
+          <button class="btn-add-royale" onclick="addToCart('كرانشي كيك بستاشيو جولد', 30)">+ أضف إلى السلة الملكية</button>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="item-royale-card">
+        <div class="item-cover-wrap" onclick="openShowcase('مولتن لافا بستاشيو ساخن', 'كيك دافئ ينفجر بصوص زبدة الفستق النقي عند أول لمسة ملعقة، تجربة لا تفوت.', 22, 'item.png')">
+          <img src="item.png" alt="Lava Molten">
+          <span class="item-price-gold">22 ₪</span>
+        </div>
+        <div class="item-content">
+          <h3>مولتن لافا بستاشيو ساخن</h3>
+          <p>كيك دافئ ينفجر بصوص زبدة الفستق النقي عند أول لمسة ملعقة، تجربة لا تفوت.</p>
+          <button class="btn-add-royale" onclick="addToCart('مولتن لافا بستاشيو ساخن', 22)">+ أضف إلى السلة الملكية</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- نافذة تفاصيل الصنف السريعة (Modal) -->
+  <div id="royale-modal" class="royale-modal-wrap" onclick="closeShowcase()">
+    <div class="modal-content-box" onclick="event.stopPropagation()">
+      <button class="close-royale-btn" onclick="closeShowcase()">✕</button>
+      <div style="height:240px; border-radius:22px; overflow:hidden; margin-bottom:1.5rem; border:1px solid rgba(255,255,255,0.1);">
+        <img id="modal-img" src="item.png" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <h3 id="modal-title" style="font-family:'El Messiri', serif; font-size:1.8rem; color:var(--border-gold-bright); margin-bottom:0.6rem;"></h3>
+      <p id="modal-desc" style="color:var(--text-muted); font-size:1rem; line-height:1.7; margin-bottom:1.8rem;"></p>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span id="modal-price" style="font-family:'El Messiri', serif; font-size:1.8rem; font-weight:800; color:var(--pistachio-light);"></span>
+        <button id="modal-btn" class="btn-gold" style="border:none; cursor:pointer;">أضف للطلب الآن</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- السلة المنزلقة -->
+  <div id="cart-drawer" class="royale-drawer">
+    <div class="drawer-header">
+      <h3>سلة مشترياتك 🛍️</h3>
+      <button onclick="toggleCart(false)" style="background:none; border:none; color:var(--text-muted); font-size:1.8rem; cursor:pointer;">✕</button>
+    </div>
+    <div id="cart-items-list" class="cart-items-container"></div>
+    <div style="border-top:1px solid rgba(255,255,255,0.1); padding:1.2rem 0; display:flex; justify-content:space-between; align-items:center;">
+      <span style="color:var(--text-muted); font-size:1.1rem;">المجموع النهائي:</span>
+      <span id="cart-total-price" style="font-family:'El Messiri', serif; font-size:1.6rem; color:var(--border-gold-bright); font-weight:700;">0 ₪</span>
+    </div>
+    <button class="btn-whatsapp-checkout" onclick="sendOrderWhatsApp()">تأكيد وإرسال الطلب عبر واتساب</button>
+  </div>
+
+  <footer class="royale-footer">
+    <p style="color:var(--text-muted);">© 2026 جميع الحقوق محفوظة لـ Cake Boss.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,489 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Tajawal:wght@300;400;500;700;900&display=swap');
+
+:root {
+  --loro-cream: #FAF9F5;
+  --loro-white: #FFFFFF;
+  --loro-pistachio-deep: #1E3822;
+  --loro-pistachio-accent: #528A58;
+  --loro-pistachio-light: #E7EFE6;
+  --loro-text-dark: #121A13;
+  --loro-text-muted: #5F6D61;
+  --loro-border: rgba(30, 56, 34, 0.12);
+  --loro-border-strong: #1E3822;
+  --loro-gold: #C29B38;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-pill: 999px;
+  --transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background-color: var(--loro-cream);
+  color: var(--loro-text-dark);
+  direction: rtl;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* شريط الإعلان العلوي بنمط المطاعم العالمية */
+.top-notice-bar {
+  background: var(--loro-pistachio-deep);
+  color: var(--loro-pistachio-light);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 9px 15px;
+  letter-spacing: 0.5px;
+}
+
+/* الهيدر الرئيسي بنمط LORO */
+.loro-header {
+  background: var(--loro-cream);
+  border-bottom: 1px solid var(--loro-border);
+  padding: 1.2rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 100;
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  color: var(--loro-pistachio-deep);
+}
+
+.brand-wrapper img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 1px solid var(--loro-border);
+}
+
+.brand-text h1 {
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.brand-text span {
+  font-size: 0.75rem;
+  color: var(--loro-pistachio-accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.header-meta-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn-location-switch {
+  background: transparent;
+  border: 1px solid var(--loro-border-strong);
+  color: var(--loro-pistachio-deep);
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn-location-switch:hover {
+  background: var(--loro-pistachio-deep);
+  color: #FFF;
+}
+
+.btn-header-cart {
+  background: var(--loro-pistachio-deep);
+  color: #FFF;
+  border: none;
+  padding: 9px 20px;
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.btn-header-cart:hover {
+  background: var(--loro-pistachio-accent);
+}
+
+/* شريط الفئات المثبت بنمط LORO (Sticky Navigation Subheader) */
+.category-sticky-bar {
+  position: sticky;
+  top: 0;
+  background: rgba(250, 249, 245, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--loro-border);
+  z-index: 90;
+  padding: 12px 2.5rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  display: flex;
+  gap: 10px;
+  scrollbar-width: none;
+}
+.category-sticky-bar::-webkit-scrollbar { display: none; }
+
+.cat-pill-link {
+  color: var(--loro-text-dark);
+  text-decoration: none;
+  padding: 8px 20px;
+  border-radius: var(--radius-pill);
+  font-size: 0.92rem;
+  font-weight: 700;
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+
+.cat-pill-link:hover {
+  background: var(--loro-pistachio-light);
+  color: var(--loro-pistachio-deep);
+}
+
+.cat-pill-link.active {
+  background: var(--loro-pistachio-deep);
+  color: #FFF;
+}
+
+/* الحاوية الرئيسية للمنيو */
+.menu-master-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem 6rem;
+}
+
+/* بنر هيرو ترحيبي بسيط وأنيق بنمط LORO */
+.menu-intro-banner {
+  padding: 2.5rem 0 3.5rem;
+  border-bottom: 2px solid var(--loro-border);
+  margin-bottom: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.menu-intro-banner h2 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--loro-pistachio-deep);
+  line-height: 1.15;
+}
+
+.menu-intro-banner p {
+  color: var(--loro-text-muted);
+  font-size: 1.1rem;
+  max-width: 580px;
+}
+
+/* أقسام المنيو بنمط القائمة الفاخرة */
+.menu-category-section {
+  margin-bottom: 5rem;
+  scroll-margin-top: 80px;
+}
+
+.section-title-strip {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--loro-pistachio-deep);
+  padding-bottom: 12px;
+  margin-bottom: 2.5rem;
+}
+
+.section-title-strip h3 {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--loro-pistachio-deep);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.section-title-strip .item-count {
+  font-size: 0.9rem;
+  color: var(--loro-text-muted);
+  font-weight: 700;
+}
+
+/* شبكة عناصر المنيو (LORO-Style Cards) */
+.items-grid-loro {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 2.5rem;
+}
+
+.menu-item-row {
+  display: grid;
+  grid-template-columns: 1fr 110px;
+  gap: 18px;
+  align-items: start;
+  background: var(--loro-white);
+  padding: 1.2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--loro-border);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.menu-item-row:hover {
+  transform: translateY(-4px);
+  border-color: var(--loro-pistachio-accent);
+  box-shadow: 0 12px 30px rgba(30, 56, 34, 0.08);
+}
+
+.item-info-col {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.item-head-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.item-title-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--loro-text-dark);
+}
+
+.item-cost {
+  font-weight: 900;
+  font-size: 1.15rem;
+  color: var(--loro-pistachio-deep);
+  white-space: nowrap;
+}
+
+.item-ingredients-desc {
+  font-size: 0.88rem;
+  color: var(--loro-text-muted);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.btn-add-mini {
+  align-self: flex-start;
+  background: var(--loro-pistachio-light);
+  color: var(--loro-pistachio-deep);
+  border: none;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-add-mini:hover {
+  background: var(--loro-pistachio-deep);
+  color: #FFF;
+}
+
+.item-square-img {
+  width: 110px;
+  height: 110px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--loro-cream);
+  border: 1px solid var(--loro-border);
+}
+
+.item-square-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.menu-item-row:hover .item-square-img img {
+  transform: scale(1.08);
+}
+
+/* السلة الجانبية المنزلقة بنمط المتاجر الحديثة */
+.cart-sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 26, 19, 0.45);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: none;
+}
+.cart-sidebar-backdrop.active { display: block; }
+
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 440px;
+  height: 100%;
+  background: var(--loro-white);
+  box-shadow: 25px 0 60px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 2.2rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-sidebar.open {
+  transform: translateX(0);
+}
+
+.cart-side-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--loro-border);
+  padding-bottom: 1.2rem;
+}
+
+.cart-side-header h3 {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--loro-pistachio-deep);
+}
+
+.cart-side-items {
+  flex: 1;
+  overflow-y: auto;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cart-row-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--loro-cream);
+  border-radius: var(--radius-sm);
+}
+
+.btn-wa-checkout {
+  background: #25D366;
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: var(--transition);
+}
+
+.btn-wa-checkout:hover {
+  background: #1EBE5D;
+}
+
+/* نافذة عرض التفاصيل السريعة (Item Modal) */
+.item-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 26, 19, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.item-modal-overlay.active { display: flex; }
+
+.item-modal-body {
+  background: var(--loro-white);
+  border-radius: var(--radius-md);
+  max-width: 520px;
+  width: 100%;
+  padding: 2.2rem;
+  position: relative;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+}
+
+/* الفوتر الفاخر البسيط بنمط LORO */
+.loro-footer {
+  background: var(--loro-white);
+  border-top: 1px solid var(--loro-border);
+  padding: 4rem 2.5rem 2rem;
+}
+
+.footer-content-grid {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-branch-box h4 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--loro-pistachio-deep);
+  margin-bottom: 0.6rem;
+}
+
+.footer-branch-box p {
+  color: var(--loro-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.footer-bottom-line {
+  max-width: 1300px;
+  margin: 0 auto;
+  border-top: 1px solid var(--loro-border);
+  padding-top: 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--loro-text-muted);
+}
+
+@media (max-width: 768px) {
+  .loro-header { padding: 1rem 1.2rem; }
+  .category-sticky-bar { padding: 10px 1.2rem; }
+  .menu-master-container { padding: 2rem 1.2rem 5rem; }
+  .items-grid-loro { grid-template-columns: 1fr; }
+  .footer-content-grid { grid-template-columns: 1fr; }
+}
