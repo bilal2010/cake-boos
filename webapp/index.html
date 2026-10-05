@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Cake Boss | دار الحلويات الفاخرة</title>
+
+  <!-- Preconnect لتحميل الصور والخطوط بأعلى سرعة -->
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,900&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            appCanvas: '#FAFAF9',
+            crimson: {
+              50: '#FFF0F2',
+              100: '#FFE0E5',
+              200: '#FFC2CC',
+              300: '#FF94A5',
+              400: '#FF5C78',
+              DEFAULT: '#DC143C', // اللون الأساسي المعتمد بدقة
+              dark: '#b0550d',
+              deep: '#6B0519',
+              light: '#FFE4E8'
+            }
+          },
+          fontFamily: {
+            tajawal: ['Tajawal', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #FAFAF9;
+      color: #1F2421;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* كروت الأصناف الحديثة */
+    .kiosk-card {
+      background: #FFFFFF;
+      box-shadow: 0 10px 25px -5px rgba(220, 20, 60, 0.05), 0 4px 10px -2px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(220, 20, 60, 0.08);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .kiosk-card:hover {
+      box-shadow: 0 18px 36px -8px rgba(220, 20, 60, 0.12);
+      transform: translateY(-4px);
+    }
+
+    .dish-floating-img {
+      filter: drop-shadow(0 14px 14px rgba(107, 5, 25, 0.16));
+      transition: transform 0.4s ease;
+    }
+    .dish-card-wrapper:hover .dish-floating-img {
+      transform: translateY(-5px) scale(1.06);
+    }
+
+    #desktopNavIndicator {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #mobileNavIndicator {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes shimmerCrimson {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(200%); }
+    }
+    .banner-shimmer::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      animation: shimmerCrimson 4.5s infinite;
+    }
+
+    @keyframes sugarFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
+    }
+    .sugar-float {
+      animation: sugarFloat 4.5s ease-in-out infinite;
+    }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* حركات رسم الـ Splash Screen */
+    .svg-stroke-path {
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      animation: drawPath 2.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    }
+    @keyframes drawPath { to { stroke-dashoffset: 0; } }
+    .fill-reveal { opacity: 0; animation: fillFadeIn 1s ease-out 1.6s forwards; }
+    @keyframes fillFadeIn { to { opacity: 1; } }
+    .svg-flame { opacity: 0; transform-origin: 100px 38px; animation: flameIgnite 1s ease-out 1.8s forwards; }
+    @keyframes flameIgnite { 0% { opacity: 0; transform: scale(0); } 100% { opacity: 1; transform: scale(1); } }
+    .svg-dot { opacity: 0; animation: dotsPop 0.6s ease-out 2s forwards; }
+    @keyframes dotsPop { to { opacity: 0.9; } }
+    .splash-title {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: textReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 1.8s forwards;
+    }
+    @keyframes textReveal { to { opacity: 1; transform: translateY(0); } }
+    .splash-sub { animation: subFade 0.8s ease-out 2.2s forwards; }
+    @keyframes subFade { to { opacity: 1; } }
+    .splash-exit-zoom { opacity: 0 !important; transform: scale(1.1) !important; pointer-events: none !important; }
+  </style>
+</head>
+<body class="h-full flex overflow-hidden">
+
+  <!-- ==================== LUXURY SVG SPLASH SCREEN ==================== -->
+  <div id="luxurySplashScreen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#2B030A] transition-all duration-1000 ease-[cubic-bezier(0.85,0,0.15,1)]">
+    <div class="absolute w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-crimson-deep/40 via-crimson/25 to-transparent blur-3xl pointer-events-none animate-pulse"></div>
+    <div class="relative z-10 flex flex-col items-center text-center px-4">
+      <div class="relative w-44 h-44 sm:w-52 sm:h-52 flex items-center justify-center">
+        <svg id="cakeDrawSvg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full filter drop-shadow-[0_8px_20px_rgba(220,20,60,0.4)]">
+          <defs>
+            <linearGradient id="crimsonStrokeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFE0E5" />
+              <stop offset="50%" stop-color="#FF5C78" />
+              <stop offset="100%" stop-color="#DC143C" />
+            </linearGradient>
+            <linearGradient id="crimsonFillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FF5C78" stop-opacity="0.3" />
+              <stop offset="100%" stop-color="#DC143C" stop-opacity="0.05" />
+            </linearGradient>
+          </defs>
+          <path class="svg-stroke-path" d="M30 162 C65 174 135 174 170 162" stroke="url(#crimsonStrokeGrad)" stroke-width="2.5" stroke-linecap="round"/>
+          <path class="svg-stroke-path" d="M20 168 C65 182 135 182 180 168" stroke="url(#crimsonStrokeGrad)" stroke-width="3" stroke-linecap="round"/>
+          <path class="svg-stroke-path fill-reveal" d="M42 125 L42 156 C70 168 130 168 158 156 L158 125" stroke="url(#crimsonStrokeGrad)" stroke-width="2.5" fill="url(#crimsonFillGrad)"/>
+          <path class="svg-stroke-path" d="M42 125 C50 133 60 133 68 125 C76 133 86 133 94 125 C102 133 112 133 120 125 C128 133 138 133 146 125 C152 131 156 128 158 125" stroke="url(#crimsonStrokeGrad)" stroke-width="2.2" stroke-linecap="round"/>
+          <path class="svg-stroke-path fill-reveal" d="M58 88 L58 118 C80 128 120 128 142 118 L142 88" stroke="url(#crimsonStrokeGrad)" stroke-width="2.5" fill="url(#crimsonFillGrad)"/>
+          <path class="svg-stroke-path" d="M58 88 C66 95 74 95 82 88 C90 95 98 95 106 88 C114 95 122 95 130 88 C136 93 140 91 142 88" stroke="url(#crimsonStrokeGrad)" stroke-width="2.5" stroke-linecap="round"/>
+          <path class="svg-stroke-path fill-reveal" d="M75 58 L75 82 C88 89 112 89 125 82 L125 58" stroke="url(#crimsonStrokeGrad)" stroke-width="2.2" fill="url(#crimsonFillGrad)"/>
+          <ellipse class="svg-stroke-path fill-reveal" cx="100" cy="58" rx="25" ry="8" stroke="url(#crimsonStrokeGrad)" stroke-width="2.2" fill="url(#crimsonFillGrad)"/>
+          <path class="svg-stroke-path" d="M100 50 L100 40" stroke="url(#crimsonStrokeGrad)" stroke-width="2" stroke-linecap="round"/>
+          <path class="svg-flame" d="M100 38 C97 32 96 26 100 22 C104 26 103 32 100 38 Z" fill="#FFE0E5" stroke="url(#crimsonStrokeGrad)" stroke-width="1.5"/>
+          <circle class="svg-dot" cx="70" cy="142" r="1.8" fill="#FFE0E5"/>
+          <circle class="svg-dot" cx="100" cy="146" r="2" fill="#FFE0E5"/>
+          <circle class="svg-dot" cx="130" cy="142" r="1.8" fill="#FFE0E5"/>
+          <circle class="svg-dot" cx="80" cy="106" r="1.5" fill="#FFE0E5"/>
+          <circle class="svg-dot" cx="120" cy="106" r="1.5" fill="#FFE0E5"/>
+        </svg>
+      </div>
+      <div class="mt-6 flex flex-col items-center">
+        <h1 class="splash-title font-serif italic text-3xl sm:text-4xl tracking-[0.22em] text-white font-black uppercase">
+          CAKE BOSS
+        </h1>
+        <div class="splash-sub flex items-center gap-2 mt-2 opacity-0">
+          <span class="w-6 h-px bg-crimson-300"></span>
+          <span class="text-[10px] sm:text-xs font-serif tracking-[0.3em] uppercase text-crimson-100">Cake AND More</span>
+          <span class="w-6 h-px bg-crimson-300"></span>
+        </div>
+        <div class="w-28 h-0.5 bg-white/10 rounded-full mt-6 overflow-hidden">
+          <div id="splashProgress" class="h-full bg-crimson-light w-0 transition-all duration-[2800ms] ease-out"></div>
+        </div>
+      </div>
+    </div>
+    <button onclick="dismissSplashScreen()" class="absolute top-6 left-6 z-20 text-[11px] text-white/50 hover:text-white transition tracking-widest uppercase font-serif py-1 px-3 rounded-full border border-white/20">
+      تخطي <i class="fa-solid fa-chevron-left text-[9px] mr-1"></i>
+    </button>
+  </div>
+
+  <!-- ==================== 1. الشريط الجانبي للكمبيوتر ==================== -->
+  <aside class="hidden md:flex w-20 bg-white border-l border-gray-100 flex-col items-center justify-between py-6 shrink-0 z-30 shadow-sm">
+    <div class="w-11 h-11 rounded-2xl bg-crimson-50 border border-crimson-100 flex items-center justify-center p-1">
+      <img src="logo.png" alt="Logo" class="w-full h-full object-contain" onerror="this.src='https://via.placeholder.com/40?text=CB'">
+    </div>
+
+    <!-- أزرار التنقل الرأسية مع مؤشر الانزلاق القرمزي -->
+    <nav class="relative flex flex-col items-center gap-4 w-full py-2" id="desktopNavWrapper">
+      <div id="desktopNavIndicator" class="absolute right-3.5 w-12 h-14 rounded-2xl bg-crimson shadow-lg shadow-crimson/30 pointer-events-none z-0 transform translate-y-0"></div>
+
+      <button onclick="navigateTo('home', 0)" id="d-nav-0" class="desktop-tab relative z-10 w-14 h-14 rounded-2xl flex flex-col items-center justify-center gap-0.5 text-white transition duration-300">
+        <i class="fa-solid fa-house text-base"></i>
+        <span class="text-[9px] font-bold">الرئيسية</span>
+      </button>
+
+      <button onclick="navigateTo('menu', 1)" id="d-nav-1" class="desktop-tab relative z-10 w-14 h-14 rounded-2xl flex flex-col items-center justify-center gap-0.5 text-gray-400 hover:text-crimson transition duration-300">
+        <i class="fa-solid fa-utensils text-base"></i>
+        <span class="text-[9px] font-bold">القائمة</span>
+      </button>
+
+      <button onclick="navigateTo('branches', 2)" id="d-nav-2" class="desktop-tab relative z-10 w-14 h-14 rounded-2xl flex flex-col items-center justify-center gap-0.5 text-gray-400 hover:text-crimson transition duration-300">
+        <i class="fa-solid fa-store text-base"></i>
+        <span class="text-[9px] font-bold">فروعنا</span>
+      </button>
+
+      <button onclick="navigateTo('contact', 3)" id="d-nav-3" class="desktop-tab relative z-10 w-14 h-14 rounded-2xl flex flex-col items-center justify-center gap-0.5 text-gray-400 hover:text-crimson transition duration-300">
+        <i class="fa-solid fa-phone text-base"></i>
+        <span class="text-[9px] font-bold">تواصل</span>
+      </button>
+    </nav>
+
+    <div class="w-2.5 h-2.5 rounded-full bg-crimson/30"></div>
+  </aside>
+
+  <!-- ==================== 2. المنطقة الوسطى والشاشات ==================== -->
+  <main class="flex-1 flex flex-col h-full overflow-hidden relative">
+    
+    <header class="h-16 sm:h-20 px-4 sm:px-8 flex items-center justify-between shrink-0 bg-[#FAFAF9]/90 backdrop-blur-md z-20">
+      <button onclick="toggleCartDrawer()" class="w-10 h-10 rounded-2xl bg-white border border-gray-200 flex items-center justify-center text-gray-700 shadow-sm relative active:scale-95 transition hover:border-crimson">
+        <i class="fa-solid fa-cart-shopping text-sm"></i>
+        <span id="headerCartCount" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-crimson text-white text-[9px] font-black flex items-center justify-center">0</span>
+      </button>
+
+      <div class="relative w-44 sm:w-72 md:w-80">
+        <input type="text" id="kioskSearch" oninput="filterMenuSearch()" placeholder="ابحث عن كيك أو حلى..."
+               class="w-full bg-white border border-gray-200 rounded-2xl py-2 sm:py-2.5 pr-10 pl-3 text-xs font-semibold focus:outline-none focus:border-crimson focus:ring-2 focus:ring-crimson/20 transition shadow-sm text-gray-700">
+        <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div class="text-right">
+          <span class="text-[10px] text-gray-400 font-semibold block leading-none mb-0.5">أهلاً بك في</span>
+          <h1 class="text-xs sm:text-base font-black text-gray-800 tracking-tight leading-none">Cake Boss Gaza</h1>
+        </div>
+        <img src="logo.png" alt="Cake Boss" class="h-9 sm:h-11 w-auto object-contain" onerror="this.src='https://via.placeholder.com/45?text=CB'">
+      </div>
+    </header>
+
+    <div class="flex-1 overflow-y-auto no-scrollbar relative pb-28 md:pb-6">
+      
+      <!-- ==================== الصفحة 1: الرئيسية (البنر السينمائي الفاخر) ==================== -->
+      <section id="screen-home" class="page-screen px-4 sm:px-8 pt-2 space-y-7">
+        
+        <!-- البنر السينمائي باللون القرمزي الملكي المخملي -->
+        <div class="relative rounded-[36px] overflow-hidden bg-gradient-to-br from-crimson-deep via-crimson-dark to-crimson text-white p-6 sm:p-9 shadow-2xl shadow-crimson/25 banner-shimmer">
+          <div class="absolute -top-10 -right-10 w-52 h-52 rounded-full bg-white/10 blur-3xl pointer-events-none"></div>
+          <div class="absolute bottom-0 left-1/3 w-40 h-40 rounded-full bg-crimson-light/10 blur-2xl pointer-events-none"></div>
+
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center relative z-10">
+            <div class="md:col-span-7 space-y-3.5 text-right">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-crimson-100 text-xs font-bold shadow-sm">
+                <i class="fa-solid fa-sparkles text-xs animate-spin" style="animation-duration: 8s;"></i>
+                <span>الإصدار الحصري لموسم 2026</span>
+              </div>
+
+              <h2 class="text-2xl sm:text-4xl font-black tracking-tight leading-tight text-white">
+                حيث يلتقي سحر <span class="font-serif italic text-crimson-100 font-normal">الشوكولاتة البلجيكية</span> <br>
+                مع قرمشة الفستق الصقلي.
+              </h2>
+
+              <p class="text-xs sm:text-sm text-crimson-100/90 leading-relaxed max-w-md">
+                كيكة الإسفنج المخملية المسقاة بالحليب والمحشوة بصوص الفستق الطبيعي الطازج مع لمسة وايت شوكليت بلجيكية ذائبة.
+              </p>
+
+              <!-- عرض السعر المغري بطريقة أنيقة -->
+              <div class="pt-2 flex items-center gap-3 sm:gap-4 flex-wrap">
+                <div class="bg-white/15 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl flex items-baseline gap-2">
+                  <span class="text-2xl sm:text-3xl font-serif font-black text-white">₪ 24</span>
+                  <span class="text-xs line-through text-white/50 font-bold">₪ 35</span>
+                  <span class="text-[10px] bg-white text-crimson font-black px-2 py-0.5 rounded-full mr-1">وفر 30%</span>
+                </div>
+
+                <button onclick="addToCart('بستاشيو كيك دريم (عرض خاص)', 24)" class="px-5 py-3 rounded-2xl bg-white text-crimson font-black text-xs hover:bg-crimson-50 transition shadow-lg flex items-center gap-2 active:scale-95">
+                  <i class="fa-solid fa-cart-plus text-xs"></i>
+                  <span>اطلب العرض فوراً</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="md:col-span-5 flex justify-center relative">
+              <div class="relative w-48 sm:w-64 aspect-square flex items-center justify-center">
+                <div class="absolute inset-0 rounded-full border border-dashed border-white/25 animate-[spin_40s_linear_infinite]"></div>
+                <div class="sugar-float relative z-10 w-full h-full flex items-center justify-center">
+                  <img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=350&auto=format&fit=crop&q=75" loading="lazy" decoding="async" alt="الطبق الملكي" class="w-4/5 h-4/5 object-cover filter drop-shadow-2xl rounded-full border-2 border-white/20">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- الأصناف الأكثر طلباً في الرئيسية -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-lg font-black text-gray-800">الأكثر طلباً وإقبالاً ⭐</h3>
+              <p class="text-xs text-gray-400">مختارات نالت إعجاب زبائننا في غزة</p>
+            </div>
+            <button onclick="navigateTo('menu', 1)" class="text-xs font-bold text-crimson hover:underline">عرض كل المنيو ←</button>
+          </div>
+
+          <div id="homeFeaturedGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+        </div>
+
+      </section>
+
+      <!-- ==================== الصفحة 2: القائمة والأصناف ==================== -->
+      <section id="screen-menu" class="page-screen hidden px-4 sm:px-8 pt-2">
+        <div class="flex items-center justify-between mb-3">
+          <span id="categoryCountBadge" class="bg-white border border-gray-200 text-gray-600 text-xs font-bold px-3 py-1 rounded-xl shadow-sm">
+            0 طبق
+          </span>
+          <div class="text-left">
+            <h2 class="text-base sm:text-lg font-black text-gray-800">قائمة الحلويات</h2>
+            <span class="text-[11px] text-gray-400 font-medium">اختر التصنيف</span>
+          </div>
+        </div>
+
+        <!-- شريط التصنيفات ذو الأيقونات المكبرة -->
+        <div class="flex items-center gap-3 overflow-x-auto no-scrollbar py-2" id="categoriesBar"></div>
+
+        <!-- شبكة عرض الأطباق -->
+        <div class="pt-10 pb-6">
+          <div id="dishesGrid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-y-12 gap-x-4"></div>
+        </div>
+      </section>
+
+      <!-- ==================== الصفحة 3: فروعنا ==================== -->
+      <section id="screen-branches" class="page-screen hidden px-4 sm:px-8 pt-3 space-y-5">
+        <div class="text-right">
+          <h2 class="text-xl font-black text-gray-800">فروع دار الحلويات</h2>
+          <p class="text-xs text-gray-400">نسعد باستقبالكم وخدمتكم في كافة فروعنا بقطاع غزة</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- الفرع 1 -->
+          <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition space-y-4">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-crimson-50 text-crimson flex items-center justify-center text-xl">
+                  <i class="fa-solid fa-store"></i>
+                </div>
+                <div>
+                  <h3 class="font-black text-sm text-gray-800">فرع شارع الوحدة (الرئيسي)</h3>
+                  <span class="text-[11px] text-gray-400">غزة - بجوار مطعم الجرجاوي</span>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200">
+                مفتوح الآن
+              </span>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-crimson-50/40 border border-crimson-100 text-xs text-gray-600 space-y-2">
+              <div class="flex justify-between">
+                <span>ساعات العمل:</span>
+                <strong class="text-crimson">يومياً 10:00 ص – 12:00 م</strong>
+              </div>
+              <div class="flex justify-between">
+                <span>الهاتف المباشر:</span>
+                <a href="tel:+970598386222" class="font-bold text-crimson hover:underline font-mono">0598386222</a>
+              </div>
+            </div>
+
+            <div class="flex gap-2">
+              <a href="https://maps.google.com" target="_blank" class="flex-1 py-3 rounded-2xl bg-crimson text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm hover:bg-crimson-dark transition">
+                <i class="fa-solid fa-location-arrow"></i>
+                <span>الاتجاهات على الخريطة</span>
+              </a>
+              <a href="https://wa.me/970598386222?text=مرحباً%20فرع%20شارع%20الوحدة" target="_blank" class="w-11 h-11 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- الفرع 2 -->
+          <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition space-y-4">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-crimson-50 text-crimson flex items-center justify-center text-xl">
+                  <i class="fa-solid fa-shop"></i>
+                </div>
+                <div>
+                  <h3 class="font-black text-sm text-gray-800">فرع الرمال - شارع الشهداء</h3>
+                  <span class="text-[11px] text-gray-400">غزة - مقابل مجمع أبو خضرة</span>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200">
+                مفتوح الآن
+              </span>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-crimson-50/40 border border-crimson-100 text-xs text-gray-600 space-y-2">
+              <div class="flex justify-between">
+                <span>ساعات العمل:</span>
+                <strong class="text-crimson">يومياً 11:00 ص – 11:30 م</strong>
+              </div>
+              <div class="flex justify-between">
+                <span>الهاتف المباشر:</span>
+                <a href="tel:+970598386222" class="font-bold text-crimson hover:underline font-mono">0598386222</a>
+              </div>
+            </div>
+
+            <div class="flex gap-2">
+              <a href="https://maps.google.com" target="_blank" class="flex-1 py-3 rounded-2xl bg-crimson text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm hover:bg-crimson-dark transition">
+                <i class="fa-solid fa-location-arrow"></i>
+                <span>الاتجاهات على الخريطة</span>
+              </a>
+              <a href="https://wa.me/970598386222?text=مرحباً%20فرع%20الرمال" target="_blank" class="w-11 h-11 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== الصفحة 4: تواصل معنا والخريطة ==================== -->
+      <section id="screen-contact" class="page-screen hidden px-4 sm:px-8 pt-3 space-y-5">
+        <div class="text-right">
+          <h2 class="text-xl font-black text-gray-800">تواصل مع إدارة Cake Boss</h2>
+          <p class="text-xs text-gray-400">يسعدنا استقبال مقترحاتكم وطلبات المناسبات والتوصيل الفوري</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          <div class="lg:col-span-7 bg-[#2E040C] text-white rounded-[32px] p-6 relative overflow-hidden shadow-xl flex flex-col justify-between min-h-[300px]">
+            <div class="relative z-10 space-y-2">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-[10px] font-bold text-crimson-100">
+                <i class="fa-solid fa-map-pin text-crimson-300"></i>
+                <span>موقعنا الحي في قلب مدينة غزة</span>
+              </div>
+              <h3 class="text-xl font-black">غزة - شارع الوحدة</h3>
+              <p class="text-xs text-gray-300">نقطة انطلاق التوصيل السريع لكافة محافظات القطاع</p>
+            </div>
+
+            <div class="my-6 relative z-10 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-crimson flex items-center justify-center text-white"><i class="fa-solid fa-motorcycle text-sm"></i></div>
+                <div>
+                  <span class="text-[11px] font-bold block">متوسط زمن التوصيل:</span>
+                  <span class="text-xs text-crimson-100 font-black">20 - 35 دقيقة</span>
+                </div>
+              </div>
+              <a href="https://wa.me/970598386222?text=مرحباً،%20أريد%20طلب%20توصيل" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-500 text-white font-bold text-xs shadow-md">اطلب دليفري</a>
+            </div>
+
+            <div class="relative z-10 flex items-center justify-between text-xs text-gray-400 border-t border-white/10 pt-3">
+              <span>الإحداثيات: 31.5147° N, 34.4555° E</span>
+              <a href="https://maps.google.com" target="_blank" class="text-crimson-100 hover:underline font-bold">فتح Google Maps ←</a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-white rounded-[32px] p-6 border border-gray-100 shadow-sm space-y-4">
+            <h4 class="font-black text-sm text-gray-800">قنوات الاتصال المباشرة</h4>
+            <div class="space-y-3">
+              <a href="https://wa.me/970598386222" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold transition hover:bg-emerald-100">
+                <span class="flex items-center gap-2.5">
+                  <i class="fa-brands fa-whatsapp text-xl text-emerald-600"></i>
+                  <span>واتساب الطلبات والمبيعات</span>
+                </span>
+                <i class="fa-solid fa-chevron-left text-[10px]"></i>
+              </a>
+
+              <a href="tel:+970598386222" class="flex items-center justify-between p-3.5 rounded-2xl bg-crimson-50 border border-crimson-100 text-crimson text-xs font-bold transition hover:bg-crimson-100">
+                <span class="flex items-center gap-2.5">
+                  <i class="fa-solid fa-phone text-base"></i>
+                  <span>الاتصال المباشر السريع</span>
+                </span>
+                <span class="font-mono text-gray-700" dir="ltr">0598386222</span>
+              </a>
+
+              <a href="#" class="flex items-center justify-between p-3.5 rounded-2xl bg-pink-50 border border-pink-100 text-pink-700 text-xs font-bold transition hover:bg-pink-100">
+                <span class="flex items-center gap-2.5">
+                  <i class="fa-brands fa-instagram text-lg text-pink-600"></i>
+                  <span>حساب الإنستغرام الرسمي</span>
+                </span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+              </a>
+            </div>
+
+            <div class="pt-2">
+              <input type="text" id="quickMsgInput" placeholder="اكتب استفسارك السريع هنا..." class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-xs mb-2 focus:outline-none focus:border-crimson">
+              <button onclick="sendQuickWhatsAppMsg()" class="w-full py-3 rounded-xl bg-crimson text-white font-bold text-xs shadow-md hover:bg-crimson-dark transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+                <span>إرسال الاستفسار فوراً</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==================== 3. بطاقة تفاصيل الصنف المنبثقة الفاخرة (Product Detail Modal) ==================== -->
+  <div id="productDetailModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 transition-all duration-300 opacity-0">
+    <div class="relative w-full max-w-md bg-white rounded-[32px] overflow-hidden shadow-2xl border border-gray-100 transform scale-95 transition-all duration-300" id="modalBoxContent">
+      
+      <!-- زر الإغلاق -->
+      <button onclick="closeProductModal()" class="absolute top-4 left-4 z-20 w-9 h-9 rounded-full bg-white/80 backdrop-blur-md text-gray-700 hover:bg-white flex items-center justify-center shadow transition">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <!-- صورة الصنف الكبيرة الفاخرة -->
+      <div class="relative h-60 bg-gradient-to-b from-crimson-50 to-white flex items-center justify-center p-6 overflow-hidden">
+        <span id="modalTag" class="absolute top-4 right-4 z-10 px-3 py-1 rounded-full bg-crimson text-white text-[10px] font-black shadow-md"></span>
+        <img id="modalImg" src="" alt="Dish" class="h-full w-auto max-w-[85%] object-cover rounded-2xl filter drop-shadow-xl">
+      </div>
+
+      <!-- تفاصيل الصنف والمذاق -->
+      <div class="p-6 pt-2 space-y-4 text-right">
+        <div class="flex items-center justify-between">
+          <h3 id="modalTitle" class="text-xl font-black text-gray-900"></h3>
+          <span id="modalPrice" class="text-2xl font-serif font-black text-crimson"></span>
+        </div>
+
+        <p id="modalDesc" class="text-xs text-gray-500 leading-relaxed"></p>
+
+        <!-- مقياس المذاق والنوتات -->
+        <div class="p-3.5 rounded-2xl bg-crimson-50/50 border border-crimson-100/60 flex items-center justify-between text-xs">
+          <div class="flex items-center gap-2 text-crimson font-bold">
+            <i class="fa-solid fa-sparkles text-xs"></i>
+            <span>مخبوز طازج يومياً في غزة</span>
+          </div>
+          <span class="text-gray-400 text-[11px]">مكونات نقية 100%</span>
+        </div>
+
+        <!-- عداد الكمية وأزرار الإضافة للطلب -->
+        <div class="flex items-center gap-3 pt-2">
+          <div class="flex items-center border border-gray-200 rounded-2xl bg-gray-50 p-1">
+            <button onclick="changeModalQty(-1)" class="w-8 h-8 rounded-xl bg-white text-gray-800 font-bold shadow-sm">-</button>
+            <span id="modalQty" class="w-8 text-center font-bold text-xs">1</span>
+            <button onclick="changeModalQty(1)" class="w-8 h-8 rounded-xl bg-white text-gray-800 font-bold shadow-sm">+</button>
+          </div>
+
+          <button onclick="addModalItemToCart()" class="flex-1 py-3.5 rounded-2xl bg-crimson hover:bg-crimson-dark text-white font-bold text-xs shadow-lg shadow-crimson/25 transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-cart-shopping text-xs"></i>
+            <span>إضافة إلى السلة</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== 4. اللوحة اليسرى للسلة (Cart Panel) ==================== -->
+  <aside id="cartDrawer" class="hidden md:flex fixed md:static inset-0 md:inset-auto z-50 md:z-30 w-full md:w-80 bg-black/40 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none justify-end">
+    <div class="w-full sm:w-96 md:w-full h-full bg-white border-r border-gray-100 flex flex-col justify-between p-5 sm:p-6 shadow-2xl md:shadow-none">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-gray-100">
+          <button onclick="toggleCartDrawer()" class="md:hidden w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500">
+            <i class="fa-solid fa-xmark text-xs"></i>
+          </button>
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-2xl bg-crimson-50 text-crimson flex items-center justify-center">
+              <i class="fa-regular fa-user text-xs"></i>
+            </div>
+            <div>
+              <h4 class="text-xs font-black text-gray-800">ضيفنا العزيز</h4>
+              <span id="cartCountTag" class="text-[10px] text-gray-400 font-bold">0 عناصر</span>
+            </div>
+          </div>
+          <span class="text-xs font-black text-crimson">طلبك</span>
+        </div>
+
+        <div id="cartContentArea" class="py-6 min-h-[220px] max-h-[46vh] overflow-y-auto no-scrollbar flex flex-col justify-center">
+          <div id="emptyCartView" class="text-center space-y-2.5">
+            <div class="w-12 h-12 rounded-full bg-[#FFF0F2] text-crimson/40 flex items-center justify-center mx-auto text-lg">
+              <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+            <div>
+              <h5 class="text-xs font-black text-gray-700">طلبيتك فارغة</h5>
+              <p class="text-[10px] text-gray-400">أضف أطباقك المفضلة من القائمة</p>
+            </div>
+          </div>
+          <div id="cartItemsList" class="hidden divide-y divide-gray-100 space-y-2"></div>
+        </div>
+      </div>
+
+      <div class="pt-4 border-t border-gray-100 space-y-3.5">
+        <div class="flex items-center justify-between text-xs text-gray-400 font-semibold">
+          <span>المجموع الفرعي</span>
+          <span id="subTotalVal" class="text-gray-700 font-bold">₪ 0</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-black text-gray-800">الإجمالي</span>
+          <span id="finalTotalVal" class="text-lg font-black text-crimson">₪ 0</span>
+        </div>
+        <button onclick="openWhatsAppCheckout()" class="w-full py-3.5 rounded-2xl bg-crimson hover:bg-crimson-dark text-white font-bold text-xs shadow-lg shadow-crimson/25 flex items-center justify-center gap-2 transition active:scale-95">
+          <span>متابعة الطلب عبر واتساب</span>
+          <i class="fa-solid fa-chevron-left text-[9px]"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==================== 5. شريط التنقل السفلي للجوال (Apple Dock) ==================== -->
+  <nav class="md:hidden fixed bottom-3 inset-x-3 z-40">
+    <div class="relative bg-white/95 backdrop-blur-xl border border-gray-200/80 rounded-[32px] p-2 shadow-2xl shadow-crimson/15 flex items-center justify-between">
+      <div id="mobileNavIndicator" class="absolute top-2 w-[22%] h-[calc(100%-16px)] rounded-2xl bg-crimson shadow-lg shadow-crimson/30 pointer-events-none z-0 transform translate-x-0"></div>
+
+      <button onclick="navigateTo('home', 0)" id="m-nav-0" class="mobile-tab relative z-10 flex-1 py-2 flex flex-col items-center justify-center gap-0.5 text-white transition duration-300">
+        <i class="fa-solid fa-house text-sm"></i>
+        <span class="text-[9px] font-bold">الرئيسية</span>
+      </button>
+
+      <button onclick="navigateTo('menu', 1)" id="m-nav-1" class="mobile-tab relative z-10 flex-1 py-2 flex flex-col items-center justify-center gap-0.5 text-gray-400 hover:text-crimson transition duration-300">
+        <i class="fa-solid fa-utensils text-sm"></i>
+        <span class="text-[9px] font-bold">القائمة</span>
+      </button>
+
+      <button onclick="navigateTo('branches', 2)" id="m-nav-2" class="mobile-tab relative z-10 flex-1 py-2 flex flex-col items-center justify-center gap-0.5 text-gray-400 hover:text-crimson transition duration-300">
+        <i class="fa-solid fa-store text-sm"></i>
+        <span class="text-[9px] font-bold">فروعنا</span>
+      </button>
+
+      <button onclick="navigateTo('contact', 3)" id="m-nav-3" class="mobile-tab relative z-10 flex-1 py-2 flex flex-col items-center justify-center gap-0.5 text-gray-400 hover:text-crimson transition duration-300">
+        <i class="fa-solid fa-phone text-sm"></i>
+        <span class="text-[9px] font-bold">تواصل</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- استيراد ملف البيانات المستقل -->
+  <script src="menu-data.js"></script>
+
+  <!-- السكربت التفاعلي للعمليات -->
+  <script>
+    let cart = [];
+    let currentCategoryId = 'all';
+    let currentModalItem = null;
+    let modalItemQty = 1;
+
+    function dismissSplashScreen() {
+      const splash = document.getElementById('luxurySplashScreen');
+      if (splash && !splash.classList.contains('splash-exit-zoom')) {
+        splash.classList.add('splash-exit-zoom');
+        setTimeout(() => splash.style.display = 'none', 900);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const progress = document.getElementById('splashProgress');
+      if (progress) {
+        setTimeout(() => progress.style.width = '100%', 80);
+      }
+      setTimeout(dismissSplashScreen, 3500);
+
+      renderAppMenu();
+    });
+
+    // رندرة الأقسام والأطباق
+    function renderAppMenu() {
+      if (!window.cakeBossCategories) return;
+
+      const categories = window.cakeBossCategories;
+      const categoriesBar = document.getElementById('categoriesBar');
+      const dishesGrid = document.getElementById('dishesGrid');
+      const homeFeaturedGrid = document.getElementById('homeFeaturedGrid');
+
+      const totalDishesCount = categories.reduce((sum, cat) => sum + cat.items.length, 0);
+
+      // بناء كبسولات الأقسام
+      let catHtml = `
+        <button onclick="filterCategoryById('all', this, ${totalDishesCount})" class="cat-pill active flex flex-col items-center justify-center w-22 sm:w-26 h-22 sm:h-26 rounded-[28px] bg-crimson text-white border border-crimson shadow-lg shadow-crimson/25 shrink-0 transition-all duration-300 p-2">
+          <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center mb-1">
+            <i class="fa-solid fa-border-all text-xl"></i>
+          </div>
+          <span class="text-xs font-black">الكل</span>
+        </button>
+      `;
+
+      categories.forEach(cat => {
+        catHtml += `
+          <button onclick="filterCategoryById('${cat.id}', this, ${cat.items.length})" class="cat-pill flex flex-col items-center justify-center w-22 sm:w-26 h-22 sm:h-26 rounded-[28px] bg-white border border-gray-200 hover:border-crimson/50 transition-all duration-300 shadow-sm shrink-0 p-2 group">
+            <div class="w-12 h-12 rounded-2xl overflow-hidden mb-1 group-hover:scale-105 transition bg-crimson-50 flex items-center justify-center border border-crimson-100">
+              <img src="${cat.image}" loading="lazy" decoding="async" alt="${cat.name}" class="w-full h-full object-cover">
+            </div>
+            <span class="text-xs font-bold text-gray-700">${cat.name}</span>
+          </button>
+        `;
+      });
+      categoriesBar.innerHTML = catHtml;
+
+      // بناء شبكة الأطباق
+      let allDishesHtml = '';
+      let featuredHtml = '';
+
+      categories.forEach(cat => {
+        cat.items.forEach(dish => {
+          const dishJson = encodeURIComponent(JSON.stringify(dish));
+
+          allDishesHtml += `
+            <div class="dish-card-wrapper group relative kiosk-card rounded-[32px] pt-12 pb-3.5 px-3 sm:px-4 flex flex-col justify-between cursor-pointer"
+                 data-category="${cat.id}" data-name="${dish.name}" data-price="${dish.price}" data-desc="${dish.desc}"
+                 onclick="openProductModal('${dishJson}')">
+              <div class="absolute -top-9 inset-x-0 flex justify-center pointer-events-none">
+                <div class="w-20 h-20 rounded-full bg-white p-1 shadow-md flex items-center justify-center border border-crimson-100 overflow-hidden">
+                  <img src="${dish.image}" loading="lazy" decoding="async" alt="${dish.name}" class="dish-floating-img w-full h-full object-cover rounded-full" onerror="this.src='https://via.placeholder.com/120?text=Sweet'">
+                </div>
+              </div>
+              <div class="flex items-center justify-between mb-1" onclick="event.stopPropagation()">
+                <button onclick="toggleFav(this)" class="text-gray-300 hover:text-crimson text-xs transition"><i class="fa-solid fa-heart"></i></button>
+                ${dish.tag ? `<span class="text-[9px] font-black px-2 py-0.5 rounded-full ${dish.featured ? 'bg-crimson-50 text-crimson' : 'bg-gray-100 text-gray-600'}">${dish.tag}</span>` : ''}
+              </div>
+              <div class="text-center space-y-1 my-1">
+                <h3 class="font-black text-xs sm:text-sm text-gray-800 leading-tight">${dish.name}</h3>
+                <p class="text-[9px] sm:text-[10px] text-gray-400 line-clamp-2 leading-relaxed">${dish.desc}</p>
+              </div>
+              <div class="flex items-center justify-between pt-2.5 border-t border-gray-100" onclick="event.stopPropagation()">
+                <span class="font-bold text-xs text-gray-800"><span class="text-crimson font-black">₪</span> ${dish.price}</span>
+                <button onclick="addToCart('${dish.name}', ${dish.price})" class="w-8 h-8 rounded-xl bg-white border border-gray-200 hover:bg-crimson hover:text-white text-gray-700 flex items-center justify-center shadow-sm transition active:scale-90 font-bold text-xs">+</button>
+              </div>
+            </div>
+          `;
+
+          if (dish.featured) {
+            featuredHtml += `
+              <div class="bg-white rounded-3xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition flex items-center gap-4 cursor-pointer"
+                   onclick="openProductModal('${dishJson}')">
+                <div class="w-20 h-20 rounded-2xl bg-crimson-50 p-0.5 overflow-hidden flex items-center justify-center shrink-0 border border-crimson-100">
+                  <img src="${dish.image}" loading="lazy" decoding="async" alt="${dish.name}" class="w-full h-full object-cover rounded-xl" onerror="this.src='https://via.placeholder.com/100?text=Cake'">
+                </div>
+                <div class="flex-1">
+                  <span class="text-[9px] font-black text-crimson bg-crimson-50 px-2 py-0.5 rounded-full">${dish.tag || 'مميز'}</span>
+                  <h4 class="font-bold text-sm text-gray-800 mt-1">${dish.name}</h4>
+                  <div class="flex items-center justify-between mt-2" onclick="event.stopPropagation()">
+                    <span class="font-bold text-xs text-crimson font-serif">₪ ${dish.price}</span>
+                    <button onclick="addToCart('${dish.name}', ${dish.price})" class="w-8 h-8 rounded-xl bg-crimson text-white flex items-center justify-center text-xs shadow-sm hover:bg-crimson-dark transition">+</button>
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+        });
+      });
+
+      dishesGrid.innerHTML = allDishesHtml;
+      homeFeaturedGrid.innerHTML = featuredHtml;
+      document.getElementById('categoryCountBadge').innerText = `${totalDishesCount} طبق`;
+    }
+
+    // فتح بطاقة تفاصيل الصنف المنبثقة
+    function openProductModal(encodedDish) {
+      const dish = JSON.parse(decodeURIComponent(encodedDish));
+      currentModalItem = dish;
+      modalItemQty = 1;
+
+      document.getElementById('modalTitle').innerText = dish.name;
+      document.getElementById('modalPrice').innerText = `₪ ${dish.price}`;
+      document.getElementById('modalDesc').innerText = dish.desc;
+      document.getElementById('modalImg').src = dish.image;
+      document.getElementById('modalQty').innerText = 1;
+
+      const tagEl = document.getElementById('modalTag');
+      if (dish.tag) {
+        tagEl.innerText = dish.tag;
+        tagEl.classList.remove('hidden');
+      } else {
+        tagEl.classList.add('hidden');
+      }
+
+      const modal = document.getElementById('productDetailModal');
+      const box = document.getElementById('modalBoxContent');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        box.classList.remove('scale-95');
+        box.classList.add('scale-100');
+      }, 10);
+    }
+
+    function closeProductModal() {
+      const modal = document.getElementById('productDetailModal');
+      const box = document.getElementById('modalBoxContent');
+      modal.classList.add('opacity-0');
+      box.classList.remove('scale-100');
+      box.classList.add('scale-95');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }, 250);
+    }
+
+    function changeModalQty(diff) {
+      if (modalItemQty + diff >= 1) {
+        modalItemQty += diff;
+        document.getElementById('modalQty').innerText = modalItemQty;
+      }
+    }
+
+    function addModalItemToCart() {
+      if (currentModalItem) {
+        for (let i = 0; i < modalItemQty; i++) {
+          addToCart(currentModalItem.name, currentModalItem.price);
+        }
+        closeProductModal();
+      }
+    }
+
+    // فلترة الأطباق
+    function filterCategoryById(catId, btn, count) {
+      currentCategoryId = catId;
+
+      document.querySelectorAll('.cat-pill').forEach(b => {
+        b.className = "cat-pill flex flex-col items-center justify-center w-22 sm:w-26 h-22 sm:h-26 rounded-[28px] bg-white border border-gray-200 hover:border-crimson/50 transition-all duration-300 shadow-sm shrink-0 p-2 group";
+        const iconDiv = b.querySelector('div');
+        if (iconDiv) iconDiv.classList.remove('bg-white/20');
+        const textSpan = b.querySelector('span');
+        if (textSpan) textSpan.className = "text-xs font-bold text-gray-700";
+      });
+
+      btn.className = "cat-pill active flex flex-col items-center justify-center w-22 sm:w-26 h-22 sm:h-26 rounded-[28px] bg-crimson text-white border border-crimson shadow-lg shadow-crimson/25 shrink-0 transition-all duration-300 p-2";
+      const activeIcon = btn.querySelector('div');
+      if (activeIcon) activeIcon.classList.add('bg-white/20');
+      const activeText = btn.querySelector('span');
+      if (activeText) activeText.className = "text-xs font-black text-white";
+
+      document.getElementById('categoryCountBadge').innerText = `${count} طبق`;
+
+      const cards = document.querySelectorAll('.dish-card-wrapper');
+      cards.forEach(card => {
+        if (catId === 'all' || card.getAttribute('data-category') === catId) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // التنقل بين الشاشات
+    function navigateTo(screenId, index = 0) {
+      document.querySelectorAll('.page-screen').forEach(s => s.classList.add('hidden'));
+      const target = document.getElementById(`screen-${screenId}`);
+      if (target) {
+        target.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      const desktopIndicator = document.getElementById('desktopNavIndicator');
+      if (desktopIndicator) {
+        desktopIndicator.style.transform = `translateY(${index * 72}px)`;
+      }
+
+      const mobileIndicator = document.getElementById('mobileNavIndicator');
+      if (mobileIndicator) {
+        mobileIndicator.style.transform = `translateX(-${index * 100}%)`;
+      }
+
+      document.querySelectorAll('.desktop-tab').forEach((tab, i) => {
+        if (i === index) {
+          tab.classList.remove('text-gray-400');
+          tab.classList.add('text-white');
+        } else {
+          tab.classList.remove('text-white');
+          tab.classList.add('text-gray-400');
+        }
+      });
+
+      document.querySelectorAll('.mobile-tab').forEach((tab, i) => {
+        if (i === index) {
+          tab.classList.remove('text-gray-400');
+          tab.classList.add('text-white');
+        } else {
+          tab.classList.remove('text-white');
+          tab.classList.add('text-gray-400');
+        }
+      });
+    }
+
+    // إدارة السلة
+    function addToCart(name, price) {
+      const existing = cart.find(i => i.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      renderCart();
+    }
+
+    function changeQty(idx, diff) {
+      cart[idx].qty += diff;
+      if (cart[idx].qty <= 0) cart.splice(idx, 1);
+      renderCart();
+    }
+
+    function renderCart() {
+      const countTag = document.getElementById('cartCountTag');
+      const headerCount = document.getElementById('headerCartCount');
+      const emptyView = document.getElementById('emptyCartView');
+      const listArea = document.getElementById('cartItemsList');
+      const subTotal = document.getElementById('subTotalVal');
+      const finalTotal = document.getElementById('finalTotalVal');
+
+      const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
+      const totalPrice = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+
+      countTag.innerText = `${totalItems} عناصر`;
+      headerCount.innerText = totalItems;
+      subTotal.innerText = `₪ ${totalPrice}`;
+      finalTotal.innerText = `₪ ${totalPrice}`;
+
+      if (cart.length === 0) {
+        emptyView.classList.remove('hidden');
+        listArea.classList.add('hidden');
+      } else {
+        emptyView.classList.add('hidden');
+        listArea.classList.remove('hidden');
+
+        listArea.innerHTML = cart.map((item, idx) => `
+          <div class="py-2 flex items-center justify-between text-xs">
+            <div>
+              <h5 class="font-bold text-gray-800">${item.name}</h5>
+              <span class="text-[10px] text-gray-400">₪${item.price}</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button onclick="changeQty(${idx}, -1)" class="w-5 h-5 rounded-md bg-gray-100 text-gray-600 flex items-center justify-center font-bold text-xs">-</button>
+              <span class="font-bold text-xs w-4 text-center">${item.qty}</span>
+              <button onclick="changeQty(${idx}, 1)" class="w-5 h-5 rounded-md bg-crimson-50 text-crimson flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    function toggleCartDrawer() {
+      const drawer = document.getElementById('cartDrawer');
+      if (window.innerWidth < 768) {
+        drawer.classList.toggle('hidden');
+        drawer.classList.toggle('flex');
+      }
+    }
+
+    function openWhatsAppCheckout() {
+      if (cart.length === 0) return alert('طلبيتك فارغة! يرجى اختيار أطباقك المفضلة أولاً.');
+      let msg = "👑 *طلب جديد عبر تطبيق Cake Boss Gaza* 👑\n\n";
+      cart.forEach((i, idx) => {
+        msg += `${idx + 1}. ${i.name} (${i.qty} حبة) = ₪${i.price * i.qty}\n`;
+      });
+      const total = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+      msg += `\n💰 *المجموع الإجمالي:* ₪${total}\n📍 *العنوان وملاحظات التوصيل:* `;
+      window.open(`https://wa.me/970598386222?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function sendQuickWhatsAppMsg() {
+      const txt = document.getElementById('quickMsgInput').value.trim();
+      if (!txt) return alert('يرجى كتابة نص الاستفسار أولاً');
+      const url = `https://wa.me/970598386222?text=${encodeURIComponent('مرحباً Cake Boss، لدي استفسار:\n' + txt)}`;
+      window.open(url, '_blank');
+    }
+
+    function filterMenuSearch() {
+      const q = document.getElementById('kioskSearch').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.dish-card-wrapper');
+      cards.forEach(card => {
+        const name = card.getAttribute('data-name').toLowerCase();
+        const desc = card.getAttribute('data-desc').toLowerCase();
+        const cat = card.getAttribute('data-category');
+        const matchesCategory = (currentCategoryId === 'all' || cat === currentCategoryId);
+        const matchesSearch = (!q || name.includes(q) || desc.includes(q));
+
+        if (matchesCategory && matchesSearch) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function toggleFav(btn) {
+      btn.classList.toggle('text-crimson');
+      btn.classList.toggle('text-gray-300');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      navigateTo('home', 0);
+    });
+  </script>
+</body>
+</html>
