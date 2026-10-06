@@ -500,7 +500,7 @@
 
       <!-- صورة الصنف الكبيرة الفاخرة -->
       <div class="relative h-60 bg-gradient-to-b from-crimson-50 to-white flex items-center justify-center p-6 overflow-hidden">
-        <span id="modalTag" class="absolute top-4 right-4 z-10 px-3 py-1 rounded-full bg-crimson text-white text-[10px] font-black shadow-md"></span>
+        <span id="modalTag" class="absolute top-4 right-4 z-10 px-3.5 py-1.5 rounded-full bg-crimson text-white text-xs font-black shadow-md"></span>
         <img id="modalImg" src="" alt="Dish" class="h-full w-auto max-w-[85%] object-cover rounded-2xl filter drop-shadow-xl">
       </div>
 
@@ -554,7 +554,7 @@
             </div>
             <div>
               <h4 class="text-xs font-black text-gray-800">ضيفنا العزيز</h4>
-              <span id="cartCountTag" class="text-[10px] text-gray-400 font-bold">0 عناصر</span>
+              <span id="cartCountTag" class="text-xs text-gray-500 font-bold">0 عناصر</span>
             </div>
           </div>
           <span class="text-xs font-black text-crimson">طلبك</span>
@@ -567,7 +567,7 @@
             </div>
             <div>
               <h5 class="text-xs font-black text-gray-700">طلبيتك فارغة</h5>
-              <p class="text-[10px] text-gray-400">أضف أطباقك المفضلة من القائمة</p>
+              <p class="text-xs text-gray-400">أضف أطباقك المفضلة من القائمة</p>
             </div>
           </div>
           <div id="cartItemsList" class="hidden divide-y divide-gray-100 space-y-2"></div>
@@ -575,13 +575,13 @@
       </div>
 
       <div class="pt-4 border-t border-gray-100 space-y-3.5">
-        <div class="flex items-center justify-between text-xs text-gray-400 font-semibold">
+        <div class="flex items-center justify-between text-xs text-gray-500 font-semibold">
           <span>المجموع الفرعي</span>
-          <span id="subTotalVal" class="text-gray-700 font-bold">₪ 0</span>
+          <span id="subTotalVal" class="text-gray-800 font-black text-sm">₪ 0</span>
         </div>
         <div class="flex items-center justify-between">
           <span class="text-sm font-black text-gray-800">الإجمالي</span>
-          <span id="finalTotalVal" class="text-lg font-black text-crimson">₪ 0</span>
+          <span id="finalTotalVal" class="text-xl font-black text-crimson">₪ 0</span>
         </div>
         <button onclick="openWhatsAppCheckout()" class="w-full py-3.5 rounded-2xl bg-crimson hover:bg-crimson-dark text-white font-bold text-xs shadow-lg shadow-crimson/25 flex items-center justify-center gap-2 transition active:scale-95">
           <span>متابعة الطلب عبر واتساب</span>
@@ -687,8 +687,9 @@
         cat.items.forEach(dish => {
           const dishJson = encodeURIComponent(JSON.stringify(dish));
 
+          // كروت الأطباق في القائمة: تاق أوضح وأكبر، وأسعار واضحة
           allDishesHtml += `
-            <div class="dish-card-wrapper group relative kiosk-card rounded-[32px] pt-12 pb-3.5 px-3 sm:px-4 flex flex-col justify-between cursor-pointer"
+            <div class="dish-card-wrapper group relative kiosk-card rounded-[32px] pt-14 pb-4 px-3 sm:px-4 flex flex-col justify-between cursor-pointer"
                  data-category="${cat.id}" data-name="${dish.name}" data-price="${dish.price}" data-desc="${dish.desc}"
                  onclick="openProductModal('${dishJson}')">
               <div class="absolute -top-9 inset-x-0 flex justify-center pointer-events-none">
@@ -696,21 +697,30 @@
                   <img src="${dish.image}" loading="lazy" decoding="async" alt="${dish.name}" class="dish-floating-img w-full h-full object-cover rounded-full" onerror="this.src='https://via.placeholder.com/120?text=Sweet'">
                 </div>
               </div>
+              
+              <!-- التاق بالأعلى: أوضح ومقروء تماماً -->
               <div class="flex items-center justify-between mb-1" onclick="event.stopPropagation()">
-                <button onclick="toggleFav(this)" class="text-gray-300 hover:text-crimson text-xs transition"><i class="fa-solid fa-heart"></i></button>
-                ${dish.tag ? `<span class="text-[9px] font-black px-2 py-0.5 rounded-full ${dish.featured ? 'bg-crimson-50 text-crimson' : 'bg-gray-100 text-gray-600'}">${dish.tag}</span>` : ''}
+                <button onclick="toggleFav(this)" class="text-gray-300 hover:text-crimson text-sm p-1 transition"><i class="fa-solid fa-heart"></i></button>
+                ${dish.tag ? `<span class="text-[11px] font-black px-2.5 py-0.5 rounded-full shadow-sm ${dish.featured ? 'bg-crimson text-white' : 'bg-crimson-50 text-crimson border border-crimson-100'}">${dish.tag}</span>` : ''}
               </div>
+
               <div class="text-center space-y-1 my-1">
                 <h3 class="font-black text-xs sm:text-sm text-gray-800 leading-tight">${dish.name}</h3>
-                <p class="text-[9px] sm:text-[10px] text-gray-400 line-clamp-2 leading-relaxed">${dish.desc}</p>
+                <p class="text-[10px] text-gray-400 line-clamp-2 leading-relaxed">${dish.desc}</p>
               </div>
+
+              <!-- السعر: خط بارز وواضح جداً -->
               <div class="flex items-center justify-between pt-2.5 border-t border-gray-100" onclick="event.stopPropagation()">
-                <span class="font-bold text-xs text-gray-800"><span class="text-crimson font-black">₪</span> ${dish.price}</span>
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xs font-black text-crimson">₪</span>
+                  <span class="font-serif font-black text-base sm:text-lg text-gray-900">${dish.price}</span>
+                </div>
                 <button onclick="addToCart('${dish.name}', ${dish.price})" class="w-8 h-8 rounded-xl bg-white border border-gray-200 hover:bg-crimson hover:text-white text-gray-700 flex items-center justify-center shadow-sm transition active:scale-90 font-bold text-xs">+</button>
               </div>
             </div>
           `;
 
+          // كروت الأطباق المميزة في الصفحة الرئيسية: تاق عريض وسعر واضح
           if (dish.featured) {
             featuredHtml += `
               <div class="bg-white rounded-3xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition flex items-center gap-4 cursor-pointer"
@@ -718,12 +728,15 @@
                 <div class="w-20 h-20 rounded-2xl bg-crimson-50 p-0.5 overflow-hidden flex items-center justify-center shrink-0 border border-crimson-100">
                   <img src="${dish.image}" loading="lazy" decoding="async" alt="${dish.name}" class="w-full h-full object-cover rounded-xl" onerror="this.src='https://via.placeholder.com/100?text=Cake'">
                 </div>
-                <div class="flex-1">
-                  <span class="text-[9px] font-black text-crimson bg-crimson-50 px-2 py-0.5 rounded-full">${dish.tag || 'مميز'}</span>
-                  <h4 class="font-bold text-sm text-gray-800 mt-1">${dish.name}</h4>
-                  <div class="flex items-center justify-between mt-2" onclick="event.stopPropagation()">
-                    <span class="font-bold text-xs text-crimson font-serif">₪ ${dish.price}</span>
-                    <button onclick="addToCart('${dish.name}', ${dish.price})" class="w-8 h-8 rounded-xl bg-crimson text-white flex items-center justify-center text-xs shadow-sm hover:bg-crimson-dark transition">+</button>
+                <div class="flex-1 space-y-1">
+                  <span class="text-[11px] font-black text-crimson bg-crimson-50 px-2.5 py-0.5 rounded-full inline-block border border-crimson-100">${dish.tag || 'مميز'}</span>
+                  <h4 class="font-black text-sm text-gray-800 leading-snug">${dish.name}</h4>
+                  <div class="flex items-center justify-between pt-1" onclick="event.stopPropagation()">
+                    <div class="flex items-baseline gap-1">
+                      <span class="text-xs font-black text-crimson">₪</span>
+                      <span class="font-serif font-black text-base sm:text-lg text-gray-900">${dish.price}</span>
+                    </div>
+                    <button onclick="addToCart('${dish.name}', ${dish.price})" class="w-8 h-8 rounded-xl bg-crimson text-white flex items-center justify-center text-xs shadow-sm hover:bg-crimson-dark transition font-bold">+</button>
                   </div>
                 </div>
               </div>
@@ -907,15 +920,15 @@
         listArea.classList.remove('hidden');
 
         listArea.innerHTML = cart.map((item, idx) => `
-          <div class="py-2 flex items-center justify-between text-xs">
+          <div class="py-2.5 flex items-center justify-between text-xs sm:text-sm">
             <div>
               <h5 class="font-bold text-gray-800">${item.name}</h5>
-              <span class="text-[10px] text-gray-400">₪${item.price}</span>
+              <span class="text-xs text-gray-400 font-bold">₪${item.price}</span>
             </div>
-            <div class="flex items-center gap-1.5">
-              <button onclick="changeQty(${idx}, -1)" class="w-5 h-5 rounded-md bg-gray-100 text-gray-600 flex items-center justify-center font-bold text-xs">-</button>
-              <span class="font-bold text-xs w-4 text-center">${item.qty}</span>
-              <button onclick="changeQty(${idx}, 1)" class="w-5 h-5 rounded-md bg-crimson-50 text-crimson flex items-center justify-center font-bold text-xs">+</button>
+            <div class="flex items-center gap-2">
+              <button onclick="changeQty(${idx}, -1)" class="w-6 h-6 rounded-md bg-gray-100 text-gray-600 flex items-center justify-center font-bold text-xs">-</button>
+              <span class="font-bold text-xs sm:text-sm w-4 text-center">${item.qty}</span>
+              <button onclick="changeQty(${idx}, 1)" class="w-6 h-6 rounded-md bg-crimson-50 text-crimson flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         `).join('');
